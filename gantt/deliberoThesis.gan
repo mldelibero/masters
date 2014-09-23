@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="deliberoThesis" company="CWRU" webLink="https://github.com/mldelibero/masters/tree/master/gantt" view-date="2014-09-23" view-index="0" gantt-divider-location="354" resource-divider-location="300" version="2.0" locale="en_US">
+<?xml version="1.0" encoding="UTF-8"?><project name="deliberoThesis" company="CWRU" webLink="https://github.com/mldelibero/masters/tree/master/gantt" view-date="2014-09-21" view-index="0" gantt-divider-location="360" resource-divider-location="300" version="2.0" locale="en_US">
     <description/>
-    <view zooming-state="default:2" id="gantt-chart">
-        <field id="tpd3" name="Name" width="57" order="0"/>
+    <view zooming-state="default:7" id="gantt-chart">
+        <field id="tpd3" name="Name" width="56" order="0"/>
         <field id="tpd4" name="Begin date" width="21" order="1"/>
         <field id="tpd5" name="End date" width="21" order="2"/>
     </view>
     <view id="resource-table">
-        <field id="0" name="Name" width="71" order="0"/>
-        <field id="1" name="Default role" width="28" order="1"/>
+        <field id="0" name="Name" width="57" order="0"/>
+        <field id="1" name="Default role" width="42" order="1"/>
     </view>
     <!-- -->
     <calendars>
@@ -15,12 +15,78 @@
             <day-type id="0"/>
             <day-type id="1"/>
             <calendar id="1" name="default">
-                <default-week sun="1" mon="0" tue="0" wed="0" thu="0" fri="0" sat="1"/>
-                <only-show-weekends value="false"/>
+                <default-week sun="0" mon="0" tue="0" wed="0" thu="0" fri="0" sat="0"/>
+                <only-show-weekends value="true"/>
                 <overriden-day-types/>
                 <days/>
             </calendar>
         </day-types>
+        <date year="2012" month="1" date="2"/>
+        <date year="2012" month="11" date="12"/>
+        <date year="2012" month="1" date="16"/>
+        <date year="2013" month="1" date="21"/>
+        <date year="2014" month="1" date="20"/>
+        <date year="2015" month="1" date="19"/>
+        <date year="2016" month="1" date="18"/>
+        <date year="2017" month="1" date="16"/>
+        <date year="2018" month="1" date="15"/>
+        <date year="2019" month="1" date="21"/>
+        <date year="2020" month="1" date="20"/>
+        <date year="2021" month="1" date="18"/>
+        <date year="2012" month="2" date="20"/>
+        <date year="2013" month="2" date="18"/>
+        <date year="2014" month="2" date="17"/>
+        <date year="2015" month="2" date="16"/>
+        <date year="2016" month="2" date="15"/>
+        <date year="2017" month="2" date="20"/>
+        <date year="2018" month="2" date="19"/>
+        <date year="2019" month="2" date="18"/>
+        <date year="2020" month="2" date="17"/>
+        <date year="2021" month="2" date="15"/>
+        <date year="2012" month="5" date="28"/>
+        <date year="2013" month="5" date="27"/>
+        <date year="2014" month="5" date="26"/>
+        <date year="2015" month="5" date="25"/>
+        <date year="2016" month="5" date="30"/>
+        <date year="2017" month="5" date="29"/>
+        <date year="2018" month="5" date="28"/>
+        <date year="2019" month="5" date="27"/>
+        <date year="2020" month="5" date="25"/>
+        <date year="2021" month="5" date="31"/>
+        <date year="2012" month="9" date="3"/>
+        <date year="2013" month="9" date="2"/>
+        <date year="2014" month="9" date="1"/>
+        <date year="2015" month="9" date="7"/>
+        <date year="2016" month="9" date="5"/>
+        <date year="2017" month="9" date="4"/>
+        <date year="2018" month="9" date="3"/>
+        <date year="2019" month="9" date="2"/>
+        <date year="2020" month="9" date="7"/>
+        <date year="2021" month="9" date="6"/>
+        <date year="2012" month="10" date="8"/>
+        <date year="2013" month="10" date="14"/>
+        <date year="2014" month="10" date="13"/>
+        <date year="2015" month="10" date="12"/>
+        <date year="2016" month="10" date="10"/>
+        <date year="2017" month="10" date="9"/>
+        <date year="2018" month="10" date="15"/>
+        <date year="2019" month="10" date="14"/>
+        <date year="2020" month="10" date="12"/>
+        <date year="2021" month="10" date="11"/>
+        <date year="2012" month="11" date="22"/>
+        <date year="2013" month="11" date="28"/>
+        <date year="2014" month="11" date="27"/>
+        <date year="2015" month="11" date="26"/>
+        <date year="2016" month="11" date="24"/>
+        <date year="2017" month="11" date="23"/>
+        <date year="2018" month="11" date="22"/>
+        <date year="2019" month="11" date="28"/>
+        <date year="2020" month="11" date="26"/>
+        <date year="2021" month="11" date="25"/>
+        <date year="" month="1" date="1"/>
+        <date year="" month="7" date="4"/>
+        <date year="" month="11" date="11"/>
+        <date year="" month="12" date="25"/>
     </calendars>
     <tasks empty-milestones="true">
         <taskproperties>
@@ -35,6 +101,72 @@
             <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
             <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
         </taskproperties>
+        <task id="0" name="Circuitry Version 1" meeting="false" start="2014-09-22" duration="1" complete="0" expand="false">
+            <depend id="12" type="2" difference="0" hardness="Strong"/>
+            <depend id="28" type="2" difference="0" hardness="Strong"/>
+            <task id="1" name="Protection" meeting="false" start="2014-09-22" duration="1" complete="0" expand="true">
+                <depend id="28" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="3" name="DC Bias" meeting="false" start="2014-09-22" duration="1" complete="0" expand="true">
+                <depend id="28" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="4" name="(Dis)Charge Circuitry" meeting="false" start="2014-09-22" duration="1" complete="0" expand="true">
+                <depend id="28" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="5" name="AC Signal Injection" meeting="false" start="2014-09-22" duration="1" complete="0" expand="true">
+                <depend id="28" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="6" name="Transformer" meeting="false" start="2014-09-22" duration="1" complete="0" expand="true">
+                <depend id="28" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="7" name="AC Voltage Measurement" meeting="false" start="2014-09-22" duration="1" complete="0" expand="true">
+                <depend id="28" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="8" name="Rise and Fall Times" meeting="false" start="2014-09-22" duration="1" complete="0" expand="true">
+                <depend id="28" type="2" difference="0" hardness="Strong"/>
+            </task>
+        </task>
+        <task id="12" name="Capacitor Parameters" color="#000000" meeting="false" start="2014-09-23" duration="1" complete="0" expand="false">
+            <depend id="11" type="2" difference="0" hardness="Strong"/>
+            <depend id="28" type="2" difference="0" hardness="Strong"/>
+            <task id="13" name="Practical Uses" meeting="false" start="2014-09-23" duration="1" complete="0" expand="true"/>
+            <task id="14" name="Capacitance" meeting="false" start="2014-09-23" duration="1" complete="0" expand="true"/>
+            <task id="15" name="Impedanc" meeting="false" start="2014-09-23" duration="1" complete="0" expand="true"/>
+            <task id="16" name="Phase" meeting="false" start="2014-09-23" duration="1" complete="0" expand="true"/>
+            <task id="17" name="ESL" meeting="false" start="2014-09-23" duration="1" complete="0" expand="true"/>
+            <task id="18" name="ESR" meeting="false" start="2014-09-23" duration="1" complete="0" expand="true"/>
+            <task id="19" name="Resonant Frequency" meeting="false" start="2014-09-23" duration="1" complete="0" expand="true"/>
+            <task id="20" name="Dissipartion Factor" meeting="false" start="2014-09-23" duration="1" complete="0" expand="true"/>
+            <task id="21" name="Quality Factor" meeting="false" start="2014-09-23" duration="1" complete="0" expand="true"/>
+            <task id="22" name="Insulation Resistance" meeting="false" start="2014-09-23" duration="1" complete="0" expand="true"/>
+            <task id="23" name="Dielectric Absorption" meeting="false" start="2014-09-23" duration="1" complete="0" expand="true"/>
+        </task>
+        <task id="11" name="History of Capacitors" color="#8cb6ce" meeting="false" start="2014-09-24" duration="1" complete="0" expand="true">
+            <depend id="24" type="2" difference="0" hardness="Strong"/>
+            <depend id="28" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="24" name="Capacitor Modeling" color="#8cb6ce" meeting="false" start="2014-09-25" duration="1" complete="0" expand="true">
+            <depend id="9" type="2" difference="0" hardness="Strong"/>
+            <depend id="28" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="9" name="Abstract" color="#8cb6ce" meeting="false" start="2014-09-26" duration="1" complete="0" expand="true">
+            <depend id="10" type="2" difference="0" hardness="Strong"/>
+            <depend id="28" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="10" name="BackGround" color="#8cb6ce" meeting="false" start="2014-09-27" duration="1" complete="0" expand="true">
+            <depend id="26" type="2" difference="0" hardness="Strong"/>
+            <depend id="28" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="26" name="Conclusion" color="#8cb6ce" meeting="false" start="2014-09-28" duration="1" complete="0" expand="true">
+            <depend id="27" type="2" difference="0" hardness="Strong"/>
+            <depend id="28" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="27" name="Future Work" color="#8cb6ce" meeting="false" start="2014-09-29" duration="1" complete="0" expand="true">
+            <depend id="28" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="28" name="All Work Done" color="#8cb6ce" meeting="false" start="2014-09-30" duration="1" complete="0" expand="true"/>
+        <task id="30" name="Defend Thesis" color="#8cb6ce" meeting="true" start="2014-11-14" duration="0" complete="0" priority="4" expand="true"/>
+        <task id="29" name="All Materials Submitted" color="#8cb6ce" meeting="true" start="2014-12-05" duration="0" complete="0" expand="true"/>
     </tasks>
     <resources/>
     <allocations/>
@@ -49,9 +181,9 @@
         <displaycolumn property-id="tpd9" order="-1" width="75" visible="false"/>
         <displaycolumn property-id="tpd1" order="-1" width="75" visible="false"/>
         <displaycolumn property-id="tpd0" order="-1" width="75" visible="false"/>
-        <displaycolumn property-id="tpd3" order="0" width="199" visible="true"/>
-        <displaycolumn property-id="tpd4" order="1" width="75" visible="true"/>
-        <displaycolumn property-id="tpd5" order="2" width="74" visible="true"/>
+        <displaycolumn property-id="tpd3" order="0" width="201" visible="true"/>
+        <displaycolumn property-id="tpd4" order="1" width="77" visible="true"/>
+        <displaycolumn property-id="tpd5" order="2" width="76" visible="true"/>
     </taskdisplaycolumns>
     <previous/>
     <roles roleset-name="Default"/>
