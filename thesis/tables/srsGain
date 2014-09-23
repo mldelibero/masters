@@ -1,0 +1,16 @@
+\begin{table}
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+    Voltage In (V) & Voltage Out (V) & Absolute Error & Percent Error \\ \hline
+    .001           & .5              & 0              & 0\%           \\ \hline
+    .002           & 1               & 0              & 0\%           \\ \hline
+    .01            & 5               & 0              & 0\%           \\ \hline
+    .02            & 10              & 0              & 0\%           \\ \hline
+    .1             & 50              & 0              & 0\%           \\ \hline
+    .2             & 100             & 0              & 0\%           \\ \hline
+    1              & 500             & 0              & 0\%           \\ \hline
+    \end{tabular}
+    \caption{SRS PS350 actual measured gain}
+    \label{srsGain_table}
+\end{table}
+
