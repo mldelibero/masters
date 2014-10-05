@@ -21,10 +21,9 @@
 % Optional Preface
 \CWRUpreface{Preface text}
 % Optional Acknowledgment
-\CWRUack{This should be the acknowlegement}
+\CWRUack{This should be the acknowlegement}l
 % Optional List of Abbreviations -- This is not complete
-\CWRUloa{List of Abbreviations text}
-% Optional Glossary -- This is not complete
+\CWRUloa{List of Abbreviations text}l% Optional Glossary -- This is not complete
 \CWRUglossary{Glossary text}
 % Required Abstract
 \CWRUabstract{\input{sections/abstract}}
@@ -33,14 +32,14 @@
 \CWRUpreamble{}
 
 % One does not need to use parts, but one may
-\input{sections/background}
+\input{sections/background}t
 \input{sections/history}
 \input{sections/parameters}
 \input{sections/modeling}
 \input{sections/solutions}
-\input{sections/conclusions}
-\input{sections/futureWork}
+%\input{sections/conclusions}
+%\input{sections/futureWork}
 
-\bibliography{metadata/thesis}
+\bibliography{metadata/thesis,figures/thesis_figs}
 % References go here.  One can use any reference type that is useful. 
 \end{document}

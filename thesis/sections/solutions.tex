@@ -63,6 +63,7 @@ This subsection will explain the circuit used to (dis)charge the DUT and the cir
 The basic purpose of this section is to measure the charge/discharge curves of the DUT by stepping the input voltage and then measuring the current through the device over time.
 
 \input{figures/cdlBlock}
+
 The block diagram depicted in Figure: \ref{cdlBlock} shows how this section will function. There are three basic modes:
 
 Charging:
@@ -75,7 +76,7 @@ Leakage:
 Once the DUT is charged to its full voltage, the steady state current can be measured over a much larger time period.
 
 \subsubsection{Relay Control}
-\input{cdlRelayCir}
+\input{figures/cdlRelayCir}
 Each relay is controlled with independent circuitry as shown in Figure: \ref{cdlRelayCir_fig}. The basic operation is that the input control signal (active high) switches either 5V or GND to the low side of the relay's coil. A ringback diode in series with a small valued resistor is in place to limit the coil's inductive spike while switching. Additionally there is a resistor + LED to indicate when an individual relay is active.
 
 \subsubsection{Transimpedance Amplifier}
