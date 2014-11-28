@@ -1,7 +1,7 @@
 \section {Capacitor Parameters}
 \subsection{Comments}
 *In Section 3.1 you could mention what characteristics are important for that application.  And capacitors for switching power supplies are conspicuously absent.
-*In your applications section  I also think of capacitors as being associated with oscillators, with simple DC blocking, and with power factor correction.
+*In your applications section  I also think of capacitors as being associated with oscillators, and with power factor correction.
 *Do you want to get into capacitor parameters such as stability, temperature operating range, working voltage, peak or surge current, etc
 
 \subsection{Practical Capacitor Uses}
@@ -36,6 +36,13 @@ Another use for capacitors is in analog filtering. Take for instance the low pas
     \label{lowPass}
 \end{figure}
 
+\subsubsection{DC Blocking}
+
+Designers often take advantage of capactors' characteristic of passing AC current while blocking DC current. As in Figure: \ref{dcBlock}, a capacitor can be used to block a DC offset before an amplifier. 
+
+\input{figures/dcBlock}
+
+
 \subsection{Capacitance}
 
 There is a distinct difference between a capacitor and capacitance. While a capacitor's main characteristic is capacitance, it cannot be modeled entirely as such in most practical applications. There are various inductive and resistive components to a capacitor that are important in various circumstances.
@@ -62,11 +69,11 @@ f = \frac{1}{2\pi RC}
 Varying the capacitance used in the filter will move the cutoff frequency and consequently get a different response in the filter. The effect of this can be seen in Figure: \ref{lowPassFilt_fig}.
 
 \begin{figure}
-    \includegraphics[keepaspectratio=true,scale=.5]{./figures/testImage.png}
-    \centering
+\includegraphics[keepaspectratio=true,scale=.5]{./figures/testImage.png}
+\centering
 %    \cite{capSite_df_vs_temp}
-    \caption{Changing Capacitance in a Low Pass Filter}
-    \label{lowPassFilt_fig}
+\caption{Changing Capacitance in a Low Pass Filter}
+\label{lowPassFilt_fig}
 \end{figure}
 
 \subsection{Impedance}
@@ -93,11 +100,11 @@ In most AC applications we look at the magnitude of the impedance. Real capacito
 When capacitors are used in bypassing power supplies, the idea is to have a low impedance for common or expected noise frequencies. One may be tempted to choose a large valued capacitor to use for bypassing a wide range of frequencies. This turns out to backfire in practical situations, due to other parasitics in a real capacitor. For any capacitor, the impedance equation is more complicated, and the impedance value will begin to increase with frequency after some point. This will cause the designer to choose several different valued capacitors in parallel when bypassing a power supply or sensitive component. We will see later that the frequency plot of a capacitor will end up being more complicated than the simplified version seen in Figure: \ref{idealCapMagfig}.
 
 \begin{figure}
-    \includegraphics[keepaspectratio=true,scale=.5]{./figures/testImage.png}
-    \centering
+\includegraphics[keepaspectratio=true,scale=.5]{./figures/testImage.png}
+\centering
 %    \cite{capSite_df_vs_temp}
-    \caption{Ideal Capacitor Magnitude versus frequency}
-    \label{idealCapMagfig}
+\caption{Ideal Capacitor Magnitude versus frequency}
+\label{idealCapMagfig}
 \end{figure}
 
 \subsection{Phase}
