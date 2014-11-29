@@ -37,7 +37,7 @@ The inductors in modern DC-DC switching supplies have required increased attenti
 
 \subsection{Capacitance}
 
-There is a distinct difference between a capacitor and capacitance. While a capacitor's main characteristic is capacitance, it cannot be modeled entirely as such in most practical applications. There are various inductive and resistive components to a capacitor that are important in various circumstances.
+There is a distinct difference between a capacitor and capacitance. While a capacitor's dominant characteristic is capacitance, it cannot be modeled entirely as such in most practical applications. There are also various inductive and resistive components to a capacitor that are important in various circumstances.
 
 \begin{equation}
 \label{cqv}
@@ -58,15 +58,10 @@ When using a capacitor in a single-pole low-pass filter, the cutoff frequency ca
 f = \frac{1}{2\pi RC}
 \end{equation}
 
-Varying the capacitance used in the filter will move the cutoff frequency and consequently get a different response in the filter. The effect of this can be seen in Figure: \ref{lowPassFilt_fig}.
+Varying the capacitance used in the filter will move the cutoff frequency and consequently get a different response in the filter. The effect of this can be seen in Figure: \ref{lpFiltVarC}.
 
-\begin{figure}
-\includegraphics[keepaspectratio=true,scale=.5]{./figures/testImage.png}
-\centering
-%    \cite{capSite_df_vs_temp}
-\caption{Changing Capacitance in a Low Pass Filter}
-\label{lowPassFilt_fig}
-\end{figure}
+\input{Figures/parameters/lpFiltVarC}
+
 
 \subsection{Impedance}
 
