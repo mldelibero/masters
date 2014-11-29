@@ -37,7 +37,7 @@ The inductors in modern DC-DC switching supplies have required increased attenti
 
 \subsection{Capacitance}
 
-There is a distinct difference between a capacitor and capacitance. While a capacitor's main characteristic is capacitance, it cannot be modeled entirely as such in most practical applications. There are various inductive and resistive components to a capacitor that are important in various circumstances.
+There is a distinct difference between a capacitor and capacitance. While a capacitor's dominant characteristic is capacitance, it cannot be modeled entirely as such in most practical applications. There are also various inductive and resistive components to a capacitor that are important in various circumstances.
 
 \begin{equation}
 \label{cqv}
@@ -58,19 +58,14 @@ When using a capacitor in a single-pole low-pass filter, the cutoff frequency ca
 f = \frac{1}{2\pi RC}
 \end{equation}
 
-Varying the capacitance used in the filter will move the cutoff frequency and consequently get a different response in the filter. The effect of this can be seen in Figure: \ref{lowPassFilt_fig}.
+Varying the capacitance used in the filter will move the cutoff frequency and consequently get a different response in the filter. The effect of this can be seen in Figure: \ref{lpFiltVarC}.
 
-\begin{figure}
-\includegraphics[keepaspectratio=true,scale=.5]{./figures/testImage.png}
-\centering
-%    \cite{capSite_df_vs_temp}
-\caption{Changing Capacitance in a Low Pass Filter}
-\label{lowPassFilt_fig}
-\end{figure}
+\input{Figures/parameters/lpFiltVarC}
+
 
 \subsection{Impedance}
 
-The impedance of a capacitor is the "AC resistance" of the device. It determines the AC current that will flow when an ac voltage is applied to the capacitor via Ohm's law (Equation: \eqref{capOhmsEqn}). An ideal capacitor has no resistive elements and is purely capacitive. Therefore, its impedance can be described via Equation: \eqref{capImpEqu}. The two main things to notice are that the impedance is frequency dependent and it is purely imaginary (reactive).
+The impedance of a capacitor is the "AC resistance" of the device. It determines the AC current that will flow when an ac voltage is applied to the capacitor via Ohm's law (Equation: \eqref{capOhmsEqn}). An ideal capacitor has only a single capacative element and its impedance can be described via Equation: \eqref{capImpEqu}. The two main things to notice are that the impedance is frequency dependent and it is purely imaginary (reactive).
 
 \begin{equation}
 \label{capOhmsEqn}
@@ -89,15 +84,9 @@ Z = |\vec{Z}| = \frac{1}{2\pi fC}
 
 In most AC applications we look at the magnitude of the impedance. Real capacitors have a more complicated impedance, but with an ideal capacitor we can simplify the magnitude equation down to Equation \eqref{capMagEqn}
 
-When capacitors are used in bypassing power supplies, the idea is to have a low impedance for common or expected noise frequencies. One may be tempted to choose a large valued capacitor to use for bypassing a wide range of frequencies. This turns out to backfire in practical situations, due to other parasitics in a real capacitor. For any capacitor, the impedance equation is more complicated, and the impedance value will begin to increase with frequency after some point. This will cause the designer to choose several different valued capacitors in parallel when bypassing a power supply or sensitive component. We will see later that the frequency plot of a capacitor will end up being more complicated than the simplified version seen in Figure: \ref{idealCapMagfig}.
+When capacitors are used in bypassing power supplies, the idea is to have a low impedance for common or expected noise frequencies. One may be tempted to choose a large valued capacitor to use for bypassing a wide range of frequencies. This turns out to backfire in practical situations, due to other parasitics in a real capacitor. For any capacitor, the impedance equation is more complicated, and the impedance value will begin to increase with frequency after some point. This will cause the designer to choose several different valued capacitors in parallel when bypassing a power supply or sensitive component. We will see later that the frequency plot of a capacitor will end up being more complicated than the simplified version seen in Figure: \ref{capMag}.
 
-\begin{figure}
-\includegraphics[keepaspectratio=true,scale=.5]{./figures/testImage.png}
-\centering
-%    \cite{capSite_df_vs_temp}
-\caption{Ideal Capacitor Magnitude versus frequency}
-\label{idealCapMagfig}
-\end{figure}
+\input{Figures/parameters/capMag}
 
 \subsection{Phase}
 
