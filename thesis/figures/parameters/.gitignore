@@ -1,4 +1,6 @@
 *.log
+*.plt
+*.raw
 *.DSNlck
 *.DBK
 *.opj
