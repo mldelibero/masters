@@ -11,20 +11,13 @@ The most basic reason for wanting to use a capacitor is that it has the ability 
 
 \subsubsection{Power Supply Bypassing}
 \input{figures/parameters/bypass}
-One of the most common uses of capacitors in bypassing a DC power supply (See Figure: \ref{bypass}). Without a bypass capacitor, a portion of the noise or any voltage spikes on the input to a power supply is passed to the output. A capacitor from the input to ground acts as a local charge reservoir to smooth out any non-DC components on the input voltage. Putting a bypass capacitor on the output of a supply prevents load surge currents from causing the output voltage to dip. This is especially important with digital chips, as their high frequency switching can result in glitching if the supply is not properly bypassed.
+One of the most common uses of capacitors in bypassing a DC power supply (see Figure: \ref{bypass}). Without a bypass capacitor, a portion of the noise or any voltage spikes on the input to a power supply is passed to the output. A capacitor from the input to ground acts as a local charge reservoir to smooth out any non-DC components on the input voltage. Putting a bypass capacitor on the output of a supply prevents load surge currents from causing the output voltage to dip. This is especially important with digital chips, as their high frequency switching can result in glitching if the supply is not properly bypassed.
 
 
 \subsubsection{Analog Filtering}
+\input{figures/parameters/analogFiltering}
+Another use for capacitors is in analog filtering. The lowpass filter in Figure: \ref{analogFiltering} attenuates frequencies above a cutoff point, set by the values of the resistor and capacitor. Low pass filters are needed in many applications, such as anti-aliasing, clock filtering, and integration.
 
-Another use for capacitors is in analog filtering. Take for instance the low pass figure in Figure: \ref{lowPass}. The capacitor is used in this configuration to control which frequencies get passed to the rest of the circuitry. Low pass filters are needed in many application; a few of them being anti-aliasing, clock filtering, and integration.
-
-\begin{figure}
-    \includegraphics[keepaspectratio=true,scale=.5]{./figures/testImage.png}
-    \centering
-%    \cite{capSite_df_vs_temp}
-    \caption{Low Pass Filter}
-    \label{lowPass}
-\end{figure}
 
 \subsubsection{DC Blocking}
 
