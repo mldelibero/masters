@@ -126,17 +126,10 @@ Adding ESL to the capacitive model creates a new impedance equation (Equation: \
 Figure: \ref{eslPlot} shows a graphical representation of a capacitor's magnitude and phase once ESL is considered. This plot shows that after a resonance point, the impedance of the inductor (which increases with frequency) will begin to dominate. This makes the capacitor uneffective as a bypass element at frequencies higher than its resonance point. Typically, this frequency point and the capacitor's value have an inverse relationship. This is why you will see power supplies and sensitive chips being bypassed by a range of different valued capacitors. 
 
 \subsection{ESR}
-A real capacitor is more complicated than the ideal single capacitor model. One of the most used parameters is the Equivalent Series Resistance (ESR). ESR is the practical result of the fact that the materials used to create the capacitor have resistance. In simple cases, this can be approximated by a resistance in series with a capacitor (See figure: \ref{capESRModelFig}).
+\input{figures/parameters/esrModel}
+The Equivalent Series Resistance (ESR) is the practical result of the fact that the materials used to create a capacitor have resistance. In simple cases, this can be approximated by a resistance in series with a capacitor (See figure: \ref{esrModel}).
 
-\begin{figure}
-    \includegraphics[keepaspectratio=true,scale=.5]{./figures/testImage.png}
-    \centering
-%    \cite{capSite_df_vs_temp}
-    \caption{Capacitor ESR Model}
-    \label{capESRModelFig}
-\end{figure}
-
-ESR becomes is important when thinking about DCDC switch mode power supplies. The converter's output voltage will have some ripple voltage on top of the DC output. This produces a ripple current through the capacitor. The capacitance element experiences no losses, but the ESR dissipates power according to Equation: \eqref{dcdcESReqn}
+ESR becomes is important when thinking about DCDC switch mode power supplies. In this situation, a bypass capacitor is used to reduce the ripple voltage on the output of the converter. The AC current will pass through the ESR and dissipate heat as per Equation: \eqref{dcdcESReqn}
 
 \begin{equation}
 \label{dcdcESReqn}
@@ -144,13 +137,14 @@ P_{ESR} = I_{C,RMS}^2 * ESR
 \cite{maxSwEff}
 \end{equation}
 
+Another important thing to note about ESR is that even though it is modeled as a resistance, it is not constant across all frequencies. It is a simplification of the resistive and capacitive elements in a capacitor that are dominated by resistance (Equation \eqref{ImpCEslEsr}.
+
 \begin{equation}
 \label{ImpCEslEsr}
 \vec{Z_c} = ESR + j * (\omega L - \frac{1}{\omega C})
 \cite{maxSwEff}
 \end{equation}
 
-Another important thing to note about ESR is that even though it is modeled as a resistance, it is not constant across all frequencies. It is a simplification of resistive and capacitive elements in a capacitor that are dominated by resistance.
 
 \subsection{Resonance Frequency}
 
