@@ -22,7 +22,7 @@ The RMS and peak-to-peak ripple voltage for the same range of outputs are shown 
 
 \input{tables/srsNoise}
 
-\input{figures/srsCtrl}
+\input{figures/board/srsCtrl}
 
 %Need to add references to part datasheets
 The block diagram in Figure: \ref{srsCtrlBlock} and the circuit in Figure: \ref{srsCtrl} show the logic for programatically controlling the SRS supply. The AD7391, a 12-bit DAC, is used to generate the desired control voltage for the SRS supply. Using a 1.0V xxxxx, a precision external reference, the output of the DAC swings from 0-1V with a resolution of 244uV. This sets the SRS supply from 0-500V with a resolution of 122mV. These numbers are theoretical and will degrade from ideal due to the SRS's response to the control signal, the noise levels in the system, and various other factors, such as temperature.
@@ -35,7 +35,7 @@ As an added safety precaution, the SRS supply has the ability to enter in a manu
 
 Error calculations:...
 
-\input{figures/srsCtrlBlock}
+\input{figures/board/srsCtrlBlock}
 
 \subsubsection{Control Limiter}
 
