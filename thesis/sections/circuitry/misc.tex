@@ -1,60 +1,6 @@
 
 \subsection {Overview}
 
-This section will describe version 1 of the circuitry proposed to measure the parameters needed to analyze a capacitor. It will present analytical and empirical assessments of each circuit section where feasible and applicable.
-
-\subsection {Protection}
-
-This subsection will explain the protection circuitry used to isolate parts of the circuit from the high DC voltage in the event of a failure.
-
-\subsection {DC Bias}
-
-The DC Bias circuitry will provide a controlled DC voltage from 0 to 500V. This voltage will be used to provide a DC bias for AC measurements, and to allow for charge/discharge measurements. A Stanford Research Supply PS350, 500VDC power supply will be used to generate the voltage. This supply will be controlled either manually or via its 0-10VDC external control input. Table: \ref{srsCtrl_table}. 
-
-\input{tables/srsCtrl}
-
-Actual measurements of the supply can be seen in Table: \ref{srsGain_table}. As the table indicates, the supply does not exhibit reasonable control below 20mV of control signal (10V output). <---Need to include a noise or stability table over input voltages.--->
-
-\input{tables/srsGain}
-
-The RMS and peak-to-peak ripple voltage for the same range of outputs are shown in Table: \ref{srsNoise_table}.
-
-\input{tables/srsNoise}
-
-\input{figures/board/srsCtrl}
-
-%Need to add references to part datasheets
-The block diagram in Figure: \ref{srsCtrlBlock} and the circuit in Figure: \ref{srsCtrl} show the logic for programatically controlling the SRS supply. The AD7391, a 12-bit DAC, is used to generate the desired control voltage for the SRS supply. Using a 1.0V xxxxx, a precision external reference, the output of the DAC swings from 0-1V with a resolution of 244uV. This sets the SRS supply from 0-500V with a resolution of 122mV. These numbers are theoretical and will degrade from ideal due to the SRS's response to the control signal, the noise levels in the system, and various other factors, such as temperature.
-
-The AD7391 has a buffered output with a $1k\Omega$ output drive capability (for this application). Since the SRS supply is rated at a $1M\Omega$ input impedance, the specs should allow the DAC to directly control the power supply. To be on the safe side, an in-line, optional buffer is added to the circuit.
-
-The AD7391 is controlled via a SPI bus connected to a microcontroller. The speed of this interface is not important because the system will only every change the output value of the DAC in between tests, not while collecting data. The DAC also has a CLR input that forces the output to 0V. The $10k\Omega$ pull down resistor ensures that the output sets the SRS supply to 0V upon start up for safety reasons.
-
-As an added safety precaution, the SRS supply has the ability to enter in a manual voltage and current limit. The voltage limit will be set by the user to the maximum voltage of the particular test at hand.
-
-Error calculations:...
-
-\input{figures/board/srsCtrlBlock}
-
-\subsubsection{Control Limiter}
-
-This circuit section provides a set-point for the maximum allowed control signal to the SRS supply. It acts as a secondary safety limit. The primary limit being the SRS supply's front panel limit setting.
-
-R802 and R805 provide a voltage divider; taking 5V down to 3V. R804 and R806 work with the potentiometer, R803, to provide a manual adjustment up to 3VDC. The diode in the feedback loop of U801 is known as a precision diode. \cite[ch5.1]{jungCook} It limits
-
-
-List of things to explain:
-\begin{enumerate}
-    \item Super-diode
-    \item resolution of DAC
-    \item resolution of control
-    \item effect of noise on the output
-    \item logic for controlling the max control signal.
-    \item overvoltage shunt?
-    \item series resistor between last op amp and SRS
-\end{enumerate}
-
-
 \subsubsection{Relay Control}
 \input{figures/cdlRelayCir}
 Each relay is controlled with independent circuitry as shown in Figure: \ref{cdlRelayCir_fig}. The basic operation is that the input control signal (active high) switches either 5V or GND to the low side of the relay's coil. A ringback diode in series with a small valued resistor is in place to limit the coil's inductive spike while switching. Additionally there is a resistor + LED to indicate when an individual relay is active.
@@ -62,6 +8,11 @@ Each relay is controlled with independent circuitry as shown in Figure: \ref{cdl
 \subsubsection{Transimpedance Amplifier}
 The transimpedance amplifier section is in place to provide a low side current measurement. It provides a 
 
+This section will describe version 1 of the circuitry proposed to measure the parameters needed to analyze a capacitor. It will present analytical and empirical assessments of each circuit section where feasible and applicable.
+
+\subsection {Protection}
+
+This subsection will explain the protection circuitry used to isolate parts of the circuit from the high DC voltage in the event of a failure.
 
 \subsection {AC Signal Injection}
 

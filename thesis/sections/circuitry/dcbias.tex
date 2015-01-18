@@ -1,0 +1,11 @@
+\subsection {DC Bias}
+
+The DC bias circuitry will provide a controlled DC voltage from 0 to 500V. This voltage will be used to provide a DC bias for AC measurements, and to allow for discharge curve measurements. The output of the PS350 can either be set manually or a 0-10V control voltage. This circuitry will take advantage of this analog input at a gain of 500. Actual measurements of the supply can be seen in Table: \ref{srsGain_table}. As the table indicates, the supply does not exhibit good relative error below a 20mV control. 
+
+\input{tables/srsGain}
+
+The analog control uses an AD7391, 12-bit DAC with an internally generated reference. It is controlled via a SPI bus connected to a microcontroller. The update rate of this device is not important to this application because it will be set infrequently and only when the system is not actively collecting data. Even though the output impedance of the DAC is $0.5\Omega$, the signal is still buffered by an op amp to provide an active voltage limmiter on the control signal.
+
+General specifications for the SRS supply can be found in Table: \ref{srsCtrl_table}. 
+
+\input{tables/srsCtrl}
