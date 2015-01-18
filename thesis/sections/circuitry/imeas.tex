@@ -1,0 +1,15 @@
+\subsection{Current Measurement}
+
+The centerpiece of this part of the circuit is the transimpedance amplifier. It works by creating a virtual ground on the negative potential side of the DUT and then returning the current through a resistor to ground. This functionality is specifically useful in this application because it effectively uses the DUT to buffer the measurement circuitry from the high voltage. The transimpedance amplifier has 3 switched feedback stages that allow it to measure 9 decades of current. The output will be buffered and then filtered and digitized dependent of the specific test of interest.
+
+The output voltage is calculated by Equation: \eqref{trans}.
+
+\begin{equation}
+\label{trans}
+Vo = I*R_f
+\end{equation}
+
+The three measurement sections allow for a high precision of measurement over a wide range of current. They are listed in Table: \ref{imeas_table}.
+
+\input{tables/imeas}
+
