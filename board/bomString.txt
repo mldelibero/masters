@@ -1,0 +1,12 @@
+Paste the following line into orcad's BOM generator to output the correct fields
+
+
+Header
+Mfg Part Number\Manufacturer\Value\Part Type\Part Reference\Description\Cost\Supplier\Supplier Part Number\
+
+Combined Property String:
+{Mfg Part Number}\t{Manufacturer}\t{Value}\t{Part Type}\t{Part Reference}\t{Description}\t{Cost}\t{Supplier}\t{Supplier Part Number}
+
+
+To create the formatted BOM, open fmtBOM.xlsx and run the ORCADBOM2BOM macro. The output file will be named bom.xlsx.
+
