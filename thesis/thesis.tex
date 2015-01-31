@@ -12,6 +12,7 @@
 % The name of your department ("Department of" is added by the class)
 \CWRUdepartment{Electrical Engineering\\ \& Computer Science}
 \usepackage{amsmath,amsthm,amssymb}
+\usepackage{pdfpages}
 \bibliographystyle{plain}
 
 \begin{document}
@@ -31,14 +32,14 @@
 % This must be run to generate all the preamble (Super \maketitle)
 \CWRUpreamble{}
 
-% One does not need to use parts, but one may
 \input{sections/background}
 \input{sections/history}
 \input{sections/parameters}
 \input{sections/modeling}
-\input{sections/solutions}
+\input{sections/circuitry}
 \input{sections/conclusions}
 \input{sections/futureWork}
+\input{sections/appendix}
 
 \bibliography{metadata/thesis,figures/thesis_figs}
 % References go here.  One can use any reference type that is useful. 
