@@ -31,10 +31,6 @@ Once the DUT is charged to its full voltage, the steady state current can be mea
 \input{figures/cdlRelayCir}
 Each relay is controlled with independent circuitry as shown in Figure: \ref{cdlRelayCir_fig}. The basic operation is that the input control signal (active high) switches either 5V or GND to the low side of the relay's coil. A ringback diode in series with a small valued resistor is in place to limit the coil's inductive spike while switching. Additionally there is a resistor + LED to indicate when an individual relay is active.
 
-\subsubsection{Transimpedance Amplifier}
-The transimpedance amplifier section is in place to provide a low side current measurement. It provides a 
-
-
 \subsection {AC Signal Injection}
 
 This subsection will cover the circuitry and supporting tech needed to inject an AC signal onto the DUT.
