@@ -1,6 +1,55 @@
 \section {Capacitor Modeling}
 \subsection{Statistics Review}
-Capacitors can be represented by numerous equivalent-circuit models, which have various degrees of accuracy in representing the reponse in a physical system. Equivalent circuit models for capacitors usually have either individual or groups of terms that are  of interest for different applications. For instance, designers of switch-mode power supplies need to know the ESR of a capacitor in order to be able to use it for output filtering. When an unknown capacitor is characterized, its response to an electrical stimulous will recorded and then analyzed. The resulting data is fit to a model using regression analysis. Using various statistical analysis tools, one can determine a model's effectiveness at describing a capacitor to either predict its behavior in a circuit or to compare it against other capacitors. This section will provide a brief introduction into the regression analysis techniques that are proposed in this paper to fit capacitor data to a model.
+Capacitors can be represented by numerous equivalent-circuit models, which have various degrees of accuracy in representing the reponse in a physical system. Equivalent circuit models for capacitors usually have either individual or groups of terms that are  of interest for different applications. For instance, designers of switch-mode power supplies need to know the ESR of a capacitor in order to be able to use it for output filtering. When an unknown capacitor is characterized, its response to an electrical stimulous will be recorded and then analyzed. The resulting data is fit to a model using regression analysis. Using various statistical analysis tools, one can determine a model's effectiveness at describing a capacitor to either predict its behavior in a circuit or to compare it against other capacitors. This section will provide a brief introduction into the regression analysis techniques that are proposed in this paper to fit capacitor data to a model.
+
+A commonly used regression analysis technique is called the Least Squares Estimate (LSE). It attempts to find a model which minimizes the squared error between an empirical set of data and itself.
+
+\begin{equation}
+y = b_0 + b_1 x
+\end{equation}
+
+\begin{equation}
+E^2 = \sum_{i=1}^{n} (y_i - y)^2
+\end{equation}
+
+\begin{equation}
+E^2 = \sum_{i=1}^{n} (y_i - (b_0 + b_1 x_i)^2
+\end{equation}
+
+\begin{equation}
+\frac{\partial E^2}{\partial b_0} = 0 = \sum_{i=1}^{n} (-2y_i +2b_0 + 2b_1 x_i)
+\end{equation}
+
+\begin{equation}
+\frac{\partial E^2}{\partial b_1} = 0 = \sum_{i=1}^{n} (-2y_i x_i +2b_0 x_i + 2b_1 x_i^2)
+\end{equation}
+
+\begin{equation}
+\bar{y} = (\sum_{i=1}^{n} y_i) / n
+\end{equation}
+
+\begin{equation}
+\sum_{i=1}^{n} y_i  = \bar{y}n
+\end{equation}
+
+\begin{equation}
+0 = (\bar{y} - (b_0 + 2b_1 \bar{x})
+\end{equation}
+
+\begin{equation}
+0 = (\bar{xy} - (b_0 \bar{x} + 2b_1 \bar{x^2})
+\end{equation}
+
+\begin{equation}
+b_0 = \bar{y} - b_1 \bar{x}
+\end{equation}
+
+\begin{equation}
+b_1 = \frac{\bar{xy} - \bar{x}\bar{y}}{\bar{x^2} - \bar{x}^2}
+\end{equation}
+
+
+
 
 The $R^2$ quantity is roughly a measure of how well the model represents the dataset. Its value is always between 0 and 1, with a number closer to 1 being a better fit. 
 
