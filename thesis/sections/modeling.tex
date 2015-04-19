@@ -1,8 +1,11 @@
 \section {Capacitor Modeling}
+\subsection{Statistics Review}
+Capacitors can be represented by numerous equivalent-circuit models, which have various degrees of accuracy in representing the reponse in a physical system. Equivalent circuit models for capacitors usually have either individual or groups of terms that are  of interest for different applications. For instance, designers of switch-mode power supplies need to know the ESR of a capacitor in order to be able to use it for output filtering. When an unknown capacitor is characterized, its response to an electrical stimulous will recorded and then analyzed. The resulting data is fit to a model using regression analysis. Using various statistical analysis tools, one can determine a model's effectiveness at describing a capacitor to either predict its behavior in a circuit or to compare it against other capacitors. This section will provide a brief introduction into the regression analysis techniques that are proposed in this paper to fit capacitor data to a model.
 
-This section will follow the capacitor parameters section and explain the aspects of modeling and show examples of how to corellate physical data to a theorectical model.  
+The $R^2$ quantity is roughly a measure of how well the model represents the dataset. Its value is always between 0 and 1, with a number closer to 1 being a better fit. 
 
+wiki -- "A residual is the difference between an observed value and the fitted value provided by a model."
 
-\begin {enumerate}
-    \item RC ladders
-\end {enumerate}
+book -- "The difference between the actual observation $y_i$ and the corresponding fitted value $\overline{y_i}$ is the residual. Say $e_i = y_i - \overline{y_i}$."
+
+wiki -- CDF "The cumulative distribution function (CDF) describes the probability that a real-valued random variable X with a given probablity dsitribution will be found to have a value less than or equal to x."
