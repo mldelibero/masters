@@ -49,7 +49,80 @@ b_1 = \frac{\bar{xy} - \bar{x}\bar{y}}{\bar{x^2} - \bar{x}^2}
 \end{equation}
 
 
+Levy shows an extension of the simple LSE example that is valid for a genaric polinomial transfer function.
 
+\begin{equation}
+G(s) = \frac{A_0 + A_1 s + A_2 s^2 + ... + A_n s^n}{B_0 + B_1 s + B_2 s^2 + ... + B_n s^n}
+\end{equation}
+
+\begin{equation}
+\lambda _h = \sum_{k=0}^{m} \omega _k ^h
+\end{equation}
+
+\begin{equation}
+S_h = \sum_{k=0}^{m} \omega _k ^h R_k
+\end{equation}
+
+\begin{equation}
+T_h = \sum_{k=0}^{m} \omega _k ^h I_k
+\end{equation}
+
+\begin{equation}
+U_h = \sum_{k=0}^{m} \omega _k ^h (R_k ^2 + I_k ^2)
+\end{equation}
+
+\begin{equation}
+MN = C
+\end{equation}
+
+\begin{equation}
+MN = C
+\end{equation}
+
+\begin{equation}
+M = 
+\begin{bmatrix}
+\lambda _0 & 0          & -\lambda _2 &  0           & \lambda _4  & \cdots &  T_1    & S_2    & -T_3   & -S_4   &  T_5    & \cdots \\
+0          & \lambda _2 & 0           & -\lambda _4  & 0           & \cdots & -S_2    & T_3    &  S_4   & -T_5   & -S_6    & \cdots \\
+\lambda _2 & 0          & -\lambda _4 &  0           & \lambda _6  & \cdots &  T_3    & S_4    & -T_5   & -S_6   &  T_7    & \cdots \\
+0          & \lambda _4 & 0           & -\lambda _6  & 0           & \cdots & -S_4    & T_5    &  S_6   & -T_7   & -S_8    & \cdots \\
+
+\vdots     & \vdots     &  \vdots     & \vdots       & \vdots      & \vdots &  \vdots & \vdots & \vdots & \vdots &  \vdots & \vdots \\ 
+T_1        & -S_2       & -T_3        &  S_4         & T_5         & \cdots &  U_2    & 0      & -U_4   &  0     &  U_6    & \cdots \\
+S_2        &  T_3       & -S_4        & -T_5         & S_6         & \cdots &  0      & U_4    &  0     & -U_6   &  0      & \cdots \\
+T_3        & -S_4       & -T_5        &  S_6         & T_7         & \cdots &  U_4    & 0      & -U_6   &  0     &  U_8    & \cdots \\
+\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+N = 
+\begin{bmatrix}
+A_0 \\
+A_1 \\
+A_2 \\
+A_3 \\
+\vdots \\
+B_1 \\
+B_2 \\
+B_3 \\\
+\Vdots
+\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+C = 
+\begin{bmatrix}
+S_0 \\
+T_1 \\
+S_2 \\
+T_3 \\
+\vdots \\
+0   \\
+U_2 \\
+0   \\\
+\Vdots
+\end{bmatrix}
+\end{equation}
 
 The $R^2$ quantity is roughly a measure of how well the model represents the dataset. Its value is always between 0 and 1, with a number closer to 1 being a better fit. 
 
