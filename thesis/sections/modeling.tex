@@ -168,7 +168,27 @@ U_2 \\
 This section will show how to use the method put forth in the previous section to determine the model parameters for several important capacitor models.
 
 \subsubsection{RLC}
-The RLC model, shown in Figue: \ref{fig:rlcModel}, is one of the simplest models used to describe a capacitor. It shows the basic high and low frequency characteristics, along with the capacitor's resonant point.
+The RLC model, shown in Figue: \ref{fig:rlcModel}, is one of the simplest models used to describe a capacitor. It shows the basic low and high frequency characteristics, along with the capacitor's resonant point.
 
 \input{figures/modeling/rlcModel}
+
+\begin{equation}
+\label{equ:rlc_Zs}
+Z(s) = R + sL + \frac{1}{sC}
+\end{equation}
+
+\begin{equation}
+\label{equ:rlc_Zs2}
+Z(s) = \frac{1 + s(RC) + s^2 (LC)}{sC}
+\end{equation}
+
+\begin{equation}
+\label{equ:rlc_Zs3}
+Z_2(s) = Z(s) * sC =  \frac{1 + s(RC) + s^2 (LC)}{1}
+\end{equation}
+
+\begin{equation}
+\label{equ:rlc_Zs4}
+Z_2(s) = \frac{A_0 + A_1 s + A_2 s^2}{B_0 + B_1 s + B_2 s^2}
+\end{equation}
 
