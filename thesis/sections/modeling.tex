@@ -1,5 +1,6 @@
 \section {Capacitor Modeling}
 \subsection{Statistics Review}
+\label{sec:statReview}
 Capacitors can be represented by numerous equivalent-circuit models, which have various degrees of accuracy in representing the reponse of a physical system. Equivalent circuit models for capacitors usually have either individual or groups of terms that are  of interest for different applications. For instance, designers of switch-mode power supplies need to know the ESR of a capacitor in order to be able to use it for output filtering. When an unknown capacitor is characterized, its response to an electrical stimulous will be recorded and then analyzed. The resulting data is fit to a model using regression analysis. Using various statistical analysis tools, one can determine a model's effectiveness at describing a capacitor to either predict its behavior in a circuit or to compare it against other capacitors. This section will provide a brief introduction into the regression analysis techniques that are proposed in this paper to fit capacitor data to a model.
 
 \input{figures/modeling/exLinearData}
@@ -165,12 +166,12 @@ U_2 \\
 \end{multicols}
 
 \subsection{Modeling}
-This section will show how to use the method put forth in the previous section to determine the model parameters for several important capacitor models.
+This section will investigate several of the most common capacitor models. It will show how to fit them to a data set with Levy's method described in Section: \ref{sec:statReview}, and will describe their effectiveness and limitations in doing so.
 
 \subsubsection{RLC}
-The RLC model, shown in Figue: \ref{fig:rlcModel}, is one of the simplest models used to describe a capacitor. It shows the basic low and high frequency characteristics, along with the capacitor's resonant point.
-
 \input{figures/modeling/rlcModel}
+
+The RLC model, shown in Figue: \ref{fig:rlcModel}, is one of the simplest models used to describe a capacitor. It shows the basic low and high frequency characteristics, along with the capacitor's resonant point. Its impedance is described in Equations: \eqref{equ:rlc_Zs} \& \eqref{equ:rlc_Zs2}, but our method does not allow for any poles at the origin. In Equation: \eqref{equ:rlc_Zs3} we multiply by $s$ and fit the new equation to the data. At the end, we will divide by $s$ to get our final result. At this point out eqution is in the proper form and can be abstracted into Equation \eqref{equ:rlc_Zs4}.
 
 \begin{equation}
 \label{equ:rlc_Zs}
@@ -184,11 +185,53 @@ Z(s) = \frac{1 + s(RC) + s^2 (LC)}{sC}
 
 \begin{equation}
 \label{equ:rlc_Zs3}
-Z_2(s) = Z(s) * sC =  \frac{1 + s(RC) + s^2 (LC)}{1}
+Z_2(s) = Z(s) * s =  \frac{\frac{1}{C} + s(R) + s^2 (L)}{1}
 \end{equation}
 
 \begin{equation}
 \label{equ:rlc_Zs4}
 Z_2(s) = \frac{A_0 + A_1 s + A_2 s^2}{B_0 + B_1 s + B_2 s^2}
 \end{equation}
+
+For this model Equations: \eqref{equ:Levy_M}, \eqref{equ:Levy_N}, \& \eqref{equ:Levy_C} simplify down to Equations: \eqref{equ:rlc_M}, \eqref{equ:rlc_N}, \& \eqref{equ:rlc_C}.
+
+\begin{equation}
+\label{equ:rlc_M}
+M = 
+\begin{bmatrix}
+\lambda _0 & 0          & -\lambda _2 &  T_1    & S_2 \\
+0          & \lambda _2 & 0           & -S_2    & T_3 \\
+\lambda _2 & 0          & -\lambda _4 &  T_3    & S_4 \\
+T_1        & -S_2       & -T_3        &  U_2    & 0   \\
+S_2        &  T_3       & -S_4        &  0      & U_4
+\end{bmatrix}
+\end{equation}
+
+\begin{multicols}{2}
+\begin{equation}
+\label{equ:rlc_N}
+N = 
+\begin{bmatrix}
+A_0 \\
+A_1 \\
+A_2 \\
+B_1 \\
+B_2
+\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+\label{equ:rlc_C}
+C = 
+\begin{bmatrix}
+S_0 \\
+T_1 \\
+S_2 \\
+0   \\
+U_2
+\end{bmatrix}
+\end{equation}
+\end{multicols}
+
+Fitting this model to the data shown in Figure:
 
