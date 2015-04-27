@@ -3,9 +3,9 @@
 \label{sec:statReview}
 Capacitors can be represented by numerous equivalent-circuit models, which have various degrees of accuracy in representing the reponse of a physical system. Equivalent circuit models for capacitors usually have either individual or groups of terms that are  of interest for different applications. For instance, designers of switch-mode power supplies need to know the ESR of a capacitor in order to be able to use it for output filtering. When an unknown capacitor is characterized, its response to an electrical stimulous will be recorded and then analyzed. The resulting data is fit to a model using regression analysis. Using various statistical analysis tools, one can determine a model's effectiveness at describing a capacitor to either predict its behavior in a circuit or to compare it against other capacitors. This section will provide a brief introduction into the regression analysis techniques that are proposed in this paper to fit capacitor data to a model.
 
-\input{figures/modeling/exLinearData}
+\input{figures/modeling/exCapData}
 
-The basic task in regression analysis is to take a data set, such as shown in Figure: \ref{fig:exLinearData}, and find the equation of a line that reasonably fits the data. The first thing that we need to do is to choose the form of the line that we want to fit to the data. A good choice for the example at hand would be the line shown in Equation: \eqref{equ:ExLinEqu}. A commonly used regression analysis technique is called the Least Squares Estimate (LSE). It attempts to find a model which minimizes the squared error between an empirical set of data and itself (Equations: \eqref{equ:LSE_E2} \& \eqref{equ:LSE_E2b}).
+The basic task in regression analysis is to take a data set, such as shown in Figure: \ref{fig:exCapData}, and find the equation of a line that reasonably fits the data. The first thing that we need to do is to choose the form of the line that we want to fit to the data. A good choice for the example at hand would be the line shown in Equation: \eqref{equ:ExLinEqu}. A commonly used regression analysis technique is called the Least Squares Estimate (LSE). It attempts to find a model which minimizes the squared error between an empirical set of data and itself (Equations: \eqref{equ:LSE_E2} \& \eqref{equ:LSE_E2b}).
 
 \begin{equation}
 \label{equ:ExLinEqu}
