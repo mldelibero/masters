@@ -27,7 +27,7 @@ for row = 1:matrixSize
                 elseif ((mod(col,4) == 0) && (mod(row,2) == 0))
                     sign = -1;
                 else
-                    sign = 1;;
+                    sign = 1;
                 end
                 
                 M(row,col) = sign * lambda(w,power);
@@ -51,8 +51,8 @@ for row = 1:matrixSize
                 sign = 1;
             end
             
-            if ((mod(row,2) == 1) && (mod(power,2) == 1))
-                M(row,col) = sign * T(w,imag(cData),power);
+            if  (mod(power,2) == 1)
+                M(row,col) = sign * T(w,imag(cData),power);          
             else
                 M(row,col) = sign * S(w,real(cData),power);
             end
@@ -130,14 +130,11 @@ for h = 1:modelOrder
 end
 G = Num ./ Den;
 
-M
-N
-C
-
 %% Calculate Residuls
 mag_res   = abs(cData) - abs(G);
 phase_res = rad2deg(phase(cData)-phase(G));
 %% Plot
+figure
 subplot(2,2,1); 
 semilogx(w,abs(G)); hold on; 
 semilogx(w,abs(cData));
@@ -145,16 +142,16 @@ title('Magnitude');
 legend('Model','Emperical');
 
 subplot(2,2,2); 
-semilogx(w,phase(G)); hold on; 
-semilogx(w,phase(cData));
+semilogx(w,rad2deg(phase(G))); hold on; 
+semilogx(w,rad2deg(phase(cData)));
 title('Phase');
 
 subplot(2,2,3);
-semilogx(w,mag_res); hold on;
+semilogx(w,mag_res,'o'); hold on;
 title('Residuals of Magnitude');
 
 subplot(2,2,4); 
-semilogx(w,phase_res); hold on; 
+semilogx(w,phase_res,'x'); hold on; 
 title('Residuals of Phase');
 %% Sub Functions
     function [Lh] = lambda(wk,h)
