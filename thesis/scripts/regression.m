@@ -1,16 +1,16 @@
 function N = regression(filename,modelOrder)
-[freq, cData] = getData(filename);
-numSamples = size(freq,1);
+%% Prep
+[w, cData] = getData(filename);
+numSamples = size(w,1);
 matrixSize = modelOrder * 2 + 1;
 
 M = ones(matrixSize, matrixSize);
 N = ones(matrixSize,1);
 C = ones(matrixSize,1);
 
-w = 2*pi*freq;
-
 sign  = 0;
 power = 0;
+%% Calculate
 % Populate M
 for row = 1:matrixSize
     for col = 1:matrixSize
@@ -98,7 +98,6 @@ for row = 1:matrixSize
         end
     end
 end
-
 % Populate C
 for (row = 1:matrixSize)
     if (row <= matrixSize - modelOrder)
@@ -117,7 +116,47 @@ for (row = 1:matrixSize)
         end
     end
 end
+% Solve For N
+N = inv(M) * C;
 
+%% Calc Solution
+Num = N(1) * ones(size(w,1),1);
+for h = 1:modelOrder
+    Num = Num + N(h+1) .* (1i * w).^h;
+end
+Den = ones(size(w,1),1);
+for h = 1:modelOrder
+    Den = Den + N(h+modelOrder+1) .* (1i * w).^h;
+end
+G = Num ./ Den;
+
+M
+N
+C
+
+%% Calculate Residuls
+mag_res   = abs(cData) - abs(G);
+phase_res = rad2deg(phase(cData)-phase(G));
+%% Plot
+subplot(2,2,1); 
+semilogx(w,abs(G)); hold on; 
+semilogx(w,abs(cData));
+title('Magnitude');
+legend('Model','Emperical');
+
+subplot(2,2,2); 
+semilogx(w,phase(G)); hold on; 
+semilogx(w,phase(cData));
+title('Phase');
+
+subplot(2,2,3);
+semilogx(w,mag_res); hold on;
+title('Residuals of Magnitude');
+
+subplot(2,2,4); 
+semilogx(w,phase_res); hold on; 
+title('Residuals of Phase');
+%% Sub Functions
     function [Lh] = lambda(wk,h)
         Lh = 0;
         for k = 1:1:length(wk)
@@ -143,40 +182,3 @@ end
         end
     end
 end
-%%
-
-
-%     M = ones(5,5);
-%     M = [lambda(0), 0        , -lambda(2), T(1) , S(2);
-%          0        , lambda(2), 0         , -S(2), T(3);
-%          lambda(2), 0        , -lambda(4), T(3) , S(4);
-%          T(1)     , -S(2)    , -T(3)     , U(2) , 0;
-%          S(2)     , T(3)     , -S(4)     , 0    , U(4)];
-%     C = [S(0);T(1);S(2);0;U(2)];
-%     %N = [.99936;1.0086;-.000015983;.10097;.010031];
-%
-%     %Answer
-%     N = inv(M)*C;
-%     G = (N(1) * ones(1,14) + N(2) * i * wk + N(3) * (i * wk).^2) ./ (1 + N(4) * i * wk + N(5) * (i * wk).^2);
-%     G1 = Rk + i * Ik;
-%
-%     mag_res = abs(G1) - abs(G);
-%     pha_res = rad2deg(phase(G1)-phase(G));
-%
-%     Ex_data = iddata(G1,ones(1:14),wk,'Domain','Frequency')
-%
-% %     figure;
-% %     subplot(2,2,1);    plot(0:13,Ex1_Mag);           hold on; title('Magnitude');
-% %     subplot(2,2,1);    plot(0:13,abs(G));            hold on;
-% %     subplot(2,2,2);    plot(0:13,Ex1_Phase);         hold on; title('Phase');
-% %     subplot(2,2,2);    plot(0:13,rad2deg(phase(G)));
-% %
-% %     % Residuals
-% %     subplot(2,2,3);    plot(0:13,mag_res); title('Magnitude Residual');
-% %     subplot(2,2,4);    plot(0:13,pha_res); title('Phase Residual');
-%
-%     a = 1;
-%
-%
-%
-% end
