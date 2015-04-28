@@ -1,6 +1,6 @@
-function [freq, cdata] = getData(filename)
+function [w, cdata] = getData(filename)
     data      = csvread(filename);
-    freq      = data(:,1);
+    w         = data(:,1) * 2 * pi;
     real_data = data(:,2);
     imag_data = data(:,3);
     
