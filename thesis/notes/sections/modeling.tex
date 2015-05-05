@@ -1,0 +1,67 @@
+\section {Modeling}
+\subsection{Neumayer Complex Curve Fitting Paper}
+This section will contain notes on Neumayer's Paper on Complex curve fitting.\cite{Neu_CompCurve}
+
+This paper compares two methods for determining model parameters from frequency domain data. Method 1 is a "parametric complex curve fitting technique" and method 2 is a frequency-domain subspace identification algorithm."
+
+He seems to be saying that Levy \cite{levy} is an iterative approach. One downside of many iterative approaches is that they require you to guess the initial values of the parameters. This can be difficult in high-order systems. He provides an alternative\cite{van1996continuous}, which only require you to specify the model order. Although the focus of this paper is on the microwave band, it is my hope that I can apply these techniques to the RF and lower bands.
+
+\begin{equation}
+\label{equ:nue_TF}
+H(s) = \frac{A_0 + A_1 s + A_2 s^2 + ... + A_\epsilon s^\epsilon}{1 + b_1 s + b_2 s^2 + ... + b_\eta s^\eta}
+\end{equation}
+
+Equation: \eqref{equ:nue_TF} is used in both methods as the form of the model transfer function. You can use various techniques such as "Model-Based-Parameter-Estimatior or Vector Fitting" to solve for the coefficients. You can convert the systems to equivalent subcircuits if you cannot use differential equations.\cite{neu_ModelSynth}
+
+Terminology list:
+\begin{enumerate}
+    \item Newton-Gauss
+    \item Levenberg-Marquardt
+    \item Jordan-Canonical Transformation
+    \item Staircase Algorithm
+\end{enumerate}
+
+\subsubsection{Frequency-Domain Subspace Identification}
+Methods of this type will start with Equation \eqref{equ:MatrixTF}.\cite{van1996continuous}
+
+\begin{equation}
+\label{equ:MatrixTF}
+H_R = \Gamma _i X_R + \Theta _i I^R
+~\cite{Neu_CompCurve}[Eq.~5]
+\end{equation}
+
+$\Gamma _i$ is the extended observability matrix.
+$\Theta _i$ is the block Toeplitz matrix.
+
+Terminology list:
+\begin{enumerate}
+    \item Singular Value Decomposition (SVD)
+    \item Moore-Penroes Pseudo-inverse
+    \item Forsythe recursions \cite{van1996continuous}
+\end{enumerate}
+
+\begin{equation}
+\label{equ:wNorm}
+\omega _{scale} = \frac{\omega _{min} + \omega _{max}}{2}
+~\cite{van1996continuous}
+\end{equation}
+
+"The frequency domain identification algorith" can be improved by normalizing the frequency via Equation: \eqref{equ:wNorm}.
+
+\subsubsection{Passive Equivalent Circuit}
+Once the parameters of Equation: \eqref{equ:nue_TF} are established, we will want to obtain a passive eletrical model. "This can be ensured by checking that the Hamiltonian matrix has no purely imaginary eigenvalues.\cite{boyd1989bisection}\cite{Neu_CompCurve}"
+
+
+\subsection{Neumayer Synthesis of Equivalent-Circuit Models...}
+This section will contain notes on Neumayer's Paper on fitting.\cite{neu_ModelSynth}
+
+This paper will show how to model systems using either Y,Z, or S parameters. It will show how to determine if the system is stable and passive. In order to prove passivity, we must show that "$Re{Y(s)} or Re{Z(s)}$ must be positive definite (PD)." He gives sources for this. The author will provide an alternative in this paper which only requires the user to solve one Ricatti eqution.
+
+In order to solve the coefficients for the transfer function, you can solve an easily defined matrix (his equation 7). The problem with this, and it is what I found with Levy's method, is that is becomes unusable for data sets with a wide bandwith.But the good news is that there are ways to circumvent this problem. Two simple methods are to either "normalize the frequency range, $w_i ^* = \frac{w_i}{w_0}$ or split the freuency into several sub domains." Another way is to "replace the power series with orthogonal polynomials, such as Chebyshev polynomials.\cite{beyene_uwave} He says that you need to rewrite the matrix equation using these Chebyshev polynomials, but leaves it to his sources to show the math. Apparently you need Clenshaw's recurrence formula to calculate this.
+
+The author goes on to discuss a second method for dealing with the ill-defined matrix. Gustavensen and Semlyen developed a "vector-fitting procedure" that uses an iterative technique to solve for the poles and residuals of the system.
+
+\subsection{Beyene -- Robust Rational Interpolation}
+This section will contain notes on Beyene's Paper on Interpolation.\cite{beyene_uwave}
+
+This method will express the system transfer function in terms of Chebyshev polynomials and then determine the poles of the system. It will focus on using scattering (S) parameters.
