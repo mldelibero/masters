@@ -1,15 +1,21 @@
-function [T,w_norm] = calcChebyPoly(w)
-    % This function calculates the Chebyshev polynomials from a set of w
+function [T_k] = calcChebyPoly(k,w)
+    % This function calculates a chebyshev polynomial result from a frequency point and an order
 
     % Normalize a frequency vector to the range of [-1,1]
-    wmin = w(1);
-    wmax = w(length(w));
-    for index = 1:length(w)
-        w_norm(index) = 2*((w(index) - wmin) / (wmax - wmin))-1;
-    end
-    T(1) = 1;
-    T(2) = w_norm(2);
-    for index = 3:length(w_norm)
-        T(index) = 2 * w_norm(index -1) * T(index - 1) - T(index - 2);
-    end
-end
+    if (k < 1)
+        T_k = 1;
+    elseif (k == 1)
+        T_k = w;
+    else
+        T_1 = 1;
+        T_2 = 1;
+        T_k = w;
+
+        for (ind = 2:k)
+            T_2 = T_1;
+            T_1 = T_k;
+            T_k = 2*w*T_1 - T_2;
+        end
+    end % else
+end % function [T_k] = calcChebyPoly(k,w)
+
