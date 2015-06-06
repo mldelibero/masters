@@ -17,24 +17,35 @@ filename = './data/GRM31MR71H105KA88.txt';
 figure;
 rows = 2;
 cols = 2;
+titleSize  = 25;
+legendSize = 20;
+axisSize   = 20;
 
 subplot(rows,cols,1);
 loglog(w,abs(cData)); hold on;
 loglog(w,abs(G));
-title('Magnitude');
-legend('Orig','Levy');
+title('Magnitude','FontSize',titleSize);
+legend('Orig','Levy','FontSize',legendSize);
+xlabel('\omega','FontSize',axisSize);
+ylabel('Mag (dB)','FontSize',axisSize);
 
 subplot(rows,cols,2);
 semilogx(w,rad2deg(phase(cData))); hold on;
 semilogx(w,rad2deg(phase(G)));
-title('Phase');
-legend('Orig','Levy');
+title('Phase','FontSize',titleSize);
+legend('Orig','Levy''FontSize',legendSize);
+xlabel('\omega','FontSize',axisSize);
+ylabel('\phi (deg)','FontSize',axisSize);
 
 subplot(rows,cols,3);
-semilogx(w,abs(G)-abs(cData)); hold on;
-title('Magnitude Error');
+loglog(w,abs(G)-abs(cData));
+title('Magnitude Error','FontSize',titleSize);
+xlabel('\omega','FontSize',axisSize);
+ylabel('\Delta Mag (dB)','FontSize',axisSize);
 
 subplot(rows,cols,4);
-semilogx(w,rad2deg(phase(G))-rad2deg(phase(cData))); hold on;
-title('Phase Error');
+semilogx(w,rad2deg(phase(G))-rad2deg(phase(cData)));
+title('Phase Error','FontSize',titleSize);
+xlabel('\omega','FontSize',axisSize);
+ylabel('\Delta \phi (deg)','FontSize',axisSize);
 
