@@ -19,32 +19,40 @@ figure;
 rows = 2;
 cols = 2;
 
+n1 = 1;
+n2 = 1;
+n3 = 1;
+l1 = sprintf('iter:%i',n1);
+l2 = sprintf('iter:%i',n2);
+l3 = sprintf('iter:%i',n3);
+
 subplot(rows,cols,1);
 semilogx(w,abs(cData)); hold on;
-%semilogx(w,abs(G(1,1:size(G,2))))
-semilogx(w,abs(G(iterations,1:size(G,2))))
+semilogx(w,abs(G(n1,1:size(G,2))));
+semilogx(w,abs(G(n2,1:size(G,2))));
+semilogx(w,abs(G(n3,1:size(G,2))));
 title('Magnitude');
-%legend('Orig','i1','i_n');
-legend('Orig','i_n');
+legend('Orig',l1,l2,l3);
 
 subplot(rows,cols,2);
 semilogx(w,rad2deg(phase(cData))); hold on;
-%semilogx(w,rad2deg(phase(G(1,1:size(G,2)))));
-semilogx(w,rad2deg(phase(G(iterations,1:size(G,2)))));
+semilogx(w,rad2deg(phase(G(n1,1:size(G,2)))));
+semilogx(w,rad2deg(phase(G(n2,1:size(G,2)))));
+semilogx(w,rad2deg(phase(G(n3,1:size(G,2)))));
 title('Phase');
-%legend('Orig','i1','i_n');
-legend('Orig','i_n');
+legend('Orig',l1,l2,l3);
 
 subplot(rows,cols,3);
-%semilogx(w,abs(G(1,1:size(G,2)))-abs(cData)); hold on;
-semilogx(w,abs(G(iterations,1:size(G,2)))-abs(cData));
-%legend('i1','i_n');
-legend('i_n');
+semilogx(w,abs(G(n1,1:size(G,2)))-abs(cData)); hold on;
+semilogx(w,abs(G(n2,1:size(G,2)))-abs(cData));
+semilogx(w,abs(G(n3,1:size(G,2)))-abs(cData));
+legend(l1,l2,l3);
 title('Magnitude Error');
 
 subplot(rows,cols,4);
-%semilogx(w,rad2deg(phase(G(1,1:size(G,2))))-rad2deg(phase(cData))); hold on;
-semilogx(w,rad2deg(phase(G(iterations,1:size(G,2))))-rad2deg(phase(cData)));
-%legend('i1','i_n');
-legend('i_n');
+semilogx(w,rad2deg(phase(G(n1,1:size(G,2))))-rad2deg(phase(cData))); hold on;
+semilogx(w,rad2deg(phase(G(n2,1:size(G,2))))-rad2deg(phase(cData)));
+semilogx(w,rad2deg(phase(G(n3,1:size(G,2))))-rad2deg(phase(cData)));
+legend(l1,l2,l3);
 title('Phase Error');
+
