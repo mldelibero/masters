@@ -2,44 +2,55 @@
 
 % Clear environment
 clearvars;
-%close all;
+close all;
 format shorte;
 
 NumDeg = 6;
 DenDeg = 7;
 
-%numCoeff = [1.2768, 1.2803, 7.8236*10^-1, 7.9196*10^-2, 8.0901*10^-3, 2.8952*10^-4, 2.0144*10^-5];
-%denCoeff = [1.0000, 2.5313, 4.2704*10^-1, 5.4648*10^-2, 4.5377*10^-3, 1.9841*10^-4, 1.1451*10^-5, 1.0522*10^-7];
-numCoeff = [0.99936, 1.0086, -0.000015983];
-denCoeff = [1.00000, 0.10097, 0.010031];
-%w = linspace(.3,40,1000);
-w = logspace(-1,2,100);
+numCoeff = [1.2768, 1.2803, 7.8236*10^-1, 7.9196*10^-2, 8.0901*10^-3, 2.8952*10^-4, 2.0144*10^-5];
+denCoeff = [1.0000, 2.5313, 4.2704*10^-1, 5.4648*10^-2, 4.5377*10^-3, 1.9841*10^-4, 1.1451*10^-5, 1.0522*10^-7];
+%numCoeff = [0.99936, 1.0086, -0.000015983, 0.00000245];
+%denCoeff = [1.00000, 0.10097, 0.010031   , -0.0003081];
+w = logspace(-1,5,1000);
 
 H = calcDataFromCoeffs(numCoeff,denCoeff,w);
 G = regression_levy_iter(H, w, length(numCoeff), length(denCoeff));
-
+%%
 % Plot
-%figure;
+figure;
 rows = 2;
 cols = 2;
 
+p2 = 1000;
+
 subplot(rows,cols,1);
 semilogx(w,abs(H)); hold on;
-semilogx(w,abs(G));
+%semilogx(w,abs(G(1,1:length(G))))
+semilogx(w,abs(G(p2,1:length(G))))
 title('Magnitude');
-legend('Orig','Calc');
+%legend('Orig','i1','i_n');
+legend('Orig','i_n');
 
 subplot(rows,cols,2);
 semilogx(w,rad2deg(phase(H))); hold on;
-semilogx(w,rad2deg(phase(G)));
+%semilogx(w,rad2deg(phase(G(1,1:length(G)))));
+semilogx(w,rad2deg(phase(G(p2,1:length(G)))));
 title('Phase');
-legend('Orig','Calc');
+%legend('Orig','i1','i_n');
+legend('Orig','i_n');
 
 subplot(rows,cols,3);
-semilogx(w,abs(G) - abs(H));
+%semilogx(w,abs(G(1,1:length(G)))-abs(H)); hold on;
+semilogx(w,abs(G(p2,1:length(G)))-abs(H));
+%legend('i1','i_n');
+legend('i_n');
 title('Magnitude Error');
 
 subplot(rows,cols,4);
-semilogx(w,rad2deg(phase(G)) - rad2deg(phase(H)));
+%semilogx(w,rad2deg(phase(G(1,1:length(G))))-rad2deg(phase(H))); hold on;
+semilogx(w,rad2deg(phase(G(p2,1:length(G))))-rad2deg(phase(H)));
+%legend('i1','i_n');
+legend('i_n');
 title('Phase Error');
 
