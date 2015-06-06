@@ -1,11 +1,14 @@
 \section {Capacitor Modeling}
-\subsection{Statistics Review}
-\label{sec:statReview}
-Capacitors can be represented by numerous equivalent-circuit models, which have various degrees of accuracy in representing the reponse of a physical system. Equivalent circuit models for capacitors usually have either individual or groups of terms that are  of interest for different applications. For instance, designers of switch-mode power supplies need to know the ESR of a capacitor in order to be able to use it for output filtering. When an unknown capacitor is characterized, its response to an electrical stimulous will be recorded and then analyzed. The resulting data is fit to a model using regression analysis. Using various statistical analysis tools, one can determine a model's effectiveness at describing a capacitor to either predict its behavior in a circuit or to compare it against other capacitors. This section will provide a brief introduction into the regression analysis techniques that are proposed in this paper to fit capacitor data to a model.
 
-\input{figures/modeling/exCapData}
+Many designers have a need to simulate the response of the individual components in their systems to impulse and steady state inputs. When dealing with passive electronic components, the device is typically modeled as a combination of various resitors, capacitors, and inductors. The model chosen is often due to either the required accuracy or a specific characteristic of the component that needs to be modeled. When characterizing a new component, the complex frequency response is recorded and then fit to a model. In this section, a progression of regression techniques will be evaluated for their ability to fit the measured frequency response of a capacitor to a polynomial equation. Then the accuracy of various capacitor models will be explored in regards to the fit.
 
-The basic task in regression analysis is to take a data set, such as shown in Figure: \ref{fig:exCapData}, and find the equation of a line that reasonably fits the data. The first thing that we need to do is to choose the form of the line that we want to fit to the data. A good choice for the example at hand would be the line shown in Equation: \eqref{equ:ExLinEqu}. A commonly used regression analysis technique is called the Least Squares Estimate (LSE). It attempts to find a model which minimizes the squared error between an empirical set of data and itself (Equations: \eqref{equ:LSE_E2} \& \eqref{equ:LSE_E2b}).
+\subsection{Regression Analysis}
+\label{sec:RegressionAnalysis}
+\subsubsection{Basic LSE}
+At its core, regression analysis is an optimization problem whose purpose is to fit the equation of a line to a data set. A commonly use regression analysis technique is called the Least Equares Estimate (LSE). It attempts to find a model which minimizes the squared error between an emperical set of data and itself.
+
+The first step in applying a LSE is to choose the form of the equation that best represents the data. The equation of a line, Equation: \eqref{equ:ExLinEqu}, is chosen when only a simple linear fit is needed.
+Then the squared error equation is generated, as in Equations: \eqref{equ:LSE_E2} \& \eqref{equ:LSE_E2b}.
 
 \begin{equation}
 \label{equ:ExLinEqu}
@@ -22,7 +25,7 @@ E^2 = \sum_{i=1}^{n} (y_i - y)^2
 E^2 = \sum_{i=1}^{n} (y_i - (b_0 + b_1 x_i)^2
 \end{equation}
 
-In order to minimize the squared error over the data set, we need to take the partial derivate of Equation: \eqref{equ:LSE_E2b} with respect to each of the unknown parameters seperately. While $b_0$ and $b_1$ will be constants in the final equation, they are treated as variables here until they are known. Conversely, all $x_i$ values are treated as constants. This results in Equations: \eqref{equ:LSE_PD1} \& \eqref{equ:LSE_PD2}.
+In order to minimize the squared error over the data set, we need to take the partial derivate of Equation: \eqref{equ:LSE_E2b} with respect to each of the unknown parameters, the coefficients, seperately. While $b_0$ and $b_1$ will be constants in the final equation, they are treated as variables here until they are known. Conversely, all $x_i$ values are treated as constants. This results in Equations: \eqref{equ:LSE_PD1} \& \eqref{equ:LSE_PD2}.
 
 \begin{equation}
 \label{equ:LSE_PD1}
@@ -34,7 +37,7 @@ In order to minimize the squared error over the data set, we need to take the pa
 \frac{\partial E^2}{\partial b_1} = 0 = \sum_{i=1}^{n} (-2y_i x_i +2b_0 x_i + 2b_1 x_i^2)
 \end{equation}
 
-Up to this point most LSE analyses follow the same basic path. But the rest of the steps depend upon the complexity of the model and solution techniques. The following steps use transformations and substitutions to solve for the unknown variables. In our case, we can use Equations: \eqref{equ:avg} \& \eqref{equ:avgb} to remove the summation terms from the equation.
+Up to this point most LSE analyses follow the same basic path. But the rest of the steps depend upon the complexity of the model and solution techniques. The following steps in the basic LSE use transformations and substitutions to solve for the unknown variables. In our case, we can use Equations: \eqref{equ:avg} \& \eqref{equ:avgb} to remove the summation terms from the equation.
 
 \begin{equation}
 \label{equ:avg} 
@@ -68,7 +71,8 @@ b_0 = \bar{y} - b_1 \bar{x}
 b_1 = \frac{\bar{xy} - \bar{x}\bar{y}}{\bar{x^2} - \bar{x}^2}
 \end{equation}
 
-Levy \cite{levy} shows an extension of the simple LSE example that is valid for a genaric polinomial transfer function. This method is important because it not only allows for a complex-valued transfer functions, but it also prevents the nececcity of needing to rederive the system of equations for each new model. 
+\subsubsection{Levy's Technique - Complex Curve Fitting}
+While the basic LSE technique is sufficient for many circumstances, it is not directly applicable in situations where we need to fit a complex line, such as a transfer function. Levy \cite{levy} shows an extension of the simple LSE example that is valid for a genaric polynomial transfer function. This method is important because it not only allows for a complex-valued transfer functions, but it also prevents the nececcity of needing to rederive the system of equations for each new model. 
 
 \begin{equation}
 \label{equ:levy_Gs}
@@ -76,7 +80,7 @@ G(s) = \frac{A_0 + A_1 s + A_2 s^2 + ... + A_n s^n}{B_0 + B_1 s + B_2 s^2 + ... 
 ~\cite{levy}[Eq.~3]
 \end{equation}
 
-Using Equation: \eqref{equ:levy_Gs} as the genaric model for the equation at hand, Levy shows that you can use Equations: \eqref{equ:Levy_L}, \eqref{equ:Levy_S}, \eqref{equ:Levy_T}, \& \eqref{equ:Levy_U} to simplify the series of partial derivates into a single matrix mtiplication equation shown in \eqref{equ:Levy_Ans}.
+Using Equation: \eqref{equ:levy_Gs} as the genaric model for the equation at hand, Levy shows that you can use Equations: \eqref{equ:Levy_L}, \eqref{equ:Levy_S}, \eqref{equ:Levy_T}, \& \eqref{equ:Levy_U} to simplify the series of partial derivates into a single matrix mtiplication equation shown in \eqref{equ:Levy_Ans}, \eqref{equ:Levy_M}, \eqref{equ:Levy_N}, \& \eqref{equ:Levy_C}.
 
 \begin{equation}
 \label{equ:Levy_L}
@@ -107,8 +111,6 @@ U_h = \sum_{k=0}^{m} \omega _k ^h (R_k ^2 + I_k ^2)
 MN = C
 ~\cite{levy}[Eq.~20]
 \end{equation}
-
-Once you choose the number of terms needed for your model, you use Equations: \eqref{equ:Levy_M}, \eqref{equ:Levy_N}, \& \eqref{equ:Levy_C} along with the empirical data to solve for the coefficients.
 
 \setcounter{MaxMatrixCols}{12} % Allows each row of M to fit on one line
 \begin{equation}
@@ -166,7 +168,7 @@ U_2 \\
 \end{multicols}
 
 \subsection{Modeling}
-This section will investigate several of the most common capacitor models. It will show how to fit them to a data set with Levy's method described in Section: \ref{sec:statReview}, and will describe their effectiveness and limitations in doing so.
+This section will investigate several of the most common capacitor models. It will show how to fit them to a data set with Levy's method described in Section: \ref{sec:RegressionAnalysis}, and will describe their effectiveness and limitations in doing so.
 
 \subsubsection{RLC}
 \input{figures/modeling/rlcModel}
