@@ -1,19 +1,18 @@
-function G = regression_levy_iter(cData, w, numbNumCoeffs, numbDenCoeffs)
+function G = regression_levy_iter(cData, w, iterations, numbNumCoeffs, numbDenCoeffs)
     % Execute the regression analysis based upon Levy's method.
     % G(s) = (a0 + a1*s + a2*s^2 + ... + an*s^n) /
     %        (b0 + b1*s + b2*s^2 + ... + bm*s^m)
 
     % Solve
 %    [TnumCoeff,TdenCoeff] = calcCoeffs(w_norm, T, cData, modelOrder);
-    numCoeffs = ones(length(numbNumCoeffs));
-    denCoeffs = ones(length(numbDenCoeffs)); % Needs to be ones for the initial guess of W
+    numCoeffs = ones(numbNumCoeffs);
+    denCoeffs = ones(numbDenCoeffs); % Needs to be ones for the initial guess of W
     W         = ones(length(w)); % Weighting function
-    iters     = 1000;
 
     %Calculate the Den for W from the initial guess of denCoeffs
     [Gtemp,Num,Den] = calcDataFromCoeffs(numCoeffs,denCoeffs,w);
 
-    for (iter = 1:iters)
+    for (iter = 1:iterations)
         W = 1 ./ abs(Den).^2;
         [numCoeffs, denCoeffs] = calcCoeffs(cData, w, W, numbNumCoeffs, numbDenCoeffs);
         [G(iter,1:length(w)),Num,Den] = calcDataFromCoeffs(numCoeffs,denCoeffs,w);
