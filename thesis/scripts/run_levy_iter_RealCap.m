@@ -27,10 +27,10 @@ l2 = sprintf('iter:%i',n2);
 l3 = sprintf('iter:%i',n3);
 
 subplot(rows,cols,1);
-semilogx(w,abs(cData)); hold on;
-semilogx(w,abs(G(n1,1:size(G,2))));
-semilogx(w,abs(G(n2,1:size(G,2))));
-semilogx(w,abs(G(n3,1:size(G,2))));
+loglog(w,abs(cData)); hold on;
+loglog(w,abs(G(n1,1:size(G,2))));
+loglog(w,abs(G(n2,1:size(G,2))));
+loglog(w,abs(G(n3,1:size(G,2))));
 title('Magnitude');
 legend('Orig',l1,l2,l3);
 
