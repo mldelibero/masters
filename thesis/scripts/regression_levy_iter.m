@@ -1,4 +1,4 @@
-function G = regression_levy_iter(cData, w, iterations, numbNumCoeffs, numbDenCoeffs)
+function [G, numCoeffs, denCoeffs] = regression_levy_iter(cData, w, iterations, numbNumCoeffs, numbDenCoeffs)
     % Execute the regression analysis based upon Levy's method.
     % G(s) = (a0 + a1*s + a2*s^2 + ... + an*s^n) /
     %        (b0 + b1*s + b2*s^2 + ... + bm*s^m)
@@ -8,7 +8,6 @@ function G = regression_levy_iter(cData, w, iterations, numbNumCoeffs, numbDenCo
     numCoeffs = ones(numbNumCoeffs,1);
     denCoeffs = ones(numbDenCoeffs,1); % Needs to be ones for the initial guess of W
     W         = ones(length(w)); % Weighting function
-
 
     %Calculate the Den for W from the initial guess of denCoeffs
     [Gtemp,Num,Den] = calcDataFromCoeffs(numCoeffs,denCoeffs,w);
@@ -25,7 +24,7 @@ function G = regression_levy_iter(cData, w, iterations, numbNumCoeffs, numbDenCo
         [G(iter,1:length(w)),Num,Den] = calcDataFromCoeffs(numCoeffs,denCoeffs,w);
         iter
     end
-end % function G = regression_levy_iter(cData, w, numbNumCoeffs, numbDenCoeffs)
+end % function [G,numCoeffs,denCoeffs] = regression_levy_iter(cData, w, iterations, numbNumCoeffs, numbDenCoeffs)
 
 function [numCoeffs, denCoeffs] = calcCoeffs(cData, w, W, numbNumCoeffs, numbDenCoeffs)
     % This calculates the polynomial coefficients from the wshev polynomial series
