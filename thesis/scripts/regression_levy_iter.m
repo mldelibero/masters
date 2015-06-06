@@ -1,4 +1,4 @@
-function [A,M,N,C,G, numCoeffs, denCoeffs] = regression_levy_iter(cData, w, iterations, numbNumCoeffs, numbDenCoeffs)
+function [G, numCoeffs, denCoeffs] = regression_levy_iter(cData, w, iterations, numbNumCoeffs, numbDenCoeffs)
     % Execute the regression analysis based upon Levy's method.
     % G(s) = (a0 + a1*s + a2*s^2 + ... + an*s^n) /
     %        (b0 + b1*s + b2*s^2 + ... + bm*s^m)
@@ -20,13 +20,13 @@ function [A,M,N,C,G, numCoeffs, denCoeffs] = regression_levy_iter(cData, w, iter
 
     for (iter = 1:iterations)
         W = 1 ./ abs(Den).^2;
-        [A,M,N,C,numCoeffs, denCoeffs] = calcCoeffs(cData, w, W, numbNumCoeffs, numbDenCoeffs);
+        [numCoeffs, denCoeffs] = calcCoeffs(cData, w, W, numbNumCoeffs, numbDenCoeffs);
         [G(iter,1:length(w)),Num,Den] = calcDataFromCoeffs(numCoeffs,denCoeffs,w);
         iter
     end
 end % function [G,numCoeffs,denCoeffs] = regression_levy_iter(cData, w, iterations, numbNumCoeffs, numbDenCoeffs)
 
-function [A,M,N,C,numCoeffs, denCoeffs] = calcCoeffs(cData, w, W, numbNumCoeffs, numbDenCoeffs)
+function [numCoeffs, denCoeffs] = calcCoeffs(cData, w, W, numbNumCoeffs, numbDenCoeffs)
     % This calculates the polynomial coefficients from the wshev polynomial series
 
     % Prepare variables
@@ -36,12 +36,9 @@ function [A,M,N,C,numCoeffs, denCoeffs] = calcCoeffs(cData, w, W, numbNumCoeffs,
     M = ones(Mrows,Mcols);
     N = ones(Mrows,1);
     C = ones(Mrows,1);
-    A = -13*ones(Mcols*Mrows,8);
 
     sign  = 0;
     power = 0;
-
-%    formatPrint = 'Row: %i, Col: %i, xRow: %i, xCol: %i, Q: %i, P: %i, S: %i\n';
 
     %% Calculate
     % Populate M
@@ -52,15 +49,9 @@ function [A,M,N,C,numCoeffs, denCoeffs] = calcCoeffs(cData, w, W, numbNumCoeffs,
                 %Upper Left Quadrant -- lambdas
                 xrow = row;
                 xcol = col;
-                Q    = 0;
 
                 if (xor(mod(xrow,2) == 0, mod(xcol,2) == 0) == 1) % If both are odd or both are even
                     M(xrow,xcol) = 0;
-                    power = 0;
-                    sign = 0;
-                    F = 0;
-                   %fprintf(formatPrint,row,col,0);
-                    A((row-1)*(Mcols-1)+row+col-1,:) = [row,col,xrow,col,Q,power,sign,F];
 
                 else
                     power = xrow + xcol - 2;
@@ -74,18 +65,13 @@ function [A,M,N,C,numCoeffs, denCoeffs] = calcCoeffs(cData, w, W, numbNumCoeffs,
                     end
                         
                     M(xrow,xcol) = sign * lambda(W,w,power);
-                    F = 1;
                 end % else
 
-                %fprintf(formatPrint,row,col,xrow,xcol,Q,power,sign);
-                    A((row-1)*(Mcols-1)+row+col-1,:) = [row,col,xrow,col,Q,power,sign,F];
 
             elseif (row <= numbNumCoeffs)
                 % Upper Right quadrant -- S and T
                 xrow = row;
                 xcol = col - numbNumCoeffs; 
-                Q    = 1;
-
                 power = xrow + xcol - 1;
 
                 if     (mod(xcol,4) == 1) && (mod(xrow,2) == 1)
@@ -104,21 +90,15 @@ function [A,M,N,C,numCoeffs, denCoeffs] = calcCoeffs(cData, w, W, numbNumCoeffs,
 
                 if  (mod(power,2) == 1)
                     M(row,col) = sign * T(W,w,imag(cData),power);
-                    F = 3;
                 else
                     M(row,col) = sign * S(W,w,real(cData),power);
-                    F = 2;
                 end
 
-               %fprintf(formatPrint,row,col,xrow,xcol,Q,power,sign);
-                    A((row-1)*(Mcols-1)+row+col-1,:) = [row,col,xrow,col,Q,power,sign,F];
                 
             elseif ((row > numbNumCoeffs) && (col <= numbNumCoeffs))
                 % Lower Left -- S and T
                 xrow = row - numbNumCoeffs;
                 xcol = col;
-                Q    = 2;
-
                 power = xrow + col - 1;
 
                 if     (mod(xcol,4) == 1)
@@ -137,26 +117,17 @@ function [A,M,N,C,numCoeffs, denCoeffs] = calcCoeffs(cData, w, W, numbNumCoeffs,
                 
                 if (mod(power,2) == 0)
                     M(row,col) = sign * S(W,w,real(cData),power);
-                    F = 2;
                 else
                     M(row,col) = sign * T(W,w,imag(cData),power);
-                    F = 3;
                 end
-               %fprintf(formatPrint,row,col,xrow,xcol,Q,power,sign);
-                    A((row-1)*(Mcols-1)+row+col-1,:) = [row,col,xrow,col,Q,power,sign,F];
 
             else
                 % Lower Right -- U
                 xrow = row - numbNumCoeffs;
                 xcol = col - numbNumCoeffs;
-                Q    = 3;
 
                 if (xor(mod(xrow,2) == 0, mod(xcol,2) == 0) == 1) % If both are odd or both are even
                     M(row,col) = 0;
-                    power = 0;
-                    sign = 0;
-                    F = 0;
-                    A((row-1)*(Mcols-1)+row+col-1,:) = [row,col,xrow,col,Q,power,sign,F];
                 else
                     power = xrow + xcol;
 
@@ -169,38 +140,28 @@ function [A,M,N,C,numCoeffs, denCoeffs] = calcCoeffs(cData, w, W, numbNumCoeffs,
                     end
 
                     M(row,col) = sign * U(W,w,real(cData),imag(cData),power);
-                    F = 4;
                 end % else -- check for zeros
-                 %fprintf(formatPrint,row,col,xrow,xcol,Q,power,sign);
-                    A((row-1)*(Mcols-1)+row+col-1,:) = [row,col,xrow,col,Q,power,sign,F];
             end % else -- searching through quadrants
         end % for row = 1:Mrows
     end % for col = 1:Mcols
 
     % Populate C
-   %fprintf('Calc C\n');
-   %fprintf('------\n');
-    cFormat = 'row:%i, xrow:%i, P:%i, F:%s\n';
     for (row = 1:length(C))
         if (row <= numbNumCoeffs)
             xrow = row;
             power = xrow - 1;
             if (mod(power,2) == 0)
                 C(xrow) = S(W,w,real(cData),power);
-               %fprintf(cFormat,row,row,power,2);
             else
                 C(xrow) = T(W,w,imag(cData),power);
-               %fprintf(cFormat,row,xrow,power,3);
             end
         else
             xrow = row - numbNumCoeffs;
             power = xrow;
             if (mod(xrow,2) == 1)
                 C(row) = 0;
-               %fprintf(cFormat,row,xrow,power,0);
             else
                 C(row) = U(W,w,real(cData),imag(cData),power);
-               %fprintf(cFormat,row,xrow,power,4);
             end
         end
     end

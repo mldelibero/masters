@@ -1,11 +1,11 @@
-function [A,M,N,C,G, numCoeff, denCoeff] = regression_levy(cData, w, modelOrder)
+function [G, numCoeff, denCoeff] = regression_levy(cData, w, modelOrder)
     % Execute the regression analysis based upon Levy's method.
-    [A,M,N,C,numCoeff, denCoeff] = calcCoeffs(w, cData, modelOrder);
+    [numCoeff, denCoeff] = calcCoeffs(w, cData, modelOrder);
     denCoeff = [1;denCoeff];
     [G, Num, Den] = calcDataFromCoeffs(numCoeff, denCoeff, w);
 end
 
-function [A,M,N,C,TnumCoeff, TdenCoeff] = calcCoeffs(w, cData, modelOrder)
+function [TnumCoeff, TdenCoeff] = calcCoeffs(w, cData, modelOrder)
     % This calculates the polynomial coefficients from the wshev polynomial series
 
     % Prepare variables
@@ -15,13 +15,9 @@ function [A,M,N,C,TnumCoeff, TdenCoeff] = calcCoeffs(w, cData, modelOrder)
     M = ones(matrixSize, matrixSize);
     N = ones(matrixSize,1);
     C = ones(matrixSize,1);
-    A = -13*ones(matrixSize^2,8);
 
     sign  = 0;
     power = 0;
-
-    format = 'Row:%i, Col:%i, xRow:%i, xCol:%i, Q:%i, P:%i, S:%i, F:%s\n';
-    fprintf = 'Row:, Col:, xRow:, xCol:, Q:, P:, S:, F:\n';
 
     %% Calculate
     % Populate M
@@ -30,16 +26,10 @@ function [A,M,N,C,TnumCoeff, TdenCoeff] = calcCoeffs(w, cData, modelOrder)
             % Find out which section of M you are in:
             if ((row <= matrixSize - modelOrder) && (col <= matrixSize - modelOrder))
                 %Upper Left Quadrant -- lambdas
-                Q = 0;
                 xrow = row;
                 xcol = col;
                 if (xor(mod(xrow,2) == 0, mod(xcol,2) == 0) == 1) % If both are odd or both are even
                     M(row,col) = 0;
-                    power = 0;
-                    sign = 0;
-                    F = 0;
-                    %fprintf(format,row,col,xrow,col,Q,power,sign,F);
-                    A((row-1)*(matrixSize-1)+row+col-1,:) = [row,col,xrow,col,Q,power,sign,F];
                 else
                     power = xrow + xcol - 2;
                     if ((mod(xcol,3) == 0) && (mod(xrow,2) == 1))
@@ -51,16 +41,13 @@ function [A,M,N,C,TnumCoeff, TdenCoeff] = calcCoeffs(w, cData, modelOrder)
                     end
                     
                     M(row,col) = sign * lambda(w,power);
-                    F = 1;
-                    %fprintf(format,row,col,xrow,col,Q,power,sign,F);
-                    A((row-1)*(matrixSize-1)+row+col-1,:) = [row,col,xrow,col,Q,power,sign,F];
                 end % if (xor(mod(row,2) == 0, mod(col,2) == 0) == 1) % If both are odd or both are even
             elseif (row <= matrixSize - modelOrder)
                 % Upper Right quadrant -- S and T
-                Q = 1;
                 xrow = row;
                 xcol = col - matrixSize + modelOrder; 
                 power = xrow+xcol-1;
+
                 if     ((mod(xcol,4) == 1) && (mod(power,2) == 0))
                     sign = -1;
                 elseif ((mod(xcol,4) == 1) && (mod(power,2) == 1))
@@ -75,17 +62,12 @@ function [A,M,N,C,TnumCoeff, TdenCoeff] = calcCoeffs(w, cData, modelOrder)
 
                 if  (mod(power,2) == 1)
                     M(row,col) = sign * T(w,imag(cData),power);
-                    F = 3;
                 else
                     M(row,col) = sign * S(w,real(cData),power);
-                    F = 2;
                 end
-                %fprintf(format,row,col,xrow,col,Q,power,sign,F);
-                A((row-1)*(matrixSize-1)+row+col-1,:) = [row,col,xrow,col,Q,power,sign,F];
                 
             elseif (col <= modelOrder+1)
                 % Lower Left -- S and T
-                Q     = 2;
                 xrow  = row - matrixSize + modelOrder;
                 xcol  = col;
                 power = xcol + row - matrixSize + modelOrder - 1;
@@ -106,26 +88,17 @@ function [A,M,N,C,TnumCoeff, TdenCoeff] = calcCoeffs(w, cData, modelOrder)
                 
                 if (mod(power,2) == 0)
                     M(row,col) = sign * S(w,real(cData),power);
-                    F = 2;
                 else
                     M(row,col) = sign * T(w,imag(cData),power);
-                    F = 3;
                 end
 
-                %fprintf(format,row,col,xrow,col,Q,power,sign,F);
-                A((row-1)*(matrixSize-1)+row+col-1,:) = [row,col,xrow,col,Q,power,sign,F];
             else
                 % Lower Right -- U
-                Q = 3;
                 xrow = row - matrixSize + modelOrder;
                 xcol = col - matrixSize + modelOrder;
+
                 if (xor(mod(xrow,2) == 0, mod(xcol,2) == 0) == 1) % If both are odd or both are even
                     M(row,col) = 0;
-                    power = 0;
-                    sign = 0;
-                    F = 0;
-                    %fprintf(format,row,col,xrow,col,Q,power,sign,F);
-                    A((row-1)*(matrixSize-1)+row+col-1,:) = [row,col,xrow,col,Q,power,sign,F];
                 else
                     power = xrow + xcol;
                     if     ((mod(xrow,2) == 1) && (mod(xcol,3) == 0))
@@ -137,9 +110,6 @@ function [A,M,N,C,TnumCoeff, TdenCoeff] = calcCoeffs(w, cData, modelOrder)
                     end
                     
                     M(row,col) = sign * U(w,real(cData),imag(cData),power);
-                    F = 4;
-                    %fprintf(format,row,col,xrow,col,Q,power,sign,F);
-                    A((row-1)*(matrixSize-1)+row+col-1,:) = [row,col,xrow,col,Q,power,sign,F];
                 end
             end
         end
