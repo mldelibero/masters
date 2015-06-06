@@ -6,18 +6,20 @@ function G = regression_levy_iter(cData, w, numbNumCoeffs, numbDenCoeffs)
     % Solve
 %    [TnumCoeff,TdenCoeff] = calcCoeffs(w_norm, T, cData, modelOrder);
     numCoeffs = ones(length(numbNumCoeffs));
-    denCoeffs = ones(length(numbDenCoeffs));
-    W         = zeros(length(w)); % Weighting function
-    iters = 1;
+    denCoeffs = ones(length(numbDenCoeffs)); % Needs to be ones for the initial guess of W
+    W         = ones(length(w)); % Weighting function
+    iters     = 1000;
+
+    %Calculate the Den for W from the initial guess of denCoeffs
+    [Gtemp,Num,Den] = calcDataFromCoeffs(numCoeffs,denCoeffs,w);
 
     for (iter = 1:iters)
-        [G,Num,Den] = calcDataFromCoeffs(numCoeffs,denCoeffs,w);
         W = 1 ./ abs(Den).^2;
         [numCoeffs, denCoeffs] = calcCoeffs(cData, w, W, numbNumCoeffs, numbDenCoeffs);
+        [G(iter,1:length(w)),Num,Den] = calcDataFromCoeffs(numCoeffs,denCoeffs,w);
+        iter
     end
-
-    G = calcDataFromCoeffs(numCoeffs,denCoeffs,w);
-end
+end % function G = regression_levy_iter(cData, w, numbNumCoeffs, numbDenCoeffs)
 
 function [numCoeffs, denCoeffs] = calcCoeffs(cData, w, W, numbNumCoeffs, numbDenCoeffs)
     % This calculates the polynomial coefficients from the wshev polynomial series
@@ -65,7 +67,7 @@ function [numCoeffs, denCoeffs] = calcCoeffs(cData, w, W, numbNumCoeffs, numbDen
                         sign =  1;
                     end
                         
-                    M(xrow,xcol) = sign * lambda(w,power);
+                    M(xrow,xcol) = sign * lambda(W,w,power);
                 end % else
 
 %%                fprintf(formatPrint,row,col,xrow,xcol,Q,power,sign);
@@ -93,10 +95,10 @@ function [numCoeffs, denCoeffs] = calcCoeffs(cData, w, W, numbNumCoeffs, numbDen
                 end
 
                 if  (mod(power,2) == 1)
-                    M(row,col) = sign * T(w,imag(cData),power);
+                    M(row,col) = sign * T(W,w,imag(cData),power);
 %                    fprintf(formatPrint,row,col,'T');
                 else
-                    M(row,col) = sign * S(w,real(cData),power);
+                    M(row,col) = sign * S(W,w,real(cData),power);
 %                    fprintf(formatPrint,row,col,'S');
                 end
 
@@ -125,10 +127,10 @@ function [numCoeffs, denCoeffs] = calcCoeffs(cData, w, W, numbNumCoeffs, numbDen
                 end
                 
                 if (mod(power,2) == 0)
-                    M(row,col) = sign * S(w,real(cData),power);
+                    M(row,col) = sign * S(W,w,real(cData),power);
 %                    fprintf(formatPrint,row,col,'S');
                 else
-                    M(row,col) = sign * T(w,imag(cData),power);
+                    M(row,col) = sign * T(W,w,imag(cData),power);
 %                    fprintf(formatPrint,row,col,'T');
                 end
 %%                fprintf(formatPrint,row,col,xrow,xcol,Q,power,sign);
@@ -155,7 +157,7 @@ function [numCoeffs, denCoeffs] = calcCoeffs(cData, w, W, numbNumCoeffs, numbDen
                         sign = -1;
                     end
 
-                    M(row,col) = sign * U(w,real(cData),imag(cData),power);
+                    M(row,col) = sign * U(W,w,real(cData),imag(cData),power);
 %                    fprintf(formatPrint,row,col,'U');
                 end % else -- check for zeros
 %%                fprintf(formatPrint,row,col,xrow,xcol,Q,power,sign);
@@ -168,55 +170,52 @@ function [numCoeffs, denCoeffs] = calcCoeffs(cData, w, W, numbNumCoeffs, numbDen
         if (row <= numbNumCoeffs)
             power = row - 1;
             if (mod(power,2) == 0)
-                C(row) = S(w,real(cData),power);
+                C(row) = S(W,w,real(cData),power);
             else
-                C(row) = T(w,imag(cData),power);
+                C(row) = T(W,w,imag(cData),power);
             end
         else
             xrow = row - numbNumCoeffs + 1;
             if (mod(xrow,2) == 0)
                 C(row) = 0;
             else
-                C(row) = U(w,real(cData),imag(cData),power);
+                C(row) = U(W,w,real(cData),imag(cData),power);
             end
         end
     end
     
     % Solve For N
     N = inv(M) * C;
-    M
-    N
-    C
 
     numCoeffs = N(1:numbNumCoeffs);
     denCoeffs = [1;N(numbNumCoeffs+1:length(N))]; % Need to add 1 as coeff_0
  
     %Sub Functions
-    function [Lh] = lambda(wk,h)
+    function [Lh] = lambda(W,wk,h)
         Lh = 0;
         for k = 1:1:length(wk)
-            Lh = Lh + wk(k)^h;
+            Lh = Lh + wk(k)^h*W(k);
         end
     end
 
-    function [S] = S(wk,Rk,h)
+    function [S] = S(W,wk,Rk,h)
         S = 0;
         for k = 1:1:length(wk)
-            S = S + wk(k)^h * Rk(k);
+            S = S + wk(k)^h * Rk(k)*W(k);
         end
     end
 
-    function [T] = T(wk,Ik,h)
+    function [T] = T(W,wk,Ik,h)
         T = 0;
         for k = 1:1:length(wk)
-            T = T + wk(k)^h * Ik(k);
+            T = T + wk(k)^h * Ik(k)*W(k);
         end
     end
 
-    function [U] = U(wk,Rk,Ik,h)
+    function [U] = U(W,wk,Rk,Ik,h)
         U = 0;
         for k = 1:1:length(wk)
-            U = U + wk(k)^h * (Rk(k)^2 + Ik(k)^2);
+            U = U + wk(k)^h * (Rk(k)^2 + Ik(k)^2)*W(k);
         end
     end
 end % function [b,a] = calcCoeffs(w_norm, T, cData)
