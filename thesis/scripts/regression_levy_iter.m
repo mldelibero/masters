@@ -5,12 +5,19 @@ function G = regression_levy_iter(cData, w, iterations, numbNumCoeffs, numbDenCo
 
     % Solve
 %    [TnumCoeff,TdenCoeff] = calcCoeffs(w_norm, T, cData, modelOrder);
-    numCoeffs = ones(numbNumCoeffs);
-    denCoeffs = ones(numbDenCoeffs); % Needs to be ones for the initial guess of W
+    numCoeffs = ones(numbNumCoeffs,1);
+    denCoeffs = ones(numbDenCoeffs,1); % Needs to be ones for the initial guess of W
     W         = ones(length(w)); % Weighting function
+
 
     %Calculate the Den for W from the initial guess of denCoeffs
     [Gtemp,Num,Den] = calcDataFromCoeffs(numCoeffs,denCoeffs,w);
+
+    % Run Levy's original formula if not using iterations.
+    if iterations == 0
+        iterations = 1;
+        Den = ones(length(Den));
+    end
 
     for (iter = 1:iterations)
         W = 1 ./ abs(Den).^2;
