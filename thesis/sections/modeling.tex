@@ -1,6 +1,9 @@
 \section {Capacitor Modeling}
 
-Many designers have a need to simulate the response of the individual components in their systems to impulse and steady state inputs. When dealing with passive electronic components, the device is typically modeled as a combination of various resitors, capacitors, and inductors. The model chosen is often due to either the required accuracy or a specific characteristic of the component that needs to be modeled. When characterizing a new component, the complex frequency response is recorded and then fit to a model. In this section, a progression of regression techniques will be evaluated for their ability to fit the measured frequency response of a capacitor to a polynomial equation. Then the accuracy of various capacitor models will be explored in regards to the fit.
+Many designers have a need to simulate the response of the individual components in their systems to impulse and steady state inputs. When dealing with passive electronic components, the device is typically modeled as a combination of various resitors, capacitors, and inductors. The model chosen is often due to either the required accuracy or a specific characteristic of the component that needs to be modeled. When characterizing a new component, the complex frequency response is recorded and then fit to a model. In this section, a progression of regression techniques will be evaluated for their ability to fit the measured frequency response of a capacitor to a polynomial equation. Then the accuracy of various capacitor models will be explored in regards to the fit. All models will attempt to fit the data from Figure: \ref{fig:exCapData}.
+
+\input{Figures/modeling/exCapData}
+
 
 \subsection{Regression Analysis}
 \label{sec:RegressionAnalysis}
@@ -166,6 +169,12 @@ U_2 \\
 ~\cite{levy}[Eq.~21c]
 \end{equation}
 \end{multicols}
+
+Levy's technique works well for applications where there is a small dynamic frequency range and a small number of coefficients, but there a several problems with it.
+The first problem is that for models with a wide bandwidth, the solution to Equation: \eqref{equ:Levy_Ans}, involves an ill-conditioned matrix. This means that the ratio of the "largest to smallest singular value in the singular value decomosition of a matrix is ... $>= log^{-1}$(input precision). In other words, it estimates a worse case loss of precision."
+The second problem is that this technique favors the magnitude plot at the high frequency range. 
+
+\input{Figures/modeling/levy}
 
 \subsection{Modeling}
 This section will investigate several of the most common capacitor models. It will show how to fit them to a data set with Levy's method described in Section: \ref{sec:RegressionAnalysis}, and will describe their effectiveness and limitations in doing so.
