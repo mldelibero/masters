@@ -44,7 +44,7 @@ function plotFit(pType, Data1, Data2, x)
         cols = 1;
         subplot(rows,cols,1);
         plot(Data1);
-        title('Norm Magnitude Err^2 + Normlized Phase Err^2','FontSize',titleSize);
+        title('Norm Magnitude Err^2 + Norm Phase Err^2','FontSize',titleSize);
         xlabel('n','FontSize',axisSize);
         ylabel('Error','FontSize',axisSize);
 
