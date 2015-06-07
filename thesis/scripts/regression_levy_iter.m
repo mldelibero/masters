@@ -16,7 +16,7 @@ function [G, numCoeffs, denCoeffs] = regression_levy_iter(cData, w, iterations, 
     
     for iter = 1:iterations
         W = 1 ./ abs(Den).^2;
-        [numCoeffs, ~] = calcCoeffs(cData, w, W, numbNumCoeffs, numbDenCoeffs);
+        [numCoeffs, denCoeffs] = calcCoeffs(cData, w, W, numbNumCoeffs, numbDenCoeffs);
         [G(iter,1:length(w)),~,Den] = calcDataFromCoeffs(numCoeffs,denCoeffs,w);
         iter
     end
