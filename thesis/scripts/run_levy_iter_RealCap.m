@@ -7,52 +7,29 @@ format shorte;
 
 NumDeg = 7;
 DenDeg = 7;
-iterations = 100;
+iterations = 1000;
 filename = './data/GRM31MR71H105KA88.txt';
 
 [w, cData, rData, iData] = getData(filename);
 [G, numCoeffs, denCoeffs] = regression_levy_iter(cData, w, iterations, NumDeg, DenDeg);
 
+%% Error minimization
+E = sumError(cData,G);
 %%
-% Plot
-figure;
-rows = 2;
-cols = 2;
+Emag = E(:,1);
+Epha = E(:,2);
+EmagNorm = Emag ./ max(Emag);
+EphaNorm = Epha ./ max(Epha);
+E2 = EmagNorm + EphaNorm;
+n = find(E2==min(E2));
+fprintf('Error Minimized at Iteration: %i\n',n);
 
-n1 = 1;
-n2 = 50;
-n3 = 100;
-l1 = sprintf('iter:%i',n1);
-l2 = sprintf('iter:%i',n2);
-l3 = sprintf('iter:%i',n3);
+%% Plot 
+plotcDiff = plotType.cVectorsDiff;
+plotErrs  = plotType.twoErrors;
+plotErr   = plotType.oneError;
 
-subplot(rows,cols,1);
-loglog(w,abs(cData)); hold on;
-loglog(w,abs(G(n1,1:size(G,2))));
-loglog(w,abs(G(n2,1:size(G,2))));
-loglog(w,abs(G(n3,1:size(G,2))));
-title('Magnitude');
-legend('Orig',l1,l2,l3);
-
-subplot(rows,cols,2);
-semilogx(w,rad2deg(phase(cData))); hold on;
-semilogx(w,rad2deg(phase(G(n1,1:size(G,2)))));
-semilogx(w,rad2deg(phase(G(n2,1:size(G,2)))));
-semilogx(w,rad2deg(phase(G(n3,1:size(G,2)))));
-title('Phase');
-legend('Orig',l1,l2,l3);
-
-subplot(rows,cols,3);
-semilogx(w,abs(G(n1,1:size(G,2)))-abs(cData)); hold on;
-semilogx(w,abs(G(n2,1:size(G,2)))-abs(cData));
-semilogx(w,abs(G(n3,1:size(G,2)))-abs(cData));
-legend(l1,l2,l3);
-title('Magnitude Error');
-
-subplot(rows,cols,4);
-semilogx(w,rad2deg(phase(G(n1,1:size(G,2))))-rad2deg(phase(cData))); hold on;
-semilogx(w,rad2deg(phase(G(n2,1:size(G,2))))-rad2deg(phase(cData)));
-semilogx(w,rad2deg(phase(G(n3,1:size(G,2))))-rad2deg(phase(cData)));
-legend(l1,l2,l3);
-title('Phase Error');
+plotFit(plotcDiff, cData, G(n,:), w); % figures/modeling/levyIter.jpg
+plotFit(plotErrs , Emag,  Epha     ); % figures/modeling/levyIter_Err1.jpg
+plotFit(plotErr  , E2              ); % figures/modeling/levyIter_Err2.jpg
 
