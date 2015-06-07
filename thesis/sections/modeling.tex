@@ -176,6 +176,59 @@ The second problem is that this technique favors the magnitude plot at the high 
 
 \input{Figures/modeling/levy}
 
+\subsubsection{Weighted LSE}
+One improvement that can be made upon Levy's method is to iterate with a weighting function untill the error term is minimized\cite{levy_iter}. By multiplying Levy's error function by the weighting term in Equation: \eqref{equ:iter_Weight}, we get Equation: \eqref{equ:iter_Err}, which can be minimized to obtain a new system of equations.
+
+\begin{equation}
+\label{equ:iter_Weight}
+W_{kL} = \frac{1}{|Q(jw_k)_{L-1}|^2}
+~\cite{levy_iter}
+\end{equation}
+
+\begin{equation}
+\label{equ:iter_Err}
+E = \sum_{k=1}^{n} |\epsilon _k ^{'}|^2W_{kL}
+~\cite{levy_iter}[Eq.~7]
+\end{equation}
+
+Equations \eqref{equ:Levy_Ans}, \eqref{equ:Levy_M}, \& \eqref{equ:Levy_N} are the same, with Equations \eqref{equ:Levy_L}, \eqref{equ:Levy_S}, \eqref{equ:Levy_T}, \& \eqref{equ:Levy_U} being replaced with Equations: \eqref{equ:Iter_L}, \eqref{equ:Iter_S}, \eqref{equ:Iter_T}, \& \eqref{equ:Iter_U}.
+The $L$ subscript stands for the current iteration, while $L-1$ stands for the previous iteration.
+
+\begin{equation}
+\label{equ:Iter_L}
+\lambda _h = \sum_{k=0}^{m} \omega _k ^hW_{kL}
+~\cite{levy_iter}[Eq.~9]
+\end{equation}
+
+\begin{equation}
+\label{equ:Iter_S}
+S_h = \sum_{k=0}^{m} \omega _k ^h R_kW_{kL}
+~\cite{levy_iter}[Eq.~10]
+\end{equation}
+
+\begin{equation}
+\label{equ:Iter_T}
+T_h = \sum_{k=0}^{m} \omega _k ^h I_kW_{kL}
+~\cite{levy_iter}[Eq.~11]
+\end{equation}
+
+\begin{equation}
+\label{equ:Iter_U}
+U_h = \sum_{k=0}^{m} \omega _k ^h (R_k ^2 + I_k ^2)W_{kL}
+~\cite{levy_iter}[Eq.~12]
+\end{equation}
+
+
+This particular iteration method is not gauranteed to converge. Looking at Figure: \ref{fig:levyIter_Err1}. The squared error of the magnitude and phase do not converge after a particular number of iterations. Furthermore, they do not reach their minimums at the same iteration. In order to select the desired iteration, the magnitude and phase squared plots are normalized as such $n = min(Emag/max(eMag) + Epha/max(ePha))$. The index of the minium of Figure: \ref{fig:levyIter_Err1} is selected as the best fit.
+
+\input{figures/modeling/levyIter_Err1}
+\input{figures/modeling/levyIter_Err2}
+
+Figure: \ref{fig:levyIter} shows that this method can result in a much improved result over the Levy's original method, as sseen in Figure: \ref{fig:levy}.
+
+\input{figures/modeling/levyIter}
+
+
 \subsection{Modeling}
 This section will investigate several of the most common capacitor models. It will show how to fit them to a data set with Levy's method described in Section: \ref{sec:RegressionAnalysis}, and will describe their effectiveness and limitations in doing so.
 
