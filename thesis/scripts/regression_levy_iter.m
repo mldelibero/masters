@@ -12,11 +12,12 @@ function [G, numCoeffs, denCoeffs] = regression_levy_iter(cData, w, iterations, 
     %Set initial guess of the denomiator. This also will cause it to calc
     %Levy's original method if the iteraiton == 1.
     Den = ones(length(w));
+    G = zeros(iterations,length(w));
     
-    for (iter = 1:iterations)
+    for iter = 1:iterations
         W = 1 ./ abs(Den).^2;
-        [numCoeffs, denCoeffs] = calcCoeffs(cData, w, W, numbNumCoeffs, numbDenCoeffs);
-        [G(iter,1:length(w)),Num,Den] = calcDataFromCoeffs(numCoeffs,denCoeffs,w);
+        [numCoeffs, ~] = calcCoeffs(cData, w, W, numbNumCoeffs, numbDenCoeffs);
+        [G(iter,1:length(w)),~,Den] = calcDataFromCoeffs(numCoeffs,denCoeffs,w);
         iter
     end
 end % function [G,numCoeffs,denCoeffs] = regression_levy_iter(cData, w, iterations, numbNumCoeffs, numbDenCoeffs)
