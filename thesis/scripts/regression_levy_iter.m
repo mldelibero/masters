@@ -9,15 +9,10 @@ function [G, numCoeffs, denCoeffs] = regression_levy_iter(cData, w, iterations, 
     denCoeffs = ones(numbDenCoeffs,1); % Needs to be ones for the initial guess of W
     W         = ones(length(w)); % Weighting function
 
-    %Calculate the Den for W from the initial guess of denCoeffs
-    [Gtemp,Num,Den] = calcDataFromCoeffs(numCoeffs,denCoeffs,w);
-
-    % Run Levy's original formula if not using iterations.
-    if iterations == 0
-        iterations = 1;
-        Den = ones(length(Den));
-    end
-
+    %Set initial guess of the denomiator. This also will cause it to calc
+    %Levy's original method if the iteraiton == 1.
+    Den = ones(length(w));
+    
     for (iter = 1:iterations)
         W = 1 ./ abs(Den).^2;
         [numCoeffs, denCoeffs] = calcCoeffs(cData, w, W, numbNumCoeffs, numbDenCoeffs);
