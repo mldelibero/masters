@@ -21,7 +21,7 @@ Epha = E(:,2);
 EmagNorm = Emag ./ max(Emag);
 EphaNorm = Epha ./ max(Epha);
 E2 = EmagNorm + EphaNorm;
-n = find(E2==min(E2));
+n = find(E2==min(E2),1);
 fprintf('Error Minimized at Iteration: %i\n',n);
 
 %% Plot 
