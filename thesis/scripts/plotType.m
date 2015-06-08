@@ -1,6 +1,6 @@
 classdef plotType
     enumeration
-        cVectorsDiff, oneError, twoErrors
+        cData, cVectorsDiff, oneError, twoErrors
     end
 end
 
