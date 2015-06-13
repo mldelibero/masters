@@ -11,11 +11,10 @@ iterations = 1000;
 filename = './data/GRM31MR71H105KA88.txt';
 
 [w, cData, rData, iData] = getData(filename);
-[G, numCoeffs, denCoeffs] = regression_levy_iter(cData, w, iterations, NumDeg, DenDeg);
+initDen = getInitGues(w,modelTypes.NO_MODEL);
+[G, numCoeffs, denCoeffs, E, minIndex] = regression_levy_iter(cData, w, iterations, NumDeg, DenDeg);
 
 %% Error minimization
-E = sumError(cData,G);
-%%
 Emag = E(:,1);
 Epha = E(:,2);
 EmagNorm = Emag ./ max(Emag);
@@ -23,6 +22,7 @@ EphaNorm = Epha ./ max(Epha);
 E2 = EmagNorm + EphaNorm;
 n = find(E2==min(E2),1);
 fprintf('Error Minimized at Iteration: %i\n',n);
+
 
 %% Plot 
 plotcDiff = plotType.cVectorsDiff;
