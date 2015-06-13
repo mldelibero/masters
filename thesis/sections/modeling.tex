@@ -177,6 +177,7 @@ The second problem is that this technique favors the magnitude plot at the high 
 \input{Figures/modeling/levy}
 
 \subsubsection{Weighted LSE}
+\label{sec:weightedLSE}
 One improvement that can be made upon Levy's method is to iterate with a weighting function untill the error term is minimized\cite{levy_iter}. By multiplying Levy's error function by the weighting term in Equation: \eqref{equ:iter_Weight}, we get Equation: \eqref{equ:iter_Err}, which can be minimized to obtain a new system of equations.
 
 \begin{equation}
@@ -191,7 +192,7 @@ E = \sum_{k=1}^{n} |\epsilon _k ^{'}|^2W_{kL}
 ~\cite{levy_iter}[Eq.~7]
 \end{equation}
 
-Equations \eqref{equ:Levy_Ans}, \eqref{equ:Levy_M}, \& \eqref{equ:Levy_N} are the same, with Equations \eqref{equ:Levy_L}, \eqref{equ:Levy_S}, \eqref{equ:Levy_T}, \& \eqref{equ:Levy_U} being replaced with Equations: \eqref{equ:Iter_L}, \eqref{equ:Iter_S}, \eqref{equ:Iter_T}, \& \eqref{equ:Iter_U}.
+Equations \eqref{equ:Levy_Ans}, \eqref{equ:Levy_M}, \eqref{equ:Levy_N}, \& \eqref{equ:Levy_C} are the same, with Equations \eqref{equ:Levy_L}, \eqref{equ:Levy_S}, \eqref{equ:Levy_T}, \& \eqref{equ:Levy_U} being replaced with Equations: \eqref{equ:Iter_L}, \eqref{equ:Iter_S}, \eqref{equ:Iter_T}, \& \eqref{equ:Iter_U}.
 The $L$ subscript stands for the current iteration, while $L-1$ stands for the previous iteration.
 
 \begin{equation}
@@ -224,7 +225,7 @@ This particular iteration method is not gauranteed to converge. Looking at Figur
 \input{figures/modeling/levyIter_Err1}
 \input{figures/modeling/levyIter_Err2}
 
-Figure: \ref{fig:levyIter} shows that this method can result in a much improved result over the Levy's original method, as sseen in Figure: \ref{fig:levy}.
+Figure: \ref{fig:levyIter} shows that this method can result in a much improved result over the Levy's original method, as seen in Figure: \ref{fig:levy}.
 
 \input{figures/modeling/levyIter}
 
@@ -232,70 +233,171 @@ Figure: \ref{fig:levyIter} shows that this method can result in a much improved 
 \subsection{Modeling}
 This section will investigate several of the most common capacitor models. It will show how to fit them to a data set with Levy's method described in Section: \ref{sec:RegressionAnalysis}, and will describe their effectiveness and limitations in doing so.
 
-\subsubsection{RLC}
-\input{figures/modeling/rlcModel}
+\subsubsection{6 Term Model}
+\input{figures/modeling/fullModel}
 
-The RLC model, shown in Figue: \ref{fig:rlcModel}, is one of the simplest models used to describe a capacitor. It shows the basic low and high frequency characteristics, along with the capacitor's resonant point. Its impedance is described in Equations: \eqref{equ:rlc_Zs} \& \eqref{equ:rlc_Zs2}, but our method does not allow for any poles at the origin. In Equation: \eqref{equ:rlc_Zs3} we multiply by $s$ and fit the new equation to the data. At the end, we will divide by $s$ to get our final result. At this point out eqution is in the proper form and can be abstracted into Equation \eqref{equ:rlc_Zs4}.
+The model shown in Figure: \ref{fig:fullModel} shows several of the most important parameters for a capacitor. It's impedance, shown in Equation: \eqref{equ:fullModelImpedance}, can be used as the basis for a regression analysis.
 
 \begin{equation}
-\label{equ:rlc_Zs}
-Z(s) = R + sL + \frac{1}{sC}
+\begin{split}
+\label{equ:fullModelImpedance}
+\bar{Z}(s) = \frac{(R_E + R_L) + (L_E + C_DR_DR_E + C_DR_DR_L + CR_ER_L + C_DR_ER_L)s}{1 + (C_DR_D + CR_L + C_DR_L)s + CC_DR_DR_Ls^2} \\ 
++ \frac{(C_DL_ER_D + CL_ER_L + C_DL_ER_L + CC_DR_DR_ER_L)s^2 + CC_DL_ER_DR_Ls^3}{1 + (C_DR_D + CR_L + C_DR_L)s + CC_DR_DR_Ls^2}
+\end{split}
 \end{equation}
 
 \begin{equation}
-\label{equ:rlc_Zs2}
-Z(s) = \frac{1 + s(RC) + s^2 (LC)}{sC}
+\label{equ:fullModelPoly}
+\bar{Z}(s) = \frac{a_0 + a_1s + a_2s^2 + a_3s^3}{b_0 + b_1s + b_2s^2}
 \end{equation}
 
-\begin{equation}
-\label{equ:rlc_Zs3}
-Z_2(s) = Z(s) * s =  \frac{\frac{1}{C} + s(R) + s^2 (L)}{1}
-\end{equation}
+
+For this model Equations: \eqref{equ:Levy_M}, \eqref{equ:Levy_N}, \& \eqref{equ:Levy_C} simplify down to Equations: \eqref{equ:fullModel_M}, \eqref{equ:fullModel_N}, \& \eqref{equ:fullModel_C}.
 
 \begin{equation}
-\label{equ:rlc_Zs4}
-Z_2(s) = \frac{A_0 + A_1 s + A_2 s^2}{B_0 + B_1 s + B_2 s^2}
-\end{equation}
-
-For this model Equations: \eqref{equ:Levy_M}, \eqref{equ:Levy_N}, \& \eqref{equ:Levy_C} simplify down to Equations: \eqref{equ:rlc_M}, \eqref{equ:rlc_N}, \& \eqref{equ:rlc_C}.
-
-\begin{equation}
-\label{equ:rlc_M}
+\label{equ:fullModel_M}
 M = 
 \begin{bmatrix}
-\lambda _0 & 0          & -\lambda _2 &  T_1    & S_2 \\
-0          & \lambda _2 & 0           & -S_2    & T_3 \\
-\lambda _2 & 0          & -\lambda _4 &  T_3    & S_4 \\
-T_1        & -S_2       & -T_3        &  U_2    & 0   \\
-S_2        &  T_3       & -S_4        &  0      & U_4
+\lambda _0 & 0          & -\lambda _2 & 0           &  T_1    & S_2 \\
+0          & \lambda _2 & 0           & -\lambda _4 & -S_2    & T_3 \\
+\lambda _2 & 0          & -\lambda _4 & 0           &  T_3    & S_4 \\
+0          & \lambda _4 & 0           & -\lambda _6 & -S_4    & T_5 \\
+T_1        & -S_2       & -T_3        &  S_4        &  U_2    & 0   \\
+S_2        &  T_3       & -S_4        & -T_5        &  0      & U_4
 \end{bmatrix}
 \end{equation}
 
 \begin{multicols}{2}
 \begin{equation}
-\label{equ:rlc_N}
+\label{equ:fullModel_N}
 N = 
 \begin{bmatrix}
 A_0 \\
 A_1 \\
 A_2 \\
+A_3 \\
 B_1 \\
 B_2
 \end{bmatrix}
 \end{equation}
 
 \begin{equation}
-\label{equ:rlc_C}
+\label{equ:fullModel_C}
 C = 
 \begin{bmatrix}
 S_0 \\
 T_1 \\
 S_2 \\
+T_3 \\
 0   \\
 U_2
 \end{bmatrix}
 \end{equation}
 \end{multicols}
 
-Fitting this model to the data shown in Figure:
+Using this model, the regression analysis output described in Section: \ref{sec:weightedLSE} can be seen in Figure: \ref{fig:fullModel_BadOutput}. The fit tracks the original data well, except for low frequencies and near resonance. 
+
+\input{Figures/modeling/fullModel_BadOutput}
+
+Equations: \eqref{equ:fullModel_BadOutputCoeff} shows solution for the polynomial coefficients. Using Equations: \eqref{equ:fullModelPoly} and \eqref{equ:fullModelPoly}, the circuit parameters can be found through Equations: \eqref{equ:fullModel_CoeffEq_a0}-\eqref{equ:fullModel_CoeffEq_b2}, with the solution as seen in Equations: \eqref{equ:fullModel_BadOutputCoeff} \& \eqref{equ:fullModel_BadOutputParams}.
+Even though the polynomial coefficients gave an acceptable fit to the data, it resulted in unaceptable circuit parameters. Since $C$ and $R_D$ are negative, this model is not physically realizable.
+
+\begin{align}
+&a_0 = R_E + R_L                                         \label{equ:fullModel_CoeffEq_a0} \\
+&a_1 = L_E + C_DR_DR_E + C_DR_DR_L + CR_ER_L + C_DR_ER_L \label{equ:fullModel_CoeffEq_a1} \\
+&a_2 = C_DL_ER_D + CL_ER_L + C_DL_ER_L + CC_DR_DR_ER_L   \label{equ:fullModel_CoeffEq_a2} \\
+&a_3 = CC_DL_ER_DR_L                                     \label{equ:fullModel_CoeffEq_a3} \\
+&b_0 = 1                                                 \label{equ:fullModel_CoeffEq_b0} \\
+&b_1 = C_DR_D + CR_L + C_DR_L                            \label{equ:fullModel_CoeffEq_b1} \\
+&b_2 = CC_DR_DR_L                                        \label{equ:fullModel_CoeffEq_b2}
+\end{align}
+
+\begin{multicols}{2}
+\begin{equation}
+\label{equ:fullModel_BadOutputCoeff}
+\begin{split}
+&a_0 = 5.9991E^{+03} \\
+&a_1 = 1.7934E^{-04} \\
+&a_2 = 3.3158E^{-12} \\
+&a_3 = 6.8295E^{-22} \\
+&b_0 = 1.0000        \\
+&b_1 = 5.9057E^{-03} \\
+&b_2 = 1.4067E^{-12}
+\end{split}
+\end{equation}
+
+\begin{equation}
+\label{equ:fullModel_BadOutputParams}
+\begin{split}
+&C   = -8.2563E^{-10} \\
+&R_E =  3.1886E^{-01} \\
+&L_E =  4.8551E^{-10} \\
+&R_L =  4.8551E^{-10} \\
+&C_D =  9.8536E^{-07} \\
+&R_D = -2.8824E^{-01}
+\end{split}
+\end{equation}
+\end{multicols}
+
+The problem comes with the author's \cite{levy_iter} suggestion that the initial guess for $Q(jw_k) == 1$. While an initial guess is required to calculate the weighting function during the first iteration, it causes the stated problem for this application. Equations: \eqref{equ:fullModel_BadInputCoeff} \& \eqref{equ:fullModel_BadInputParams} show that this initial condition does not yield a rational solution for the circuit parameters.
+
+\begin{multicols}{2}
+\begin{equation}
+\label{equ:fullModel_BadInputCoeff}
+\begin{split}
+&a_0 = 1 \\
+&a_1 = 1 \\
+&a_2 = 1 \\
+&a_3 = 1 \\
+&b_0 = 1 \\
+&b_1 = 0 \\
+&b_2 = 0
+\end{split}
+\end{equation}
+
+\begin{equation}
+\label{equ:fullModel_BadInputParams}
+\begin{split}
+&C   = INF \\
+&R_E = INF \\
+&L_E = INF \\
+&R_L = IND \\
+&C_D = IND \\
+&R_D = IND \\
+\end{split}
+\end{equation}
+\end{multicols}
+
+If we instead start with the rational set of circuit parameters seen in Equation: \eqref{equ:fullModel_GoodInputParams}, the starting coefficients are as seen in Equation: \eqref{equ:fullModel_GoodInputCoeff}.
+
+\begin{multicols}{2}
+\begin{equation}
+\label{equ:fullModel_GoodInputCoeff}
+\begin{split}
+&a_0 = 2 \\
+&a_1 = 5 \\
+&a_2 = 4 \\
+&a_3 = 1 \\
+&b_0 = 1 \\
+&b_1 = 3 \\
+&b_2 = 1
+\end{split}
+\end{equation}
+
+\begin{equation}
+\label{equ:fullModel_GoodInputParams}
+\begin{split}
+&C   = 1 \\
+&R_E = 1 \\
+&L_E = 1 \\
+&R_L = 1 \\
+&C_D = 1 \\
+&R_D = 1 \\
+\end{split}
+\end{equation}
+\end{multicols}
+
+\input{Figures/modeling/fullModel_GoodOutput}
+
+Figure: \ref{fig:fullModel_GoodOutput} shows a good fit across the frequency spectrum for both magnitude and phase. The model does deviate at resonance, but that is insurprising, as the number of parameters in the model is fairly low.
 
