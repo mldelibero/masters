@@ -7,7 +7,7 @@ format shorte;
 
 NumDeg = 7;
 DenDeg = 7;
-iterations = 1000;
+iterations = 100;
 filename = './data/GRM31MR71H105KA88.txt';
 
 [w, cData, rData, iData] = getData(filename);

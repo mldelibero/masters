@@ -9,7 +9,17 @@ function plotFit(pType, Data1, Data2, x)
     f_handle = figure;
 
     %% Plot specific request
-    if pType == plotType.cData
+    if      pType == plotType.DIFF_PLOT;
+        ax = subplot(1,1,1);
+        p(1) = plot(x,Data1,'o'); hold on;
+        p(2) = plot(x,Data2);
+        title('Basic LSE','FontSize',titleSize);
+        h_leg = legend('Orig','Fit');
+        set(h_leg,'FontSize',legendSize);
+        xlabel(ax, 'x', 'FontSize', axisTitleSize);
+        ylabel(ax, 'y', 'FontSize', axisTitleSize);
+
+    elseif pType == plotType.cData
         [ax,p(1),p(2)] = plotyy(x,mag2db(abs(Data1)),x,rad2deg(phase(Data1)),'semilogx','semilogx');
 
         title('GRM31MR71H105KA88','FontSize',titleSize);

@@ -10,12 +10,12 @@ Many designers have a need to simulate the response of the individual components
 \subsubsection{Basic LSE}
 At its core, regression analysis is an optimization problem whose purpose is to fit the equation of a line to a data set. A commonly use regression analysis technique is called the Least Equares Estimate (LSE). It attempts to find a model which minimizes the squared error between an emperical set of data and itself.
 
-The first step in applying a LSE is to choose the form of the equation that best represents the data. The equation of a line, Equation: \eqref{equ:ExLinEqu}, is chosen when only a simple linear fit is needed.
+The first step in applying an LSE is to choose the form of the equation that best represents the data. The equation of a line, Equation: \eqref{equ:ExLinEqu}, is chosen when only a simple linear fit is needed.
 Then the squared error equation is generated, as in Equations: \eqref{equ:LSE_E2} \& \eqref{equ:LSE_E2b}.
 
 \begin{equation}
 \label{equ:ExLinEqu}
-y = b_0 + b_1 x
+y = a_0 + a_1 x
 \end{equation}
 
 \begin{equation}
@@ -25,65 +25,58 @@ E^2 = \sum_{i=1}^{n} (y_i - y)^2
 
 \begin{equation}
 \label{equ:LSE_E2b}
-E^2 = \sum_{i=1}^{n} (y_i - (b_0 + b_1 x_i)^2
+E^2 = \sum_{i=1}^{n} (y_i - (a_0 + a_1 x_i))^2
 \end{equation}
 
-In order to minimize the squared error over the data set, we need to take the partial derivate of Equation: \eqref{equ:LSE_E2b} with respect to each of the unknown parameters, the coefficients, seperately. While $b_0$ and $b_1$ will be constants in the final equation, they are treated as variables here until they are known. Conversely, all $x_i$ values are treated as constants. This results in Equations: \eqref{equ:LSE_PD1} \& \eqref{equ:LSE_PD2}.
+In order to minimize the squared error over the data set, one needs to take the partial derivate of Equation: \eqref{equ:LSE_E2b} with respect to each of the unknown parameters, the coefficients, seperately. While $a_0$ and $a_1$ will be constants in the final equation, they are treated as variables here until they are known. Conversely, all $x_i$ values are treated as constants. This results in Equations: \eqref{equ:LSE_PD1} \& \eqref{equ:LSE_PD2}.
 
-\begin{equation}
-\label{equ:LSE_PD1}
-\frac{\partial E^2}{\partial b_0} = 0 = \sum_{i=1}^{n} (-2y_i +2b_0 + 2b_1 x_i)
-\end{equation}
+\begin{align} 
+\frac{\partial E^2}{\partial a_0} &= 0 = \sum_{i=1}^{n} (-2y_i +2a_0 + 2a_1 x_i)           \label{equ:LSE_PD1} \\
+\frac{\partial E^2}{\partial a_1} &= 0 = \sum_{i=1}^{n} (-2y_i x_i +2a_0 x_i + 2a_1 x_i^2) \label{equ:LSE_PD2}
+\end{align}
 
-\begin{equation}
-\label{equ:LSE_PD2}
-\frac{\partial E^2}{\partial b_1} = 0 = \sum_{i=1}^{n} (-2y_i x_i +2b_0 x_i + 2b_1 x_i^2)
-\end{equation}
-
-Up to this point most LSE analyses follow the same basic path. But the rest of the steps depend upon the complexity of the model and solution techniques. The following steps in the basic LSE use transformations and substitutions to solve for the unknown variables. In our case, we can use Equations: \eqref{equ:avg} \& \eqref{equ:avgb} to remove the summation terms from the equation.
-
-\begin{equation}
-\label{equ:avg} 
-\bar{y} = (\sum_{i=1}^{n} y_i) / n
-\end{equation}
+Up to this point most LSE analyses follow the same basic path. But the rest of the steps depend upon the complexity of the model and solution techniques. The following steps in the basic LSE use transformations and substitutions to solve for the unknown variables. In our case, we can use Equation: \eqref{equ:avgb} to remove the summation terms from the equation.
 
 \begin{equation}
 \label{equ:avgb} 
 \sum_{i=1}^{n} y_i  = \bar{y}n
 \end{equation}
 
-This results in Equations: \eqref{equ:LSE_sol} \& \eqref{equ:LSE_solb} with solutions shown in Equations: \eqref{equ:LSE_solc} \& \eqref{equ:LSE_sold}. The empirical data is then used to find the values of $b_0$ and $b_1$. At this point, the line can be used to estimate new points on the plot or to compare against other data sets.
+This results in Equations: \eqref{equ:LSE_sol} \& \eqref{equ:LSE_solb} with solutions shown in Equations: \eqref{equ:LSE_solc} \& \eqref{equ:LSE_sold}. The empirical data is then used to find the values of $a_0$ and $a_1$. At this point, the line can be used to estimate new points on the plot or to compare against other data sets.
 
 \begin{equation}
 \label{equ:LSE_sol}
-0 = \bar{y} - (b_0 + 2b_1 \bar{x})
+0 = \bar{y} - (a_0 + 2a_1 \bar{x})
 \end{equation}
 
 \begin{equation}
 \label{equ:LSE_solb}
-0 = \bar{xy} - (b_0 \bar{x} + 2b_1 \bar{x^2})
+0 = \bar{xy} - (a_0 \bar{x} + 2a_1 \bar{x^2})
 \end{equation}
 
 \begin{equation}
 \label{equ:LSE_solc}
-b_0 = \bar{y} - b_1 \bar{x}
+a_0 = \bar{y} - a_1 \bar{x}
 \end{equation}
 
 \begin{equation}
 \label{equ:LSE_sold}
-b_1 = \frac{\bar{xy} - \bar{x}\bar{y}}{\bar{x^2} - \bar{x}^2}
+a_1 = \frac{\bar{xy} - \bar{x}\bar{y}}{\bar{x^2} - \bar{x}^2}
 \end{equation}
 
+An example of this type of fit can be seen in Figure: \ref{fig:basicLSE}.
+\input{figures/modeling/basicLSE}
+
 \subsubsection{Levy's Technique - Complex Curve Fitting}
-While the basic LSE technique is sufficient for many circumstances, it is not directly applicable in situations where we need to fit a complex line, such as a transfer function. Levy \cite{levy} shows an extension of the simple LSE example that is valid for a genaric polynomial transfer function. This method is important because it not only allows for a complex-valued transfer functions, but it also prevents the nececcity of needing to rederive the system of equations for each new model. 
+While the basic LSE technique is sufficient for many circumstances, it is not directly applicable in situations where one needs to fit a complex line, such as a transfer function. Levy \cite{levy} shows an extension of the simple LSE example that is valid for a genaric polynomial transfer function. This method is important because it not only allows for a complex-valued transfer functions, but it also prevents the nececcity of needing to rederive the system of equations for each new model. 
 
 \begin{equation}
 \label{equ:levy_Gs}
-G(s) = \frac{A_0 + A_1 s + A_2 s^2 + ... + A_n s^n}{B_0 + B_1 s + B_2 s^2 + ... + B_n s^n}
+G(s) = \frac{A_0 + A_1 s + A_2 s^2 + ... + A_n s^n}{B_0 + B_1 s + B_2 s^2 + ... + B_m s^m}
 ~\cite{levy}[Eq.~3]
 \end{equation}
 
-Using Equation: \eqref{equ:levy_Gs} as the genaric model for the equation at hand, Levy shows that you can use Equations: \eqref{equ:Levy_L}, \eqref{equ:Levy_S}, \eqref{equ:Levy_T}, \& \eqref{equ:Levy_U} to simplify the series of partial derivates into a single matrix mtiplication equation shown in \eqref{equ:Levy_Ans}, \eqref{equ:Levy_M}, \eqref{equ:Levy_N}, \& \eqref{equ:Levy_C}.
+Using Equation: \eqref{equ:levy_Gs} as the genaric model, Levy shows that you can use Equations: \eqref{equ:Levy_L}, \eqref{equ:Levy_S}, \eqref{equ:Levy_T}, \& \eqref{equ:Levy_U} to simplify the series of partial derivates into a single matrix mtiplication equation shown in \eqref{equ:Levy_Ans}, \eqref{equ:Levy_M}, \eqref{equ:Levy_N}, \& \eqref{equ:Levy_C}.
 
 \begin{equation}
 \label{equ:Levy_L}
@@ -178,7 +171,8 @@ The second problem is that this technique favors the magnitude plot at the high 
 
 \subsubsection{Weighted LSE}
 \label{sec:weightedLSE}
-One improvement that can be made upon Levy's method is to iterate with a weighting function untill the error term is minimized\cite{levy_iter}. By multiplying Levy's error function by the weighting term in Equation: \eqref{equ:iter_Weight}, we get Equation: \eqref{equ:iter_Err}, which can be minimized to obtain a new system of equations.
+One improvement that can be made upon Levy's method is to iterate with a frequency dependent weighting function untill the error term is minimized\cite{levy_iter}. By multiplying Levy's error function by the weighting term in Equation: \eqref{equ:iter_Weight}, we get Equation: \eqref{equ:iter_Err}, which can be minimized to obtain a new system of equations.
+The $L$ subscript stands for the current iteration, while $L-1$ stands for the previous iteration.
 
 \begin{equation}
 \label{equ:iter_Weight}
@@ -193,7 +187,6 @@ E = \sum_{k=1}^{n} |\epsilon _k ^{'}|^2W_{kL}
 \end{equation}
 
 Equations \eqref{equ:Levy_Ans}, \eqref{equ:Levy_M}, \eqref{equ:Levy_N}, \& \eqref{equ:Levy_C} are the same, with Equations \eqref{equ:Levy_L}, \eqref{equ:Levy_S}, \eqref{equ:Levy_T}, \& \eqref{equ:Levy_U} being replaced with Equations: \eqref{equ:Iter_L}, \eqref{equ:Iter_S}, \eqref{equ:Iter_T}, \& \eqref{equ:Iter_U}.
-The $L$ subscript stands for the current iteration, while $L-1$ stands for the previous iteration.
 
 \begin{equation}
 \label{equ:Iter_L}
@@ -220,7 +213,12 @@ U_h = \sum_{k=0}^{m} \omega _k ^h (R_k ^2 + I_k ^2)W_{kL}
 \end{equation}
 
 
-This particular iteration method is not gauranteed to converge. Looking at Figure: \ref{fig:levyIter_Err1}. The squared error of the magnitude and phase do not converge after a particular number of iterations. Furthermore, they do not reach their minimums at the same iteration. In order to select the desired iteration, the magnitude and phase squared plots are normalized as such $n = min(Emag/max(eMag) + Epha/max(ePha))$. The index of the minium of Figure: \ref{fig:levyIter_Err1} is selected as the best fit.
+This particular iteration method is not gauranteed to converge. Figure: \ref{fig:levyIter_Err1} shows that, for this data set, the squared error of the magnitude and phase do not converge after a particular number of iterations. Furthermore, they do not reach their minimums at the same iteration. In order to select the desired iteration, the magnitude and phase squared plots are normalized as in Equation: \eqref{equ:ErrMin}. The index of the minium of Figure: \ref{fig:levyIter_Err1} is selected as the best fit.
+
+\begin{equation}
+\label{equ:ErrMin}
+n = min(Emag/max(eMag) + Epha/max(ePha))
+\end{equation}
 
 \input{figures/modeling/levyIter_Err1}
 \input{figures/modeling/levyIter_Err2}

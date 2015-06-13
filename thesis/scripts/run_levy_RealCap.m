@@ -9,9 +9,11 @@ NumDeg = 3;
 DenDeg = 3;
 iterations = 1;
 filename = './data/GRM31MR71H105KA88.txt';
+modelType = modelTypes.NO_MODEL;
 
 [w, cData, rData, iData]      = getData(filename);
-[G, numCoeffs, denCoeffs]     = regression_levy_iter(cData, w, iterations, NumDeg, DenDeg);
+initDen = getInitGuess(w,modelType);
+[G, numCoeffs, denCoeffs]     = regression_levy_iter(cData, w, iterations, NumDeg, DenDeg, initDen);
 
 %% Plot
 plotcDiff = plotType.cVectorsDiff;
