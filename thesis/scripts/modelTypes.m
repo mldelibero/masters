@@ -1,6 +1,6 @@
-classdef ModelTypes
+classdef modelTypes
     enumeration
-       RLC_MODEL, FULL_MODEL
+       NO_MODEL, RLC_MODEL, FULL_MODEL
     end
 end
 
