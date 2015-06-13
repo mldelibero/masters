@@ -14,54 +14,54 @@ The first step in applying an LSE is to choose the form of the equation that bes
 Then the squared error equation is generated, as in Equations: \eqref{equ:LSE_E2} \& \eqref{equ:LSE_E2b}.
 
 \begin{equation}
-\label{equ:ExLinEqu}
-y = a_0 + a_1 x
+    \label{equ:ExLinEqu}
+    y = a_0 + a_1 x
 \end{equation}
 
 \begin{equation}
-\label{equ:LSE_E2}
-E^2 = \sum_{i=1}^{n} (y_i - y)^2
+    \label{equ:LSE_E2}
+    E^2 = \sum_{i=1}^{n} (y_i - y)^2
 \end{equation}
 
 \begin{equation}
-\label{equ:LSE_E2b}
-E^2 = \sum_{i=1}^{n} (y_i - (a_0 + a_1 x_i))^2
+    \label{equ:LSE_E2b}
+    E^2 = \sum_{i=1}^{n} (y_i - (a_0 + a_1 x_i))^2
 \end{equation}
 
 In order to minimize the squared error over the data set, one needs to take the partial derivate of Equation: \eqref{equ:LSE_E2b} with respect to each of the unknown parameters, the coefficients, seperately. While $a_0$ and $a_1$ will be constants in the final equation, they are treated as variables here until they are known. Conversely, all $x_i$ values are treated as constants. This results in Equations: \eqref{equ:LSE_PD1} \& \eqref{equ:LSE_PD2}.
 
 \begin{align} 
-\frac{\partial E^2}{\partial a_0} &= 0 = \sum_{i=1}^{n} (-2y_i +2a_0 + 2a_1 x_i)           \label{equ:LSE_PD1} \\
-\frac{\partial E^2}{\partial a_1} &= 0 = \sum_{i=1}^{n} (-2y_i x_i +2a_0 x_i + 2a_1 x_i^2) \label{equ:LSE_PD2}
+    \frac{\partial E^2}{\partial a_0} &= 0 = \sum_{i=1}^{n} (-2y_i +2a_0 + 2a_1 x_i)           \label{equ:LSE_PD1} \\
+    \frac{\partial E^2}{\partial a_1} &= 0 = \sum_{i=1}^{n} (-2y_i x_i +2a_0 x_i + 2a_1 x_i^2) \label{equ:LSE_PD2}
 \end{align}
 
 Up to this point most LSE analyses follow the same basic path. But the rest of the steps depend upon the complexity of the model and solution techniques. The following steps in the basic LSE use transformations and substitutions to solve for the unknown variables. In our case, we can use Equation: \eqref{equ:avgb} to remove the summation terms from the equation.
 
 \begin{equation}
-\label{equ:avgb} 
-\sum_{i=1}^{n} y_i  = \bar{y}n
+    \label{equ:avgb} 
+    \sum_{i=1}^{n} y_i  = \bar{y}n
 \end{equation}
 
 This results in Equations: \eqref{equ:LSE_sol} \& \eqref{equ:LSE_solb} with solutions shown in Equations: \eqref{equ:LSE_solc} \& \eqref{equ:LSE_sold}. The empirical data is then used to find the values of $a_0$ and $a_1$. At this point, the line can be used to estimate new points on the plot or to compare against other data sets.
 
 \begin{equation}
-\label{equ:LSE_sol}
-0 = \bar{y} - (a_0 + 2a_1 \bar{x})
+    \label{equ:LSE_sol}
+    0 = \bar{y} - (a_0 + 2a_1 \bar{x})
 \end{equation}
 
 \begin{equation}
-\label{equ:LSE_solb}
-0 = \bar{xy} - (a_0 \bar{x} + 2a_1 \bar{x^2})
+    \label{equ:LSE_solb}
+    0 = \bar{xy} - (a_0 \bar{x} + 2a_1 \bar{x^2})
 \end{equation}
 
 \begin{equation}
-\label{equ:LSE_solc}
-a_0 = \bar{y} - a_1 \bar{x}
+    \label{equ:LSE_solc}
+    a_0 = \bar{y} - a_1 \bar{x}
 \end{equation}
 
 \begin{equation}
-\label{equ:LSE_sold}
-a_1 = \frac{\bar{xy} - \bar{x}\bar{y}}{\bar{x^2} - \bar{x}^2}
+    \label{equ:LSE_sold}
+    a_1 = \frac{\bar{xy} - \bar{x}\bar{y}}{\bar{x^2} - \bar{x}^2}
 \end{equation}
 
 An example of this type of fit can be seen in Figure: \ref{fig:basicLSE}.
@@ -71,41 +71,41 @@ An example of this type of fit can be seen in Figure: \ref{fig:basicLSE}.
 While the basic LSE technique is sufficient for many circumstances, it is not directly applicable in situations where one needs to fit a complex line, such as a transfer function. Levy \cite{levy} shows an extension of the simple LSE example that is valid for a genaric polynomial transfer function. This method is important because it not only allows for a complex-valued transfer functions, but it also prevents the nececcity of needing to rederive the system of equations for each new model. 
 
 \begin{equation}
-\label{equ:levy_Gs}
-G(s) = \frac{A_0 + A_1 s + A_2 s^2 + ... + A_n s^n}{B_0 + B_1 s + B_2 s^2 + ... + B_m s^m}
-~\cite{levy}[Eq.~3]
+    \label{equ:levy_Gs}
+    G(s) = \frac{A_0 + A_1 s + A_2 s^2 + ... + A_n s^n}{B_0 + B_1 s + B_2 s^2 + ... + B_m s^m}
+    ~\cite{levy}[Eq.~3]
 \end{equation}
 
 Using Equation: \eqref{equ:levy_Gs} as the genaric model, Levy shows that you can use Equations: \eqref{equ:Levy_L}, \eqref{equ:Levy_S}, \eqref{equ:Levy_T}, \& \eqref{equ:Levy_U} to simplify the series of partial derivates into a single matrix mtiplication equation shown in \eqref{equ:Levy_Ans}, \eqref{equ:Levy_M}, \eqref{equ:Levy_N}, \& \eqref{equ:Levy_C}.
 
 \begin{equation}
-\label{equ:Levy_L}
-\lambda _h = \sum_{k=0}^{m} \omega _k ^h
-~\cite{levy}[Eq.~15]
+    \label{equ:Levy_L}
+    \lambda _h = \sum_{k=0}^{m} \omega _k ^h
+    ~\cite{levy}[Eq.~15]
 \end{equation}
 
 \begin{equation}
-\label{equ:Levy_S}
-S_h = \sum_{k=0}^{m} \omega _k ^h R_k
-~\cite{levy}[Eq.~16]
+    \label{equ:Levy_S}
+    S_h = \sum_{k=0}^{m} \omega _k ^h R_k
+    ~\cite{levy}[Eq.~16]
 \end{equation}
 
 \begin{equation}
-\label{equ:Levy_T}
-T_h = \sum_{k=0}^{m} \omega _k ^h I_k
-~\cite{levy}[Eq.~17]
+    \label{equ:Levy_T}
+    T_h = \sum_{k=0}^{m} \omega _k ^h I_k
+    ~\cite{levy}[Eq.~17]
 \end{equation}
 
 \begin{equation}
-\label{equ:Levy_U}
-U_h = \sum_{k=0}^{m} \omega _k ^h (R_k ^2 + I_k ^2)
-~\cite{levy}[Eq.~18]
+    \label{equ:Levy_U}
+    U_h = \sum_{k=0}^{m} \omega _k ^h (R_k ^2 + I_k ^2)
+    ~\cite{levy}[Eq.~18]
 \end{equation}
 
 \begin{equation}
-\label{equ:Levy_Ans}
-MN = C
-~\cite{levy}[Eq.~20]
+    \label{equ:Levy_Ans}
+    MN = C
+    ~\cite{levy}[Eq.~20]
 \end{equation}
 
 \setcounter{MaxMatrixCols}{12} % Allows each row of M to fit on one line
@@ -128,39 +128,39 @@ T_3        & -S_4       & -T_5        &  S_6         & T_7         & \cdots &  U
 \end{equation}
 
 \begin{multicols}{2}
-\begin{equation}
-\label{equ:Levy_N}
-N = 
-\begin{bmatrix}
-A_0 \\
-A_1 \\
-A_2 \\
-A_3 \\
-\vdots \\
-B_1 \\
-B_2 \\
-B_3 \\
-\vdots
-\end{bmatrix}
-~\cite{levy}[Eq.~21b]
-\end{equation}
+    \begin{equation}
+        \label{equ:Levy_N}
+        N = 
+        \begin{bmatrix}
+            A_0 \\
+            A_1 \\
+            A_2 \\
+            A_3 \\
+            \vdots \\
+            B_1 \\
+            B_2 \\
+            B_3 \\
+            \vdots
+        \end{bmatrix}
+        ~\cite{levy}[Eq.~21b]
+    \end{equation}
 
-\begin{equation}
-\label{equ:Levy_C}
-C = 
-\begin{bmatrix}
-S_0 \\
-T_1 \\
-S_2 \\
-T_3 \\
-\vdots \\
-0   \\
-U_2 \\
-0   \\
-\vdots
-\end{bmatrix}
-~\cite{levy}[Eq.~21c]
-\end{equation}
+    \begin{equation}
+        \label{equ:Levy_C}
+        C = 
+        \begin{bmatrix}
+            S_0 \\
+            T_1 \\
+            S_2 \\
+            T_3 \\
+            \vdots \\
+            0   \\
+            U_2 \\
+            0   \\
+            \vdots
+        \end{bmatrix}
+        ~\cite{levy}[Eq.~21c]
+    \end{equation}
 \end{multicols}
 
 Levy's technique works well for applications where there is a small dynamic frequency range and a small number of coefficients, but there a several problems with it.
@@ -175,41 +175,41 @@ One improvement that can be made upon Levy's method is to iterate with a frequen
 The $L$ subscript stands for the current iteration, while $L-1$ stands for the previous iteration.
 
 \begin{equation}
-\label{equ:iter_Weight}
-W_{kL} = \frac{1}{|Q(jw_k)_{L-1}|^2}
-~\cite{levy_iter}
+    \label{equ:iter_Weight}
+    W_{kL} = \frac{1}{|Q(jw_k)_{L-1}|^2}
+    ~\cite{levy_iter}
 \end{equation}
 
 \begin{equation}
-\label{equ:iter_Err}
-E = \sum_{k=1}^{n} |\epsilon _k ^{'}|^2W_{kL}
-~\cite{levy_iter}[Eq.~7]
+    \label{equ:iter_Err}
+    E = \sum_{k=1}^{n} |\epsilon _k ^{'}|^2W_{kL}
+    ~\cite{levy_iter}[Eq.~7]
 \end{equation}
 
 Equations \eqref{equ:Levy_Ans}, \eqref{equ:Levy_M}, \eqref{equ:Levy_N}, \& \eqref{equ:Levy_C} are the same, with Equations \eqref{equ:Levy_L}, \eqref{equ:Levy_S}, \eqref{equ:Levy_T}, \& \eqref{equ:Levy_U} being replaced with Equations: \eqref{equ:Iter_L}, \eqref{equ:Iter_S}, \eqref{equ:Iter_T}, \& \eqref{equ:Iter_U}.
 
 \begin{equation}
-\label{equ:Iter_L}
-\lambda _h = \sum_{k=0}^{m} \omega _k ^hW_{kL}
-~\cite{levy_iter}[Eq.~9]
+    \label{equ:Iter_L}
+    \lambda _h = \sum_{k=0}^{m} \omega _k ^hW_{kL}
+    ~\cite{levy_iter}[Eq.~9]
 \end{equation}
 
 \begin{equation}
-\label{equ:Iter_S}
-S_h = \sum_{k=0}^{m} \omega _k ^h R_kW_{kL}
-~\cite{levy_iter}[Eq.~10]
+    \label{equ:Iter_S}
+    S_h = \sum_{k=0}^{m} \omega _k ^h R_kW_{kL}
+    ~\cite{levy_iter}[Eq.~10]
 \end{equation}
 
 \begin{equation}
-\label{equ:Iter_T}
-T_h = \sum_{k=0}^{m} \omega _k ^h I_kW_{kL}
-~\cite{levy_iter}[Eq.~11]
+    \label{equ:Iter_T}
+    T_h = \sum_{k=0}^{m} \omega _k ^h I_kW_{kL}
+    ~\cite{levy_iter}[Eq.~11]
 \end{equation}
 
 \begin{equation}
-\label{equ:Iter_U}
-U_h = \sum_{k=0}^{m} \omega _k ^h (R_k ^2 + I_k ^2)W_{kL}
-~\cite{levy_iter}[Eq.~12]
+    \label{equ:Iter_U}
+    U_h = \sum_{k=0}^{m} \omega _k ^h (R_k ^2 + I_k ^2)W_{kL}
+    ~\cite{levy_iter}[Eq.~12]
 \end{equation}
 
 
@@ -237,60 +237,60 @@ This section will investigate several of the most common capacitor models. It wi
 The model shown in Figure: \ref{fig:fullModel} shows several of the most important parameters for a capacitor. It's impedance, shown in Equation: \eqref{equ:fullModelImpedance}, can be used as the basis for a regression analysis.
 
 \begin{equation}
-\begin{split}
-\label{equ:fullModelImpedance}
-\bar{Z}(s) = \frac{(R_E + R_L) + (L_E + C_DR_DR_E + C_DR_DR_L + CR_ER_L + C_DR_ER_L)s}{1 + (C_DR_D + CR_L + C_DR_L)s + CC_DR_DR_Ls^2} \\ 
-+ \frac{(C_DL_ER_D + CL_ER_L + C_DL_ER_L + CC_DR_DR_ER_L)s^2 + CC_DL_ER_DR_Ls^3}{1 + (C_DR_D + CR_L + C_DR_L)s + CC_DR_DR_Ls^2}
-\end{split}
+    \begin{split}
+        \label{equ:fullModelImpedance}
+        \bar{Z}(s) = \frac{(R_E + R_L) + (L_E + C_DR_DR_E + C_DR_DR_L + CR_ER_L + C_DR_ER_L)s}{1 + (C_DR_D + CR_L + C_DR_L)s + CC_DR_DR_Ls^2} \\ 
+        + \frac{(C_DL_ER_D + CL_ER_L + C_DL_ER_L + CC_DR_DR_ER_L)s^2 + CC_DL_ER_DR_Ls^3}{1 + (C_DR_D + CR_L + C_DR_L)s + CC_DR_DR_Ls^2}
+    \end{split}
 \end{equation}
 
 \begin{equation}
-\label{equ:fullModelPoly}
-\bar{Z}(s) = \frac{a_0 + a_1s + a_2s^2 + a_3s^3}{b_0 + b_1s + b_2s^2}
+    \label{equ:fullModelPoly}
+    \bar{Z}(s) = \frac{a_0 + a_1s + a_2s^2 + a_3s^3}{b_0 + b_1s + b_2s^2}
 \end{equation}
 
 
-For this model Equations: \eqref{equ:Levy_M}, \eqref{equ:Levy_N}, \& \eqref{equ:Levy_C} simplify down to Equations: \eqref{equ:fullModel_M}, \eqref{equ:fullModel_N}, \& \eqref{equ:fullModel_C}.
+For this model, Equations: \eqref{equ:Levy_M}, \eqref{equ:Levy_N}, \& \eqref{equ:Levy_C} simplify down to Equations: \eqref{equ:fullModel_M}, \eqref{equ:fullModel_N}, \& \eqref{equ:fullModel_C}.
 
 \begin{equation}
-\label{equ:fullModel_M}
-M = 
-\begin{bmatrix}
-\lambda _0 & 0          & -\lambda _2 & 0           &  T_1    & S_2 \\
-0          & \lambda _2 & 0           & -\lambda _4 & -S_2    & T_3 \\
-\lambda _2 & 0          & -\lambda _4 & 0           &  T_3    & S_4 \\
-0          & \lambda _4 & 0           & -\lambda _6 & -S_4    & T_5 \\
-T_1        & -S_2       & -T_3        &  S_4        &  U_2    & 0   \\
-S_2        &  T_3       & -S_4        & -T_5        &  0      & U_4
-\end{bmatrix}
+    \label{equ:fullModel_M}
+    M = 
+    \begin{bmatrix}
+        \lambda _0 & 0          & -\lambda _2 & 0           &  T_1    & S_2 \\
+        0          & \lambda _2 & 0           & -\lambda _4 & -S_2    & T_3 \\
+        \lambda _2 & 0          & -\lambda _4 & 0           &  T_3    & S_4 \\
+        0          & \lambda _4 & 0           & -\lambda _6 & -S_4    & T_5 \\
+        T_1        & -S_2       & -T_3        &  S_4        &  U_2    & 0   \\
+        S_2        &  T_3       & -S_4        & -T_5        &  0      & U_4
+    \end{bmatrix}
 \end{equation}
 
 \begin{multicols}{2}
-\begin{equation}
-\label{equ:fullModel_N}
-N = 
-\begin{bmatrix}
-A_0 \\
-A_1 \\
-A_2 \\
-A_3 \\
-B_1 \\
-B_2
-\end{bmatrix}
-\end{equation}
+    \begin{equation}
+        \label{equ:fullModel_N}
+        N = 
+        \begin{bmatrix}
+            A_0 \\
+            A_1 \\
+            A_2 \\
+            A_3 \\
+            B_1 \\
+            B_2
+        \end{bmatrix}
+    \end{equation}
 
-\begin{equation}
-\label{equ:fullModel_C}
-C = 
-\begin{bmatrix}
-S_0 \\
-T_1 \\
-S_2 \\
-T_3 \\
-0   \\
-U_2
-\end{bmatrix}
-\end{equation}
+    \begin{equation}
+        \label{equ:fullModel_C}
+        C = 
+        \begin{bmatrix}
+            S_0 \\
+            T_1 \\
+            S_2 \\
+            T_3 \\
+            0   \\
+            U_2
+        \end{bmatrix}
+    \end{equation}
 \end{multicols}
 
 Using this model, the regression analysis output described in Section: \ref{sec:weightedLSE} can be seen in Figure: \ref{fig:fullModel_BadOutput}. The fit tracks the original data well, except for low frequencies and near resonance. 
@@ -301,101 +301,116 @@ Equations: \eqref{equ:fullModel_BadOutputCoeff} shows solution for the polynomia
 Even though the polynomial coefficients gave an acceptable fit to the data, it resulted in unaceptable circuit parameters. Since $C$ and $R_D$ are negative, this model is not physically realizable.
 
 \begin{align}
-&a_0 = R_E + R_L                                         \label{equ:fullModel_CoeffEq_a0} \\
-&a_1 = L_E + C_DR_DR_E + C_DR_DR_L + CR_ER_L + C_DR_ER_L \label{equ:fullModel_CoeffEq_a1} \\
-&a_2 = C_DL_ER_D + CL_ER_L + C_DL_ER_L + CC_DR_DR_ER_L   \label{equ:fullModel_CoeffEq_a2} \\
-&a_3 = CC_DL_ER_DR_L                                     \label{equ:fullModel_CoeffEq_a3} \\
-&b_0 = 1                                                 \label{equ:fullModel_CoeffEq_b0} \\
-&b_1 = C_DR_D + CR_L + C_DR_L                            \label{equ:fullModel_CoeffEq_b1} \\
-&b_2 = CC_DR_DR_L                                        \label{equ:fullModel_CoeffEq_b2}
+     a_0 &= R_E + R_L                                         \label{equ:fullModel_CoeffEq_a0} \\
+     a_1 &= L_E + C_DR_DR_E + C_DR_DR_L + CR_ER_L + C_DR_ER_L \label{equ:fullModel_CoeffEq_a1} \\
+     a_2 &= C_DL_ER_D + CL_ER_L + C_DL_ER_L + CC_DR_DR_ER_L   \label{equ:fullModel_CoeffEq_a2} \\
+     a_3 &= CC_DL_ER_DR_L                                     \label{equ:fullModel_CoeffEq_a3} \\
+     b_0 &= 1                                                 \label{equ:fullModel_CoeffEq_b0} \\
+     b_1 &= C_DR_D + CR_L + C_DR_L                            \label{equ:fullModel_CoeffEq_b1} \\
+     b_2 &= CC_DR_DR_L                                        \label{equ:fullModel_CoeffEq_b2}
 \end{align}
 
 \begin{multicols}{2}
-\begin{equation}
-\label{equ:fullModel_BadOutputCoeff}
-\begin{split}
-&a_0 = 5.9991E^{+03} \\
-&a_1 = 1.7934E^{-04} \\
-&a_2 = 3.3158E^{-12} \\
-&a_3 = 6.8295E^{-22} \\
-&b_0 = 1.0000        \\
-&b_1 = 5.9057E^{-03} \\
-&b_2 = 1.4067E^{-12}
-\end{split}
-\end{equation}
+    \begin{equation}
+        \label{equ:fullModel_BadOutputCoeff}
+        \begin{split}
+             a_0 &= 5.9991E^{+03} \\
+             a_1 &= 1.7934E^{-04} \\
+             a_2 &= 3.3158E^{-12} \\
+             a_3 &= 6.8295E^{-22} \\
+             b_0 &= 1.0000        \\
+             b_1 &= 5.9057E^{-03} \\
+             b_2 &= 1.4067E^{-12}
+        \end{split}
+    \end{equation}
 
-\begin{equation}
-\label{equ:fullModel_BadOutputParams}
-\begin{split}
-&C   = -8.2563E^{-10} \\
-&R_E =  3.1886E^{-01} \\
-&L_E =  4.8551E^{-10} \\
-&R_L =  4.8551E^{-10} \\
-&C_D =  9.8536E^{-07} \\
-&R_D = -2.8824E^{-01}
-\end{split}
-\end{equation}
+    \begin{equation}
+        \label{equ:fullModel_BadOutputParams}
+        \begin{split}
+            C &= -8.2563E^{-10} \\
+            R_E &=  3.1886E^{-01} \\
+            L_E &=  4.8551E^{-10} \\
+            R_L &=  4.8551E^{-10} \\
+            C_D &=  9.8536E^{-07} \\
+            R_D &= -2.8824E^{-01}
+        \end{split}
+    \end{equation}
 \end{multicols}
 
-The problem comes with the author's \cite{levy_iter} suggestion that the initial guess for $Q(jw_k) == 1$. While an initial guess is required to calculate the weighting function during the first iteration, it causes the stated problem for this application. Equations: \eqref{equ:fullModel_BadInputCoeff} \& \eqref{equ:fullModel_BadInputParams} show that this initial condition does not yield a rational solution for the circuit parameters.
+The problem comes with the author's \cite{levy_iter} suggestion that the initial guess for $Q(jw_k) == 1$. While an initial guess is required to calculate the weighting function during the first iteration, this particual choice causes the problem seen in Equations: \eqref{equ:fullModel_BadInputCoeff} \& \eqref{equ:fullModel_BadInputParams}. They show that this initial condition does not yield a rational solution for the circuit parameters.
+
 
 \begin{multicols}{2}
-\begin{equation}
-\label{equ:fullModel_BadInputCoeff}
-\begin{split}
-&a_0 = 1 \\
-&a_1 = 1 \\
-&a_2 = 1 \\
-&a_3 = 1 \\
-&b_0 = 1 \\
-&b_1 = 0 \\
-&b_2 = 0
-\end{split}
-\end{equation}
+    \mbox{}\vfill
+    \begin{equation}
+        \label{equ:fullModel_BadInputCoeff}
+        \begin{split}
+            &a_0 = 1 \\
+            &a_1 = 1 \\
+            &a_2 = 1 \\
+            &a_3 = 1 \\
+            &b_0 = 1 \\
+            &b_1 = 0 \\
+            &b_2 = 0
+        \end{split}
+    \end{equation}
 
-\begin{equation}
-\label{equ:fullModel_BadInputParams}
-\begin{split}
-&C   = INF \\
-&R_E = INF \\
-&L_E = INF \\
-&R_L = IND \\
-&C_D = IND \\
-&R_D = IND \\
-\end{split}
-\end{equation}
+    \mbox{}\vfill
+    \columnbreak
+
+    \mbox{}\vfill
+    \begin{equation}
+        \label{equ:fullModel_BadInputParams}
+        \begin{split}
+             C   &= INF \\
+             R_E &= INF \\
+             L_E &= INF \\
+             R_L &= IND \\
+             C_D &= IND \\
+             R_D &= IND \\
+        \end{split}
+    \end{equation}
+    \mbox{}\vfill
 \end{multicols}
+
+
 
 If we instead start with the rational set of circuit parameters seen in Equation: \eqref{equ:fullModel_GoodInputParams}, the starting coefficients are as seen in Equation: \eqref{equ:fullModel_GoodInputCoeff}.
 
 \begin{multicols}{2}
-\begin{equation}
-\label{equ:fullModel_GoodInputCoeff}
-\begin{split}
-&a_0 = 2 \\
-&a_1 = 5 \\
-&a_2 = 4 \\
-&a_3 = 1 \\
-&b_0 = 1 \\
-&b_1 = 3 \\
-&b_2 = 1
-\end{split}
-\end{equation}
+    \mbox{}\vfill
+    \begin{equation}
+        \label{equ:fullModel_GoodInputCoeff}
+        \begin{split}
+             a_0 &= 2 \\
+             a_1 &= 5 \\
+             a_2 &= 4 \\
+             a_3 &= 1 \\
+             b_0 &= 1 \\
+             b_1 &= 3 \\
+             b_2 &= 1
+        \end{split}
+    \end{equation}
 
-\begin{equation}
-\label{equ:fullModel_GoodInputParams}
-\begin{split}
-&C   = 1 \\
-&R_E = 1 \\
-&L_E = 1 \\
-&R_L = 1 \\
-&C_D = 1 \\
-&R_D = 1 \\
-\end{split}
-\end{equation}
+    \mbox{}\vfill
+    \columnbreak
+
+    \mbox{}\vfill
+    \begin{equation}
+        \label{equ:fullModel_GoodInputParams}
+        \begin{split}
+             C   &= 1 \\
+             R_E &= 1 \\
+             L_E &= 1 \\
+             R_L &= 1 \\
+             C_D &= 1 \\
+             R_D &= 1 \\
+        \end{split}
+    \end{equation}
+    \mbox{}\vfill
 \end{multicols}
 
 \input{Figures/modeling/fullModel_GoodOutput}
 
-Figure: \ref{fig:fullModel_GoodOutput} shows a good fit across the frequency spectrum for both magnitude and phase. The model does deviate at resonance, but that is insurprising, as the number of parameters in the model is fairly low.
+Figure: \ref{fig:fullModel_GoodOutput} shows a good fit across the frequency spectrum for both magnitude and phase. The model does deviate at resonance, but that is unsurprising, as the number of parameters in the model is fairly low.
 
