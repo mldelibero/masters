@@ -1,25 +1,32 @@
-function [G, numCoeffs, denCoeffs] = regression_levy_iter(cData, w, iterations, numbNumCoeffs, numbDenCoeffs)
-    % Execute the regression analysis based upon Levy's method.
+function [G, numCoeffs, denCoeffs, E, minIndex] = regression_levy_iter(cData, w, iterations, numbNumCoeffs, numbDenCoeffs, initDen)
+    % Execute the regression analysis based upon Levy's method + iteration.
     % G(s) = (a0 + a1*s + a2*s^2 + ... + an*s^n) /
     %        (b0 + b1*s + b2*s^2 + ... + bm*s^m)
 
     % Solve
-%    [TnumCoeff,TdenCoeff] = calcCoeffs(w_norm, T, cData, modelOrder);
-    numCoeffs = ones(numbNumCoeffs,1);
-    denCoeffs = ones(numbDenCoeffs,1); % Needs to be ones for the initial guess of W
+    numCoeffs = ones(iterations,numbNumCoeffs);
+    denCoeffs = ones(iterations,numbDenCoeffs); % Needs to be ones for the initial guess of W
     W         = ones(length(w)); % Weighting function
 
     %Set initial guess of the denomiator. This also will cause it to calc
     %Levy's original method if the iteraiton == 1.
-    Den = ones(length(w));
+    Den = initDen;
     G = zeros(iterations,length(w));
-    
+
     for iter = 1:iterations
         W = 1 ./ abs(Den).^2;
-        [numCoeffs, denCoeffs] = calcCoeffs(cData, w, W, numbNumCoeffs, numbDenCoeffs);
-        [G(iter,1:length(w)),~,Den] = calcDataFromCoeffs(numCoeffs,denCoeffs,w);
+        [numCoeffs(iter,:), denCoeffs(iter,:)] = calcCoeffs(cData, w, W, numbNumCoeffs, numbDenCoeffs);
+        [G(iter,1:length(w)),~,Den] = calcDataFromCoeffs(numCoeffs(iter,:),denCoeffs(iter,:),w);
+        E(iter,:) = sumError(cData,G(iter,1:length(w)));
         iter
     end
+
+    Emag = E(:,1);
+    Epha = E(:,2);
+    EmagNorm = Emag ./ max(Emag);
+    EphaNorm = Epha ./ max(Epha);
+    E2 = EmagNorm + EphaNorm;
+    minIndex = find(E2==min(E2),1);
 end % function [G,numCoeffs,denCoeffs] = regression_levy_iter(cData, w, iterations, numbNumCoeffs, numbDenCoeffs)
 
 function [numCoeffs, denCoeffs] = calcCoeffs(cData, w, W, numbNumCoeffs, numbDenCoeffs)
