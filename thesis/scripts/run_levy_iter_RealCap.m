@@ -11,8 +11,8 @@ iterations = 1000;
 filename = './data/GRM31MR71H105KA88.txt';
 
 [w, cData, rData, iData] = getData(filename);
-initDen = getInitGues(w,modelTypes.NO_MODEL);
-[G, numCoeffs, denCoeffs, E, minIndex] = regression_levy_iter(cData, w, iterations, NumDeg, DenDeg);
+initDen = getInitGuess(w,modelTypes.NO_MODEL);
+[G, numCoeffs, denCoeffs, E, minIndex] = regression_levy_iter(cData, w, iterations, NumDeg, DenDeg, initDen);
 
 %% Error minimization
 Emag = E(:,1);
