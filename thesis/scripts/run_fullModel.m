@@ -8,12 +8,13 @@ format shorte;
 modelType = modelTypes.FULL_MODEL;
 NumDeg = 4;
 DenDeg = 3;
-iterations = 100;
+iterations = 1000;
 filename = './data/GRM31MR71H105KA88.txt';
 
 
 [w, cData, rData, iData] = getData(filename);
-[initDen] = getInitGuess(w,modelType);
+%[initDen] = getInitGuess(w,modelTypes.NO_MODEL);   % Uncomment to run the bad  output version
+[initDen] = getInitGuess(w,modelTypes.FULL_MODEL); % Uncomment to run the good output version
 [G, numCoeffs, denCoeffs, E, minIndex] = regression_levy_iter(cData, w, iterations, NumDeg, DenDeg, initDen);
 
 %% Error minimization
@@ -45,5 +46,4 @@ cols = 2;
 figure;
 subplot(rows,cols,1); plot(params(1:10,1)); title('LE');
 subplot(rows,cols,2); plot(params(1:10,2)); title('RE');
-
 
