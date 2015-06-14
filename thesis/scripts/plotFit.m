@@ -34,7 +34,34 @@ function plotFit(pType, Data1, Data2, x)
         max_y2 = max(get(ax(2),'ytick'));
         set(ax(1),'ytick',min_y1:20:max_y1);
         set(ax(2),'ytick',min_y2:20:max_y2);
+
+    elseif pType == plotType.MULTCDATA
+        colors = [0                ,0.447000000000000,0.741000000000000 ;
+                  0.850000000000000,0.325000000000000,0.0980000000000000;
+                  0.929000000000000,0.694000000000000,0.125000000000000 ;
+                  0.494000000000000,0.184000000000000,0.556000000000000 ;
+                  0.466000000000000,0.674000000000000,0.188000000000000 ;
+                  0.301000000000000,0.745000000000000,0.933000000000000];
         
+        [ax(1,:),p(1),p(2)] = plotyy(x,mag2db(abs(Data1(1,:))),x,rad2deg(phase(Data1(1,:))),'semilogx','semilogx'); hold on;
+        [ax(2,:),p(3),p(4)] = plotyy(x,mag2db(abs(Data1(2,:))),x,rad2deg(phase(Data1(2,:))),'semilogx','semilogx'); hold on;
+        [ax(3,:),p(5),p(6)] = plotyy(x,mag2db(abs(Data1(3,:))),x,rad2deg(phase(Data1(3,:))),'semilogx','semilogx');
+
+        title('RC Filter -- Increasing C','FontSize',titleSize);
+        h_leg = legend(p,'Mag1','Pha1','Mag2','Pha2','Mag3','Pha3','Location','northeast');
+        set(h_leg,'FontSize',legendSize);
+        xlabel(ax(1,1), '\omega (rad)'  , 'FontSize', axisTitleSize);
+        ylabel(ax(1,1), 'Mag (dB)'      , 'FontSize', axisTitleSize);
+        ylabel(ax(1,2), '\phi (deg)'    , 'FontSize', axisTitleSize);
+
+        for ind = 1:6
+            p(ind).Color = colors(ind,:);
+            ax(ind).YColor = [0,0,0]; % Black
+        end
+
+        p(2).Marker = 'o';
+        p(4).Marker = 'o';
+        p(6).Marker = 'o';
 
     elseif pType == plotType.cVectorsDiff
         rows = 2;
@@ -113,3 +140,4 @@ function plotFit(pType, Data1, Data2, x)
     end % for ind = 1:length(p)
 end % function plotFit()
 
+    
