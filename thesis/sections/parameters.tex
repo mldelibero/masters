@@ -16,12 +16,12 @@ One of the most common uses of capacitors in bypassing a DC power supply (see Fi
 
 \subsubsection{Analog Filtering}
 \input{figures/parameters/analogFiltering}
-Another use for capacitors is in analog filtering. The lowpass filter in Figure: \ref{analogFiltering} attenuates frequencies above a cutoff point, set by the values of the resistor and capacitor. Low pass filters are needed in many applications, such as anti-aliasing, clock filtering, and integration.
+Another use for capacitors is in analog filtering. The low-pass filter in Figure: \ref{analogFiltering} attenuates frequencies above a cutoff point, set by the values of the resistor and capacitor. Low pass filters are needed in many applications, such as anti-aliasing, clock filtering, and integration.
 
 
 \subsubsection{DC Blocking}
 \input{figures/parameters/dcBlocking}
-Designers often take advantage of capactors' characteristic of passing AC current while blocking DC current. As in Figure: \ref{dcBlock}, a capacitor can be used to block a DC offset before an amplifier. 
+Designers often take advantage of capacitors' characteristic of passing AC current while blocking DC current. As in Figure: \ref{dcBlock}, a capacitor can be used to block a DC offset before an amplifier. 
 
 
 \subsubsection{Oscillators}
@@ -32,7 +32,7 @@ Capacitors are also used in oscillator circuits. The relaxation circuit in Fig: 
 \subsubsection{Power Factor Correction}
 \input{Figures/parameters/powerFactor}
 
-The inductors in modern DC-DC switching supplies have required increased attention to the engineering phenomenon know as power factor. Any electrical load with an inductive component causes the supplied current phase to lag the voltage phase. This effect decreases the efficiency of the power distribution and also has the ability to cause stability issues. A capacacitor can be used as a simple, passive way to move the power factor back towards the ideal state (See Figure: \ref{powerFactor}). \cite{cui_powerFactor}
+The inductors in modern DC-DC switching supplies have required increased attention to the engineering phenomenon know as power factor. Any electrical load with an inductive component causes the supplied current phase to lag the voltage phase. This effect decreases the efficiency of the power distribution and also has the ability to cause stability issues. A capacitor can be used as a simple, passive way to move the power factor back towards the ideal state (See Figure: \ref{powerFactor}). \cite{cui_powerFactor}
 
 
 \subsection{Capacitance}
@@ -65,7 +65,7 @@ Varying the capacitance used in the filter will move the cutoff frequency and co
 
 \subsection{Impedance}
 
-The impedance of a capacitor is the "AC resistance" of the device. It determines the AC current that will flow when an ac voltage is applied to the capacitor via Ohm's law (Equation: \eqref{capOhmsEqn}). An ideal capacitor has only a single capacative element and its impedance can be described via Equation: \eqref{capImpEqu}. The two main things to notice are that the impedance is frequency dependent and it is purely imaginary (reactive).
+The impedance of a capacitor is the "AC resistance" of the device. It determines the AC current that will flow when an ac voltage is applied to the capacitor via Ohm's law (Equation: \eqref{capOhmsEqn}). An ideal capacitor has only a single capacitive element and its impedance can be described via Equation: \eqref{capImpEqu}. The two main things to notice are that the impedance is frequency dependent and it is purely imaginary (reactive).
 
 \begin{equation}
 \label{capOhmsEqn}
@@ -113,7 +113,7 @@ The Equivalent Series Inductance (ESL) of a capacitor is a lumped estimate of al
 
 \input{figures/parameters/eslModel}
 
-Adding ESL to the capacitive model creates a new impedance equation (Equation: \eqref{impESL}). Note that for L\textless \textless C, this equation simplifies to Equation: \eqref{capImpEqu} for low frequencies. In otherwords, the ideal impedance equation can be reasonably used for "low" frequencies.
+Adding ESL to the capacitive model creates a new impedance equation (Equation: \eqref{impESL}). Note that for L\textless \textless C, this equation simplifies to Equation: \eqref{capImpEqu} for low frequencies. In other words, the ideal impedance equation can be reasonably used for "low" frequencies.
 
 \begin{equation}
 \label{impESL}
@@ -123,7 +123,7 @@ Adding ESL to the capacitive model creates a new impedance equation (Equation: \
 
 \input{figures/parameters/eslImp}
 
-Figure: \ref{fig:eslPlot} shows a graphical representation of a capacitor's magnitude and phase once ESL is considered. This plot shows that after a resonance point, the impedance of the inductor (which increases with frequency) will begin to dominate. This makes the capacitor uneffective as a bypass element at frequencies higher than its resonance point. Typically, this frequency point and the capacitor's value have an inverse relationship. This is why you will see power supplies and sensitive chips being bypassed by a range of different valued capacitors. 
+Figure: \ref{fig:eslPlot} shows a graphical representation of a capacitor's magnitude and phase once ESL is considered. This plot shows that after a resonance point, the impedance of the inductor (which increases with frequency) will begin to dominate. This makes the capacitor ineffective as a bypass element at frequencies higher than its resonance point. Typically, this frequency point and the capacitor's value have an inverse relationship. This is why you will see power supplies and sensitive chips being bypassed by a range of different valued capacitors. 
 
 \subsection{ESR}
 \input{figures/parameters/esrModel}
@@ -218,3 +218,4 @@ This section will list and explain a large number of capacitor parameters. It wi
     \item Dielectric absorption
     \item Loss Tangent
 \end {enumerate}
+

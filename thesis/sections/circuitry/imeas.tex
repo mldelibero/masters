@@ -4,17 +4,17 @@ Each of the tests utilize the low-side current measurement circuit. The AC measu
 
 \input{tables/imeas}
 
-The current measurement circuit utilizes a transimpedance amplifier designed from the reference circuit in \cite{steve_thesis}. It utilizes 3 switched, feedback stages to measure 9 decades of current (See Table: \ref{imeas_table}). The circuit creates a virtual ground at the negative terminal of the DUT and then uses one of the feedback paths to create a voltage for a digitizer. Using a low-side current measurement circuit is beneficial in this circumstance because it allows low voltage circuitry to condition and measure a signal without needing to see the high DC voltage on the postive terminal of the DUT. The output voltage is calculated by Equation: \eqref{trans}.
+The current measurement circuit utilizes a transimpedance amplifier designed from the reference circuit in \cite{steve_thesis}. It utilizes 3 switched, feedback stages to measure 9 decades of current (See Table: \ref{imeas_table}). The circuit creates a virtual ground at the negative terminal of the DUT and then uses one of the feedback paths to create a voltage for a digitizer. Using a low-side current measurement circuit is beneficial in this circumstance because it allows low voltage circuitry to condition and measure a signal without needing to see the high DC voltage on the positive terminal of the DUT. The output voltage is calculated by Equation: \eqref{trans}.
 
 \begin{equation}
 \label{trans}
 Vo = I*R_f
 \end{equation}
 
-*Add transitor in increase the Op Amp's current drive capability.
+*Add transistor in increase the Op Amp's current drive capability.
 *Change capacitors in feedback loop.
-*Add Salen-key filter to output
-*Exlain difference in two buffering stages
+*Add Sallen-key filter to output
+*Explain difference in two buffering stages
 
 
 The output will be buffered and then filtered and digitized dependent of the specific test of interest.
