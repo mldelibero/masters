@@ -1,33 +1,29 @@
 \section {Capacitor Parameters}
-\subsection{Comments}
-*In Section 3.1 you could mention what characteristics are important for that application.  And capacitors for switching power supplies are conspicuously absent.
-*Do you want to get into capacitor parameters such as stability, temperature operating range, working voltage, peak or surge current, etc
+This section will begin by describing some of the practical uses of capacitors and then transition into the various parameters that are used to describe capacitors. Section: \ref{sec:CapacitorModeling} will show a method which allows these parameters to be extrapolated from empirical data.
 
 \subsection{Practical Capacitor Uses}
 
-Before getting into the individual capacitor parameters, I will explain some of the basic uses for capacitors. Each of the individual parameters will be important and have a direct effect on the uses described here. One should be careful to remember that any model consisting of the parameters listed in this section (and others) only describes an approximation of what is happening inside of a capacitor. Models and capacitor parameters will never be 100\% correct, but can be made with fairly high accuracy. As long as the designer understands the circumstances in which the models are accurate, he can use them to make a better circuit.
-
-The most basic reason for wanting to use a capacitor is that it has the ability to store charge, which is close to the same thing as saying that it has the ability to store energy. It can store and release energy quickly to be able to react to the needs of the circuit.
+The most basic reason for wanting to use a capacitor is that it has the ability to store charge; it has the ability to store electrical energy. Capacitors have the ability to store and release electrical energy quickly, in order to be able to react to the needs of the circuit. This section will describe some of the most common uses for capacitors.
 
 \subsubsection{Power Supply Bypassing}
 \input{figures/parameters/bypass}
-One of the most common uses of capacitors in bypassing a DC power supply (see Figure: \ref{bypass}). Without a bypass capacitor, a portion of the noise or any voltage spikes on the input to a power supply is passed to the output. A capacitor from the input to ground acts as a local charge reservoir to smooth out any non-DC components on the input voltage. Putting a bypass capacitor on the output of a supply prevents load surge currents from causing the output voltage to dip. This is especially important with digital chips, as their high frequency switching can result in glitching if the supply is not properly bypassed.
+LDO and swithers.
 
+One of the most common uses of capacitors in bypassing a DC power supply (see Figure: \ref{bypass}). Without a bypass capacitor, a portion of the noise or any voltage spikes on the input to a power supply is passed to the output. A capacitor from the input to ground acts as a local charge reservoir to smooth out any non-DC components on the input voltage. Putting a bypass capacitor on the output of a supply prevents load surge currents from causing the output voltage to dip. This is especially important with digital chips, as their high frequency switching can result in glitching if the supply is not properly bypassed.
 
 \subsubsection{Analog Filtering}
 \input{figures/parameters/analogFiltering}
 Another use for capacitors is in analog filtering. The low-pass filter in Figure: \ref{analogFiltering} attenuates frequencies above a cutoff point, set by the values of the resistor and capacitor. Low pass filters are needed in many applications, such as anti-aliasing, clock filtering, and integration.
 
-
 \subsubsection{DC Blocking}
 \input{figures/parameters/dcBlocking}
 Designers often take advantage of capacitors' characteristic of passing AC current while blocking DC current. As in Figure: \ref{dcBlock}, a capacitor can be used to block a DC offset before an amplifier. 
 
-
 \subsubsection{Oscillators}
+    oscillators -- crystal rather than relaxation
+
 \input{figures/parameters/oscillator}
 Capacitors are also used in oscillator circuits. The relaxation circuit in Fig: \ref{oscillator} generates a square wave output at a frequency determined by the RC time constant of the passives.
-
 
 \subsubsection{Power Factor Correction}
 \input{Figures/parameters/powerFactor}
