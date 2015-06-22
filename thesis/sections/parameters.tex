@@ -123,16 +123,15 @@ ESR becomes is important when thinking about DCDC switch mode power supplies. Th
 
 \begin{equation}
 \label{dcdcESReqn}
-P_{ESR} = I_{C,RMS}^2 * ESR
+P_E = I_{C,RMS}^2 * R_E
 \cite{maxSwEff}
 \end{equation}
 
-Another important thing to note about ESR is that even though it is shown as a resistance in simple models, it is not constant across all frequencies. It is a simplification of the resistive and capacitive elements in a capacitor that are dominated by resistance. That said, it is sufficient for a basic understanding of a capacitor's impedance (Equation \eqref{ImpCEsr}.
+Another important thing to note about ESR is that even though it is shown as a resistance in simple models, it is not constant across all frequencies. It is a simplification of the resistive and capacitive elements in a capacitor that are dominated by resistance. That said, it is sufficient for a basic understanding of a capacitor's impedance (Equation \eqref{ImpCEslEsr}.
 
 \begin{equation}
-\label{ImpCEsr}
-\vec{Z_c} = ESR + j * (\omega L - \frac{1}{\omega C})
-\cite{maxSwEff}
+\label{ImpCEslEsr}
+\vec{Z_c} = \frac{1 + j\omega R_EC + (j\omega)^2L_EC}{j\omega C}
 \end{equation}
 
 \subsection{Resonance Frequency}
@@ -141,33 +140,21 @@ Another important thing to note about ESR is that even though it is shown as a r
 Once C, ESL, and ESR are included into the capacitor model (Figure: \ref{fig:RLCModel}, a parameter known as the self-resonant frequency becomes evident. Equation: \eqref{ImpCEslEsr} shows that when $Z_{ESL} == Z_C$, the capacitor is at its resonance point. At this frequency, the capacitor's impedance is determined solely by the ESR at that frequency. This frequency can be calculated by Equation: \eqref{fres}.
 
 \begin{equation}
-\label{ImpCEslEsr}
-\vec{Z_c} = \frac{1 + j\omega R_EC + (j\omega)^2L_EC}{j\omega C}
-\end{equation}
-
-\begin{equation}
 \label{fres}
 f_r = \frac{1}{2\pi \sqrt{LC}}
 \end{equation}
 
 \subsection{Dissipation Factor}
+\input{figures/parameters/lossTan}
 
-Dissipation factor, otherwise known as the loss-tangent, is a measure of the energy stored to the energy dissipated per cycle. It is a measurement of the efficiency of the capacitor. The DF can be quantified through Equation: \eqref{dispFac}. 
+The dissipation factor, otherwise known as the loss-tangent, is a measure of the energy stored to the energy dissipated per cycle. It is a measurement of the efficiency of the capacitor. The DF can be quantified through Equation: \eqref{dispFac}. 
 
 \begin{equation}
 \label{dispFac}
-D = \frac{ESR}{Xc}
+D = \frac{R_E}{X_C}
 \end{equation}
 
-\begin{figure}
-    \includegraphics[keepaspectratio=true,scale=.5]{./figures/testImage.png}
-    \centering
-%    \cite{capSite_df_vs_temp}
-    \caption{Dissipation Factor Plot}
-    \label{dfPlot}
-\end{figure}
-
-The loss tangent can be seen in Figure: \ref{dfPlot}. The greater the angle, the more efficient the capacitor will be.
+The loss tangent can be seen in Figure: \ref{fig:lossTan}. The greater the angle, the more efficient the capacitor will be.
 
 \subsection{Quality Factor}
 
