@@ -109,6 +109,7 @@ function [h_fig, h_leg, h_title, ax, p] = plotFit(pType, Data1, Data2, x)
         ax = subplot(rows,cols,1);
         p  = plot(Data1);
         h_title = title('Norm Magnitude Err^2 + Norm Phase Err^2','FontSize',titleSize);
+        h_leg = legend();
         xlabel('n','FontSize',axisTitleSize);
         ylabel('Error','FontSize',axisTitleSize);
 
