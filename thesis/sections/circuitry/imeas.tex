@@ -1,21 +1,13 @@
 \subsection{Current Measurement}
 
-Each of the tests utilize the low-side current measurement circuit. The AC measurement tests provide a known voltage across the DUT and then the current is used to construct the impedance. The discharge tests use the current measurement circuit to capture the current through the DUT over time as its energy drains. 
+This section describes the current measurement circuitry seen on Schematic Pag: 4). In light of the high DC bias voltage present in the system (Section: \ref{sec:dcBias}) this circuitry utilizes a low-side current measurement technique. This allows the measurement electronics to operate at relative low (5VDC) voltages while measuring current from the DUT with a DC voltage in the 100s of volts.
 
 \input{tables/imeas}
 
-The current measurement circuit utilizes a transimpedance amplifier designed from the reference circuit in \cite{steve_thesis}. It utilizes 3 switched, feedback stages to measure 9 decades of current (See Table: \ref{imeas_table}). The circuit creates a virtual ground at the negative terminal of the DUT and then uses one of the feedback paths to create a voltage for a digitizer. Using a low-side current measurement circuit is beneficial in this circumstance because it allows low voltage circuitry to condition and measure a signal without needing to see the high DC voltage on the positive terminal of the DUT. The output voltage is calculated by Equation: \eqref{trans}.
+The current measurement circuit utilizes a transimpedance amplifier designed from the reference circuit in \cite{steve_thesis}. It utilizes 3 switched, feedback stages to measure 9 decades of current (See Table: \ref{imeas_table}). The circuit operates by creating a virtual ground at the negative terminal of the DUT, and then directing the current through one of its feedback paths. The resultant voltage (Equation: \eqref{trans}) is then filtered and sent to the next stage for further signal conditioning.
 
 \begin{equation}
 \label{trans}
 Vo = I*R_f
 \end{equation}
-
-*Add transistor in increase the Op Amp's current drive capability.
-*Change capacitors in feedback loop.
-*Add Sallen-key filter to output
-*Explain difference in two buffering stages
-
-
-The output will be buffered and then filtered and digitized dependent of the specific test of interest.
 
