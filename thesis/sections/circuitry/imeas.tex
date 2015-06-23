@@ -5,10 +5,10 @@ This section describes the current measurement circuitry seen on Schematic Pag: 
 
 \input{tables/imeas}
 
-The current measurement circuit utilizes a transimpedance amplifier designed from the reference circuit in \cite{steve_thesis}. It utilizes 3 switched, feedback stages to measure 9 decades of current (See Table: \ref{imeas_table}). The circuit operates by creating a virtual ground at the negative terminal of the DUT, and then directing the current through one of its feedback paths. The resultant voltage (Equation: \eqref{trans}) is then filtered and sent to the next stage for further signal conditioning.
+The current measurement circuit utilizes a transimpedance amplifier designed from the reference circuit in \cite{steve_thesis}. It utilizes 3 switched, feedback stages to measure 9 decades of current (See Table: \ref{table:imeas_table}). The circuit operates by creating a virtual ground at the negative terminal of the DUT, and then directing the current through one of its feedback paths. The resultant voltage (Equation: \eqref{equ:trans}) is then filtered and sent to the next stage for further signal conditioning.
 
 \begin{equation}
-\label{trans}
+\label{equ:trans}
 Vo = I*R_f
 \end{equation}
 
