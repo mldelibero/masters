@@ -1,3 +1,4 @@
+% run_basicLse.m
 % This script runs the basic LSE for a line
 
 % Clear environment

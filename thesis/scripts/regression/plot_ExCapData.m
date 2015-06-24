@@ -1,4 +1,5 @@
-% This script runs the example in Sanathanan's paper showing how to improve Levy's method by an iterative method.
+% plot_ExCapData.m
+% This script outputs a plot of the example data taken from Murata's Sim Surfing online tool.
 
 % Clear environment
 clearvars;
