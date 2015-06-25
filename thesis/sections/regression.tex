@@ -232,7 +232,7 @@ This section will investigate several of the most common capacitor models. It wi
 \subsubsection{6 Term Model}
 \input{figures/modeling/fullModel}
 
-The model shown in Figure: \ref{fig:fullModel} shows several of the most important parameters for a capacitor. It's impedance, shown in Equation: \eqref{equ:fullModelImpedance}, can be used as the basis for a regression analysis.
+The model shown in Figure: \ref{fig:fullModel} shows several of the most important parameters for a capacitor. It's impedance, shown in Equation: \eqref{equ:fullModelImpedance}, and generalized in Equation: \eqref{equ:fullModelPoly} can be used as the basis for a regression analysis.
 
 \begin{equation}
     \begin{split}
@@ -291,11 +291,11 @@ For this model, Equations: \eqref{equ:Levy_M}, \eqref{equ:Levy_N}, \& \eqref{equ
     \end{equation}
 \end{multicols}
 
-Using this model, the regression analysis output described in Section: \ref{sec:weightedLSE} can be seen in Figure: \ref{fig:fullModel_BadOutput}. The fit tracks the original data well, except for low frequencies and near resonance. 
+Using this model, the regression analysis method described in Section: \ref{sec:weightedLSE} generates the output seen in Figure: \ref{fig:fullModel_BadOutput}. The fit tracks the original data well, except for at low frequencies and near resonance.
 
 \input{Figures/modeling/fullModel_BadOutput}
 
-Equations: \eqref{equ:fullModel_BadOutputCoeff} shows solution for the polynomial coefficients. Using Equations: \eqref{equ:fullModelPoly} and \eqref{equ:fullModelPoly}, the circuit parameters can be found through Equations: \eqref{equ:fullModel_CoeffEq_a0}-\eqref{equ:fullModel_CoeffEq_b2}, with the solution as seen in Equations: \eqref{equ:fullModel_BadOutputCoeff} \& \eqref{equ:fullModel_BadOutputParams}.
+Substituting the polynomial coefficents seen in Equation: \eqref{equ:fullModel_BadOutputCoeff} into Equations: \eqref{equ:fullModel_CoeffEq_a0}-\eqref{equ:fullModel_CoeffEq_b2} returns the model parameter values as seen in Equation: \eqref{equ:fullModel_BadOutputParams}.
 Even though the polynomial coefficients gave an acceptable fit to the data, it resulted in unacceptable circuit parameters. Since $C$ and $R_D$ are negative, this model is not physically realizable.
 
 \begin{align}
@@ -335,8 +335,7 @@ Even though the polynomial coefficients gave an acceptable fit to the data, it r
     \end{equation}
 \end{multicols}
 
-The problem comes with the author's \cite{levy_iter} suggestion that the initial guess for $Q(jw_k) == 1$. While an initial guess is required to calculate the weighting function during the first iteration, this particular choice causes the problem seen in Equations: \eqref{equ:fullModel_BadInputCoeff} \& \eqref{equ:fullModel_BadInputParams}. They show that this initial condition does not yield a rational solution for the circuit parameters.
-
+This problem stems from the author's \cite{levy_iter} suggestion that the initial guess for $Q(jw_k) == 1$. While an initial guess is required to calculate the weighting function during the first iteration, this particular choice causes the problem seen in Equations: \eqref{equ:fullModel_BadInputCoeff} \& \eqref{equ:fullModel_BadInputParams} for this application. They show that this initial condition does not start with rational solution for the circuit parameters.
 
 \begin{multicols}{2}
     \mbox{}\vfill
@@ -371,9 +370,7 @@ The problem comes with the author's \cite{levy_iter} suggestion that the initial
     \mbox{}\vfill
 \end{multicols}
 
-
-
-If we instead start with the rational set of circuit parameters seen in Equation: \eqref{equ:fullModel_GoodInputParams}, the starting coefficients are as seen in Equation: \eqref{equ:fullModel_GoodInputCoeff}.
+Starting instead with the rational set of circuit parameters seen in Equation: \eqref{equ:fullModel_GoodInputParams}, the starting coefficients are as seen in Equation: \eqref{equ:fullModel_GoodInputCoeff}.
 
 \begin{multicols}{2}
     \mbox{}\vfill
@@ -410,5 +407,5 @@ If we instead start with the rational set of circuit parameters seen in Equation
 
 \input{Figures/modeling/fullModel_GoodOutput}
 
-Figure: \ref{fig:fullModel_GoodOutput} shows a good fit across the frequency spectrum for both magnitude and phase. The model does deviate at resonance, but that is unsurprising, as the number of parameters in the model is fairly low.
+Figure: \ref{fig:fullModel_GoodOutput} shows a good fit across the frequency spectrum for both magnitude and phase. The model does deviate at resonance, but that is unsurprising, as the number of parameters in the model is fairly low when compared with the model used to generate the data.
 
