@@ -1,3 +1,8 @@
 \subsection{Phase}
 
-This section explains the circuitry used to measure the phase difference between the input voltage and the output current. This measurement, combined with the magnitude measurement, will allow for a complete impedance measurement at each frequency step of a test. The comparator circuit is configured as a sine to square wave converter. The two square wave signals will be fed directly into a timer input of the MCU. The MCU will measure the time between the two signals to determine their phase difference.
+This setion describes the phase circutry shown on Schematic Page: 8. The circuit measures both the phase of the input sine wave and the phase of the resultant current waveform through the DUT. It uses two, redundant phase measurement techniques.
+
+The first technique utilizes an RF phase detector (AD8302) in a low frequency configuration as per AN-691 \cite{AD8302_AppNote}. The capacitors on the inputs tune the front end high pass filter of the IC to roughly 20Hz. The phase measurement is accomplished internally by a magnitude independent phase multiplier configuration. The output conisists of a 10mV per degree signal that is lowpassed at 2Hz to prevent aliasing. The filtered signal is then fed to the ADC for digitization.
+
+The second technique is added for a low frequency comparison against the RF phase detector. The comparator acts as a sine to square wave converter. The default configuration does not include hysteresis, but provisions for it are available if needed. The outputs of the two converters are fed into timer inputs on the microcontroller. The phase is then calculated by measuring the period of the signals and the time between their rising edges.
+
