@@ -3,7 +3,7 @@
 
 Many designers have a need to simulate the response of the individual components in their systems to impulse and steady state inputs. When dealing with passive electronic components, the device is typically modeled as a combination of various resistors, capacitors, and inductors. The model chosen is often due to either the required accuracy or a specific characteristic of the component that needs to be modeled. When characterizing a new component, the complex frequency response is recorded and then fit to a model. In this section, a progression of regression techniques will be evaluated for their ability to fit the measured frequency response of a capacitor to a polynomial equation. Then the accuracy of various capacitor models will be explored in regards to the fit. All models will attempt to fit the capacitor impedance data shown Figure: \ref{fig:exCapData}. See Appendix: \ref{app:genModelingImages} for the code used to generate the images shown in this section.
 
-\input{Figures/modeling/exCapData}
+\input{figures/regression/exCapData}
 
 \subsection{Regression Analysis}
 \label{sec:RegressionAnalysis}
@@ -65,7 +65,7 @@ This results in Equations: \eqref{equ:LSE_sol} \& \eqref{equ:LSE_solb} with solu
 \end{equation}
 
 An example of this type of fit can be seen in Figure: \ref{fig:basicLSE}.
-\input{figures/modeling/basicLSE}
+\input{figures/regression/basicLSE}
 
 \subsubsection{Levy's Technique - Complex Curve Fitting}
 While the basic LSE technique is sufficient for many circumstances, it is not directly applicable in situations where one needs to fit a model to a complex line, such as a transfer function. Levy \cite{levy} shows an extension of the simple LSE example that is valid for a generic polynomial transfer function. This method is important because it not only allows for a complex-valued transfer function, but it also prevents the necessity of needing to rederive the system of equations for each new model. 
@@ -167,7 +167,7 @@ Levy's technique works well for applications where there is a small dynamic freq
 The first problem is that for models with a wide bandwidth, the solution to Equation: \eqref{equ:Levy_Ans}, involves an ill-conditioned matrix. This means that the solution to the system of equations will experience precision errors.
 The second problem is that this technique favors the magnitude plot at the high frequency range. As can be seen in Figure: \ref{fig:levy}, a applying Levy's technique with $3^{rd}$ order model provides an unuseable fit to the emperical data.
 
-\input{Figures/modeling/levy}
+\input{figures/regression/levy}
 
 \subsubsection{Weighted LSE}
 \label{sec:weightedLSE}
@@ -219,18 +219,18 @@ Dependent upon the initial conditons and the model order, this particular method
 n = min(Emag/max(eMag) + Epha/max(ePha))
 \end{equation}
 
-\input{figures/modeling/levyIter_Err1}
-\input{figures/modeling/levyIter_Err2}
+\input{figures/regression/levyIter_Err1}
+\input{figures/regression/levyIter_Err2}
 
 Figure: \ref{fig:levyIter} shows that this method can result in a much improved result over the Levy's original method, as seen in Figure: \ref{fig:levy}.
 
-\input{figures/modeling/levyIter}
+\input{figures/regression/levyIter}
 
 \subsection{Modeling}
 This section will investigate several of the most common capacitor models. It will show how to fit them to a data set with Levy's method described in Section: \ref{sec:RegressionAnalysis}, and will describe their effectiveness and limitations in doing so.
 
 \subsubsection{6 Term Model}
-\input{figures/modeling/fullModel}
+\input{figures/regression/fullModel}
 
 The model shown in Figure: \ref{fig:fullModel} shows several of the most important parameters for a capacitor. It's impedance, shown in Equation: \eqref{equ:fullModelImpedance}, and generalized in Equation: \eqref{equ:fullModelPoly} can be used as the basis for a regression analysis.
 
@@ -293,7 +293,7 @@ For this model, Equations: \eqref{equ:Levy_M}, \eqref{equ:Levy_N}, \& \eqref{equ
 
 Using this model, the regression analysis method described in Section: \ref{sec:weightedLSE} generates the output seen in Figure: \ref{fig:fullModel_BadOutput}. The fit tracks the original data well, except for at low frequencies and near resonance.
 
-\input{Figures/modeling/fullModel_BadOutput}
+\input{figures/regression/fullModel_BadOutput}
 
 Substituting the polynomial coefficents seen in Equation: \eqref{equ:fullModel_BadOutputCoeff} into Equations: \eqref{equ:fullModel_CoeffEq_a0}-\eqref{equ:fullModel_CoeffEq_b2} returns the model parameter values as seen in Equation: \eqref{equ:fullModel_BadOutputParams}.
 Even though the polynomial coefficients gave an acceptable fit to the data, it resulted in unacceptable circuit parameters. Since $C$ and $R_D$ are negative, this model is not physically realizable.
@@ -405,7 +405,7 @@ Starting instead with the rational set of circuit parameters seen in Equation: \
     \mbox{}\vfill
 \end{multicols}
 
-\input{Figures/modeling/fullModel_GoodOutput}
+\input{figures/regression/fullModel_GoodOutput}
 
 Figure: \ref{fig:fullModel_GoodOutput} shows a good fit across the frequency spectrum for both magnitude and phase. The model does deviate at resonance, but that is unsurprising, as the number of parameters in the model is fairly low when compared with the model used to generate the data.
 

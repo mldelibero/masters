@@ -44,9 +44,9 @@ plotcDiff = plotType.cVectorsDiff;
 plotErrs  = plotType.twoErrors;
 plotErr   = plotType.oneError;
 
-plotFit(plotcDiff, cData, G(n,:), w); % figures/modeling/levyIter.jpg
-plotFit(plotcDiff, cData, G2    , w); % figures/modeling/levyIter.jpg
-plotFit(plotcDiff, cData, G3    , w); % figures/modeling/levyIter.jpg
-%plotFit(plotErrs , Emag,  Epha     ); % figures/modeling/levyIter_Err1.jpg
-%plotFit(plotErr  , E2              ); % figures/modeling/levyIter_Err2.jpg
+plotFit(plotcDiff, cData, G(n,:), w); % figures/regression/levyIter.jpg
+plotFit(plotcDiff, cData, G2    , w); % figures/regression/levyIter.jpg
+plotFit(plotcDiff, cData, G3    , w); % figures/regression/levyIter.jpg
+%plotFit(plotErrs , Emag,  Epha     ); % figures/regression/levyIter_Err1.jpg
+%plotFit(plotErr  , E2              ); % figures/regression/levyIter_Err2.jpg
 

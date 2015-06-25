@@ -9,5 +9,5 @@ format shorte;
 filename = './data/GRM31MR71H105KA88.txt';
 [w, cData, rData, iData] = getData(filename);
 myPlotType   = plotType.cData;
-plotFit(myPlotType, cData, cData, w); % figures/modeling/levyIter.jpg
+plotFit(myPlotType, cData, cData, w); % figures/regression/levyIter.jpg
 

@@ -17,5 +17,5 @@ initDen = getInitGuess(w,modelType);
 
 %% Plot
 plotcDiff = plotType.cVectorsDiff;
-plotFit(plotcDiff, cData, G, w); % figures/modeling/levy.jpg
+plotFit(plotcDiff, cData, G, w); % figures/regression/levy.jpg
 
