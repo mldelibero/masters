@@ -5,10 +5,14 @@ clearvars;
 close all;
 format shorte;
 
+% Add funs to path
+addpath('../utilityFuns');
+addpath('../');
+
 NumDeg = 7;
 DenDeg = 7;
 iterations = 100;
-filename = './data/GRM31MR71H105KA88.txt';
+filename = '../data/GRM31MR71H105KA88.txt';
 
 [w, cData, rData, iData] = getData(filename);
 initDen = getInitGuess(w,modelTypes.NO_MODEL);
@@ -22,7 +26,6 @@ EphaNorm = Epha ./ max(Epha);
 E2 = EmagNorm + EphaNorm;
 n = find(E2==min(E2),1);
 fprintf('Error Minimized at Iteration: %i\n',n);
-
 
 %% Plot 
 plotcDiff = plotType.cVectorsDiff;
