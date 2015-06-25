@@ -1,6 +1,6 @@
 \subsection{Magnitude}
 
-This setion describes the magnitude circutry shown on Schematic Page: 8. The circuit measures both the magnitude of the input sine wave and the magnitude of the resultant current waveform through the DUT. The design for this circuit is based off an Analog Device's app not for the AD8277 \cite{absCircuit}.
+This setion describes the magnitude circutry shown on Schematic Page: 7. The circuit measures both the magnitude of the input sine wave and the magnitude of the resultant current waveform through the DUT. The design for this circuit is based off an Analog Device's app not for the AD8277 \cite{absCircuit}.
 
 The function of this circuit is perform a full-wave rectification operation on the input signal and then pass the output to be filtered and then sampled. The first difference amplifier is configured as a voltage follower. Since it is only powered from a single rail, it passes the positive half of the waveform and shunts the negative half to ground. The second difference amplifier operates in different modes, based upon the output of the first differential amplifier. During the negative going portions of the waveform, its positive terminal is held at ground, and it operates as a unity gain, inverting amplifier. This rectifies the input signal to the output. During the positive going portions of the waveform, positive input terminal is held at the value of the input terminal. This forces the second difference amplifier to act as a voltage follower. The resultant waveform is a full-wave recified version of the input signal.
 

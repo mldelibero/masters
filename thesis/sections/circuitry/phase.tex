@@ -1,6 +1,6 @@
 \subsection{Phase}
 
-This setion describes the phase circutry shown on Schematic Page: 8. The circuit measures both the phase of the input sine wave and the phase of the resultant current waveform through the DUT. It uses two, redundant phase measurement techniques.
+This setion describes the phase circutry shown on Schematic Page: 7. The circuit measures both the phase of the input sine wave and the phase of the resultant current waveform through the DUT. It uses two, redundant phase measurement techniques.
 
 The first technique utilizes an RF phase detector (AD8302) in a low frequency configuration as per AN-691 \cite{AD8302_AppNote}. The capacitors on the inputs tune the front end high pass filter of the IC to roughly 20Hz. The phase measurement is accomplished internally by a magnitude independent phase multiplier configuration. The output conisists of a 10mV per degree signal that is lowpassed at 2Hz to prevent aliasing. The filtered signal is then fed to the ADC for digitization.
 
