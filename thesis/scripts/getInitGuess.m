@@ -1,3 +1,6 @@
+% scripts/getInitGuess.m
+% This function returns the appropriate initial guess
+% for Sanathanan's extension to Levy's method.
 function [Den] = getInitGuess(w,modelType)
     if modelType == modelTypes.FULL_MODEL
         C  = 1;
@@ -15,3 +18,4 @@ function [Den] = getInitGuess(w,modelType)
         Den = ones(length(w));
     end % if modelType == modelTypes.FULL_MODEL
 end % function [Den] = getInitGuess(w)
+

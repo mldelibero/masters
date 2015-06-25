@@ -1,15 +1,16 @@
+% scripts/regression_levy_iter.m
+% This script runs the calculations for iterating Levy's method
 function [G, numCoeffs, denCoeffs, E, minIndex] = regression_levy_iter(cData, w, iterations, numbNumCoeffs, numbDenCoeffs, initDen)
-    % Execute the regression analysis based upon Levy's method + iteration.
-    % G(s) = (a0 + a1*s + a2*s^2 + ... + an*s^n) /
-    %        (b0 + b1*s + b2*s^2 + ... + bm*s^m)
+    % G(s) = \frac{a0 + a1*s + a2*s^2 + ... + an*s^n}
+    %             {b0 + b1*s + b2*s^2 + ... + bm*s^m}
 
     % Solve
     numCoeffs = ones(iterations,numbNumCoeffs);
-    denCoeffs = ones(iterations,numbDenCoeffs); % Needs to be ones for the initial guess of W
+    denCoeffs = ones(iterations,numbDenCoeffs);
     W         = ones(length(w)); % Weighting function
 
-    %Set initial guess of the denomiator. This also will cause it to calc
-    %Levy's original method if the iteraiton == 1.
+    % Set initial guess of the denomiator. This also will cause it
+    % to calc Levy's original method if the iteraiton == 1.
     Den = initDen;
     G = zeros(iterations,length(w));
 
@@ -27,10 +28,10 @@ function [G, numCoeffs, denCoeffs, E, minIndex] = regression_levy_iter(cData, w,
     EphaNorm = Epha ./ max(Epha);
     E2 = EmagNorm + EphaNorm;
     minIndex = find(E2==min(E2),1);
-end % function [G,numCoeffs,denCoeffs] = regression_levy_iter(cData, w, iterations, numbNumCoeffs, numbDenCoeffs)
+end % function [G,numCoeffs,denCoeffs] = regression_levy_iter...
 
+% This calculates the polynomial coeffs from the polynomial series
 function [numCoeffs, denCoeffs] = calcCoeffs(cData, w, W, numbNumCoeffs, numbDenCoeffs)
-    % This calculates the polynomial coefficients from the wshev polynomial series
 
     % Prepare variables
     Mrows = numbNumCoeffs + numbDenCoeffs - 1;
@@ -53,7 +54,8 @@ function [numCoeffs, denCoeffs] = calcCoeffs(cData, w, W, numbNumCoeffs, numbDen
                 xrow = row;
                 xcol = col;
 
-                if (xor(mod(xrow,2) == 0, mod(xcol,2) == 0) == 1) % If both are odd or both are even
+                if (xor(mod(xrow,2) == 0, mod(xcol,2) == 0) == 1)
+                % If both are odd or both are even
                     M(xrow,xcol) = 0;
 
                 else
@@ -129,7 +131,8 @@ function [numCoeffs, denCoeffs] = calcCoeffs(cData, w, W, numbNumCoeffs, numbDen
                 xrow = row - numbNumCoeffs;
                 xcol = col - numbNumCoeffs;
 
-                if (xor(mod(xrow,2) == 0, mod(xcol,2) == 0) == 1) % If both are odd or both are even
+                % If both are odd or both are even
+                if (xor(mod(xrow,2) == 0, mod(xcol,2) == 0) == 1)
                     M(row,col) = 0;
                 else
                     power = xrow + xcol;
@@ -173,7 +176,7 @@ function [numCoeffs, denCoeffs] = calcCoeffs(cData, w, W, numbNumCoeffs, numbDen
     N = inv(M) * C;
 
     numCoeffs = N(1:numbNumCoeffs);
-    denCoeffs = [1;N(numbNumCoeffs+1:length(N))]; % Need to add 1 as coeff_0
+    denCoeffs = [1;N(numbNumCoeffs+1:length(N))]; % Add 1 as coeff_0
  
     %Sub Functions
     function [Lh] = lambda(W,wk,h)

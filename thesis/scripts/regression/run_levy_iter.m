@@ -1,4 +1,6 @@
-% This script runs the example in Sanathanan's paper showing how to improve Levy's method by an iterative method.
+% scripts/regression/run_levy_iter.m
+% This script runs the example in Sanathanan's paper showing how 
+% to improve Levy's method by an iterative method.
 
 % Clear environment
 clearvars;
@@ -16,7 +18,8 @@ filename = '../data/GRM31MR71H105KA88.txt';
 
 [w, cData, rData, iData] = getData(filename);
 initDen = getInitGuess(w,modelTypes.NO_MODEL);
-[G, numCoeffs, denCoeffs, E, minIndex] = regression_levy_iter(cData, w, iterations, NumDeg, DenDeg, initDen);
+[G, numCoeffs, denCoeffs, E, minIndex] = ...
+regression_levy_iter(cData, w, iterations, NumDeg, DenDeg, initDen);
 
 %% Error minimization
 Emag = E(:,1);
@@ -33,6 +36,6 @@ plotErrs  = plotType.twoErrors;
 plotErr   = plotType.oneError;
 
 plotFit(plotcDiff, cData, G(n,:), w); % figures/modeling/levyIter.jpg
-plotFit(plotErrs , Emag,  Epha     ); % figures/modeling/levyIter_Err1.jpg
-plotFit(plotErr  , E2              ); % figures/modeling/levyIter_Err2.jpg
+plotFit(plotErrs , Emag , Epha); % figures/modeling/levyIter_Err1.jpg
+plotFit(plotErr  , E2         ); % figures/modeling/levyIter_Err2.jpg
 
