@@ -14,7 +14,8 @@ filename = './data/GRM31MR71H105KA88.txt';
 %[w_norm] = calc_wNorm(w) + 1; % Push range to [0,2]
 w_max  = max(w);
 w_norm = w ./ w_max;
-[G, numCoeffs, denCoeffs] = regression_levy_iter(cData, w_norm, iterations, NumDeg, DenDeg);
+initDen = getInitGuess(w,modelTypes.NO_MODEL);
+[G, numCoeffs, denCoeffs] = regression_levy_iter(cData, w_norm, iterations, NumDeg, DenDeg, initDen);
 
 for(coeff = 2:numel(numCoeffs))
     numCoeffs(coeff) = numCoeffs(coeff) / w_max^(coeff-1);
