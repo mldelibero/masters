@@ -69,6 +69,19 @@ elseif pType == plotType.MULTCDATA
     p(4).Marker = 'o';
     p(6).Marker = 'o';
 
+elseif pType == plotType.MULTDATA
+    ax = subplot(1,1,1);
+
+    for ind = 1:size(Data1,1)
+        p(ind) = plot(x,Data1(ind,:)); hold on;
+    end
+
+    h_title = title('','FontSize',titleSize);
+    h_leg = legend();
+    set(h_leg,'FontSize',legendSize);
+    xlabel(ax(1,1), 'x'  , 'FontSize', axisTitleSize);
+    ylabel(ax(1,1), 'y'  , 'FontSize', axisTitleSize);
+
 elseif pType == plotType.cVectorsDiff
     rows = 2;
     cols = 2;
