@@ -19,6 +19,9 @@
 \usepackage{appendix}
 \usepackage[framed,numbered,autolinebreaks,useliterate]{mcode}
 \usepackage{nameref}
+\usepackage[colorlinks]{hyperref}
+\usepackage[acronym,toc]{glossaries}
+\loadglsentries{metadata/glossaryEntries}
 \bibliographystyle{plain}
 \setlength\parindent{0pt}
 
@@ -28,8 +31,8 @@
 \CWRUdedication{Dedication text}
 \CWRUpreface{\input{sections/preface}}
 \CWRUack{\input{sections/acks}}
-\CWRUloa{List of Abbreviations text}% Optional Glossary -- This is not complete
-\CWRUglossary{Glossary text}
+%\CWRUloa{List of Abbreviations text}% Optional Glossary -- This is not complete
+%\CWRUglossary{Glossary text}
 
 % Required Abstract
 \CWRUabstract{\input{sections/abstract}}
@@ -48,5 +51,5 @@
 \input{sections/appendix/appendix}
 
 \bibliography{metadata/thesis,figures/thesis_figs}
-% References go here.  One can use any reference type that is useful. 
 \end{document}
+
