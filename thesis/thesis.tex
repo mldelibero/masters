@@ -18,6 +18,7 @@
 \usepackage{multicol}
 \usepackage{appendix}
 \usepackage[framed,numbered,autolinebreaks,useliterate]{mcode}
+\usepackage{nameref}
 \bibliographystyle{plain}
 \setlength\parindent{0pt}
 
@@ -26,7 +27,7 @@
 % Optional Dedication
 \CWRUdedication{Dedication text}
 % Optional Preface
-\CWRUpreface{Preface text}
+\CWRUpreface{\input{sections/preface}}
 % Optional Acknowledgment
 \CWRUack{This should be the acknowlegement}
 % Optional List of Abbreviations -- This is not complete
