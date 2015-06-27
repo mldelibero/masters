@@ -3,13 +3,13 @@ This section will begin by describing some of the practical uses of capacitors a
 
 \subsection{Practical Capacitor Uses}
 
-The most basic reason for wanting to use a capacitor is that it has the ability to store charge; it has the ability to store electrical energy. Capacitors have the ability to store and release electrical energy quickly, in order to be able to react to the needs of the circuit. This section will describe some of the most common uses for capacitors.
+The most basic reason for wanting to use capacitors is that they  have the ability to store charge; the ability to store electrical energy. Capacitors have the ability to store and release electrical energy quickly, in order to be able to react to the needs of the circuit. This section will describe some of the most common uses for capacitors.
 
 \subsubsection{Bypassing}
 \input{figures/parameters/bypass}
 
-One of the most common uses of capacitors is in power supply bypassing. Capacitors are nearly always attached from a power rail to ground on an supply or IC. They provide a resevior of charge that limits inductive voltage spikes, such as when a digital circuit switches, and limits voltage dips, caused by things such as a current surge when a processor boots.
-Both LDOs (Figure: \ref{fig:bypass}) and switchers use bypass capacitors on their input and output voltage rails. Input capacitors are divided up into two main catagories, ripple reduction and bulk. Ripple reduction capacitors need to have a low ESR (Section: \ref{sec:ESR}) and are meant to decrease the magnitude of any AC signals that ride ontop of the input DC voltage. Bulk capacitors are meant to deliver surge currents. Ouput capacitors have much the same purpose as the input capacitors. The main difference is in the case of switching power supplies. In that application, the output capacitor is a major component in the feedback loop. It contributes to both the transient and stability properties of the switcher.
+One of the most common uses of capacitors is in power supply bypassing. Capacitors are nearly always attached from a power rail to ground on a supply or IC. They provide a resevior of charge that limits inductive voltage spikes, such as when a digital circuit switches, and limits voltage dips, caused by things such as a current surge when a processor boots.
+Both LDOs (Figure: \ref{fig:bypass}) and switchers use bypass capacitors on their input and output voltage rails. Input capacitors are divided up into two main catagories, ripple reduction and bulk. Ripple reduction capacitors need to have a low \gls{esr} (Section: \ref{sec:ESR}) and are meant to decrease the magnitude of any AC signals that ride ontop of the input DC voltage. Bulk capacitors are meant to deliver surge currents. Ouput capacitors have much the same purpose as the input capacitors. The main difference is in the case of switching power supplies. In that application, the output capacitor is a major component in the feedback loop. It contributes to both the transient and stability properties of the switcher.
 
 \subsubsection{Analog Filtering}
 \input{figures/parameters/analogFiltering}
@@ -22,7 +22,7 @@ Designers often take advantage of capacitors' characteristic of passing AC curre
 \subsubsection{Oscillators}
 \input{figures/parameters/oscillator}
 
-Stable capacitors of a very specific value are required to make a parallel resonant oscillator function properly (Fig: \ref{fig:oscillator}). These oscillators provide the clock base for most modern digital circuits using microcontrollers.
+Stable capacitors of a very specific value are required to make a parallel resonant oscillator function properly (Figure: \ref{fig:oscillator}). These oscillators provide the clock base for most modern digital circuits using microcontrollers.
 
 \subsection{Capacitance}
 
@@ -97,36 +97,35 @@ The practical implication of this can be seen in the phase response of a low pas
 
 \subsection{ESL}
 
-The Equivalent Series Inductance (ESL) of a capacitor is a lumped estimate of all of the inductive components of a capacitor. It is typically modeled as an inductor in series with the bulk capacitance (See Figure \ref{fig:eslModel}).
+The \gls{esl} of a capacitor is a lumped estimate of all of the inductive components of a capacitor. It is typically modeled as an inductor in series with the bulk capacitance (See Figure \ref{fig:eslModel}).
 
 \input{figures/parameters/eslModel}
 
-Adding ESL to the capacitive model creates a new impedance equation (Equation: \eqref{equ:impESL}). Note that for L\textless \textless C, this equation simplifies to Equation: \eqref{equ:capImpEqu} for low frequencies. In other words, the ideal impedance equation can be reasonably used for low frequencies.
+Adding \gls{esl} to the capacitive model creates a new impedance equation (Equation: \eqref{equ:impESL}). Note that for L\textless \textless C, this equation simplifies to Equation: \eqref{equ:capImpEqu} for low frequencies. In other words, the ideal impedance equation can be reasonably used for low frequencies.
 
 \begin{equation}
 \label{equ:impESL}
 \vec{Z_c} = j\frac{\omega ^2LC - 1}{\omega C}
-%\cite{maxSwEff}
 \end{equation}
 
 \input{figures/parameters/eslImp}
 
-Figure: \ref{fig:eslPlot} shows a graphical representation of a capacitor's magnitude and phase once ESL is considered. This plot shows that after a resonance point, the impedance of the inductor (which increases with frequency) will begin to dominate. This makes the capacitor ineffective as a bypass element at frequencies higher than its resonance point. Typically, this frequency point and the capacitor's value have an inverse relationship. This is why you will see power supplies and other chips being bypassed by a range of different valued capacitors. 
+Figure: \ref{fig:eslPlot} shows a graphical representation of a capacitor's magnitude and phase once \gls{esl} is considered. This plot shows that after a resonance point, the impedance of the inductor (which increases with frequency) will begin to dominate. This makes the capacitor ineffective as a bypass element at frequencies higher than its resonance point. Typically, this frequency point and the capacitor's value have an inverse relationship. This is why you will see power supplies and other chips being bypassed by a range of different valued capacitors. 
 
 \subsection{ESR}
 \label{sec:ESR}
 \input{figures/parameters/esrModel}
-The Equivalent Series Resistance (ESR) is the practical result of the fact that the materials used to create a capacitor have resistance. In simple cases, this can be approximated by a resistance in series with the main capacitor (See Figure: \ref{fig:esrModel}).
+The \gls{esr} is the practical result of the fact that the materials used to create a capacitor have resistance. In simple cases, this can be approximated by a resistance in series with the main capacitor (See Figure: \ref{fig:esrModel}).
 
-ESR becomes is important when thinking about DCDC switch mode power supplies. The output ripple voltage of the converter will cause a rripple current to pass through the ESR and dissipate heat as per Equation: \eqref{equ:dcdcESReqn}. It is important to choose a low ESR capacitor in order to reduce failures.
+\gls{esr} becomes important when thinking about DCDC switch mode power supplies. The output ripple voltage of the converter will cause a ripple current to pass through the \gls{esr} and dissipate heat as per Equation: \eqref{equ:dcdcESReqn}. It is important to choose a low \gls{esr} capacitor in order to reduce failures.
 
 \begin{equation}
 \label{equ:dcdcESReqn}
 P_E = I_{C,RMS}^2 * R_E
-\cite{maxSwEff}
+~\cite{maxSwEff}
 \end{equation}
 
-Another important thing to note about ESR is that even though it is shown as a resistance in simple models, it is not constant across all frequencies. It is a simplification of the resistive and capacitive elements in a capacitor that are dominated by resistance. That said, it is sufficient for a basic understanding of a capacitor's impedance (Equation \eqref{equ:ImpCEslEsr}.
+Another important thing to note about \gls{esr} is that even though it is shown as a resistance in simple models, it is not constant across all frequencies. It is a simplification of the resistive and capacitive elements in a capacitor that are dominated by resistance. That said, it is still sufficient for a basic understanding of a capacitor's impedance (Equation \eqref{equ:ImpCEslEsr}).
 
 \begin{equation}
 \label{equ:ImpCEslEsr}
@@ -136,7 +135,7 @@ Another important thing to note about ESR is that even though it is shown as a r
 \subsection{Resonance Frequency}
 \input{figures/parameters/RLCModel}
 
-Once C, ESL, and ESR are included into the capacitor model (Figure: \ref{fig:RLCModel}, a parameter known as the self-resonant frequency becomes evident. Equation: \eqref{equ:ImpCEslEsr} shows that when $Z_{ESL} == Z_C$, the capacitor is at its resonance point. At this frequency, the capacitor's impedance is determined solely by the ESR at that frequency. This frequency can be calculated by Equation: \eqref{equ:fres}.
+Once C, \gls{esl}, and \gls{esr} are included into the capacitor model (Figure: \ref{fig:RLCModel}), a parameter known as the self-resonant frequency becomes evident. Equation: \eqref{equ:ImpCEslEsr} shows that when $Z_{ESL} == Z_C$, the capacitor is at its resonance point. At this frequency, the capacitor's impedance is determined solely by the \gls{esr}. This frequency can be calculated by Equation: \eqref{equ:fres}.
 
 \begin{equation}
 \label{equ:fres}
@@ -146,7 +145,7 @@ f_r = \frac{1}{2\pi \sqrt{LC}}
 \subsection{Dissipation Factor}
 \input{figures/parameters/lossTan}
 
-The dissipation factor, otherwise known as the loss-tangent, is a measure of the energy stored to the energy dissipated per cycle. It is a measurement of the efficiency of the capacitor. The DF can be quantified through Equation: \eqref{equ:dispFac}. 
+The \gls{df}, otherwise known as the loss-tangent, is a measure of the energy stored to the energy dissipated per cycle. It is a measurement of the efficiency of the capacitor. The \gls{df} can be quantified through Equation: \eqref{equ:dispFac}. 
 
 \begin{equation}
 \label{equ:dispFac}
@@ -162,16 +161,16 @@ The loss tangent can be seen in Figure: \ref{fig:lossTan}. The greater the angle
 Q = \frac{1}{D}
 \end{equation}
 
-The Quality Factor, Q, of a capacitor is found by taking the reciprocal of the dissipation factor, Equation: \eqref{equ:qual}. It is defined as the ratio of the energy stored to the energy dissipated per cycle.
+The \gls{q} of a capacitor is found by taking the reciprocal of the \acrlong{df}, Equation: \eqref{equ:qual}. It is defined as the ratio of the energy stored to the energy dissipated per cycle.
 
 \subsection{Leakage Resistance}
 
-Every capacitor will have some DC leakage resistance associated with it. This resistance affects the capacitor's ability to store charge. A high leakage resistance results in a capacitor with low self-discharge. This characteristic is especially important in sample and hold circuits.
+Every capacitor will have some DC leakage resistance associated with it. This resistance affects the capacitor's ability to store charge. A capacitor with a high leakage resistance has a low self-discharge rate. This characteristic is especially important in sample and hold circuits.
 
 \subsection{Dielectric Absorption}
 \input{figures/parameters/dieAbsorption}
 
-Dielectric Absorption, DA, in a capacitor is a characteristic which describes the unit's ability to ``regenerate'' a voltage after being shorted to ground for a brief time.
+\gls{da} in a capacitor is a characteristic which describes the unit's ability to ``regenerate'' a voltage after being shorted to ground for a brief time.
 
 As seen in Figure: \ref{fig:dieAbsorption}, a capacitor can be modeled with multiple RC elements in parallel with the bulk capacitance. When the main capacitor is shorted to ground for a short time, and then released, the other capacitors are not gauranteed to have been fullly discharged. After several minutes, they can recharge the main capacitance to a significant portion of its original charge. This is why large valued electrolytic capacitors get shipped with a resistor across their terminals.
 
