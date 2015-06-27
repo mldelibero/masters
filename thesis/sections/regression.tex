@@ -1,16 +1,16 @@
 \section {Regression Analysis and Modeling}
 \label{sec:regression}
 
-Many designers have a need to simulate the response of the individual components in their systems to impulse and steady state inputs. When dealing with passive electronic components, the device is typically modeled as a combination of various resistors, capacitors, and inductors. The model chosen is often due to either the required accuracy or a specific characteristic of the component that needs to be modeled. When characterizing a new component, the complex frequency response is recorded and then fit to a model. In this section, a progression of regression techniques will be evaluated for their ability to fit the measured frequency response of a capacitor to a polynomial equation. Then the accuracy of various capacitor models will be explored in regards to the fit. All models will attempt to fit the capacitor impedance data shown Figure: \ref{fig:exCapData}. See Appendix: \ref{app:genModelingImages} for the code used to generate the images shown in this section.
+Many designers have a need to simulate the response of the individual components in their systems for impulse and steady state inputs. When dealing with passive electronic components, the \gls{dut} is typically modeled as a combination of various resistors, capacitors, and inductors. The model chosen is often due to either the required accuracy or a specific characteristic of the \gls{dut} that needs to be modeled. When characterizing a new component, the complex frequency response is recorded and then fit to a model. In this section, a progression of regression techniques will be evaluated for their ability to fit the measured frequency response of a capacitor to a polynomial equation. Then the accuracy of various capacitor models will be explored in regards to the fit. All models will attempt to fit the capacitor impedance data shown Figure: \ref{fig:exCapData}. See Appendix: \ref{app:genModelingImages} for the code used to generate the images shown in this section.
 
 \input{figures/regression/exCapData}
 
 \subsection{Regression Analysis}
 \label{sec:RegressionAnalysis}
 \subsubsection{Basic LSE}
-At its core, regression analysis is an optimization problem whose purpose is to fit the equation of a line to a data set. A commonly use regression analysis technique is called the \GLS{lse}. It attempts to find a model which minimizes the squared error between an empirical set of data and itself.
+At its core, regression analysis is an optimization problem whose purpose is to fit the equation of a line to a data set. A commonly use regression analysis technique is called the \gls{lse}. It attempts to find a model which minimizes the squared error between an empirical set of data and itself.
 
-The first step in applying an \GLS{lse} is to choose the form of the equation that best represents the data. The equation of a line, Equation: \eqref{equ:ExLinEqu}, is chosen when only a simple linear fit is needed.
+The first step in applying an \gls{lse} is to choose the form of the equation that best represents the data. The equation of a line, Equation: \eqref{equ:ExLinEqu}, is chosen when only a simple linear fit is needed.
 Then the squared error equation is generated, as in Equations: \eqref{equ:LSE_E2} \& \eqref{equ:LSE_E2b}.
 
 \begin{equation}
@@ -35,14 +35,14 @@ In order to minimize the squared error over the data set, one needs to take the 
     \frac{\partial E^2}{\partial a_1} &= 0 = \sum_{i=1}^{n} (-2y_i x_i +2a_0 x_i + 2a_1 x_i^2) \label{equ:LSE_PD2}
 \end{align}
 
-Up to this point most \GLS{lse} analyzes follow the same basic path. But the rest of the steps depend upon the complexity of the model and solution techniques. The following steps in the basic \GLS{lse} use transformations and substitutions to solve for the unknown variables. In this case case, Equation: \eqref{equ:avgb} is used to remove the summation terms from the equation.
+Up to this point most \gls{lse} methods analyze follow the same basic path. The rest of the steps will depend upon the complexity of the model and solution techniques. The following steps in the basic \gls{lse} use transformations and substitutions to solve for the unknown variables. In this case case, Equation: \eqref{equ:avgb} is used to remove the summation terms from the equation.
 
 \begin{equation}
     \label{equ:avgb} 
     \sum_{i=1}^{n} y_i  = \bar{y}n
 \end{equation}
 
-This results in Equations: \eqref{equ:LSE_sol} \& \eqref{equ:LSE_solb} with solutions shown in Equations: \eqref{equ:LSE_solc} \& \eqref{equ:LSE_sold}. The empirical data is then used to find the values of $a_0$ and $a_1$. At this point, the line can be used to estimate new points on the plot or to compare against other data sets.
+This results in Equations: \eqref{equ:LSE_sol} \& \eqref{equ:LSE_solb} with solutions shown in Equations: \eqref{equ:LSE_solc} \& \eqref{equ:LSE_sold}. The empirical data is then used to find the values of $a_0$ and $a_1$. At this point, the best fit line can be used to estimate new points on the plot or to compare against other data sets (Figure: \ref{fig:basicLSE}).
 
 \input{figures/regression/basicLSE}
 
@@ -66,10 +66,8 @@ This results in Equations: \eqref{equ:LSE_sol} \& \eqref{equ:LSE_solb} with solu
     a_1 = \frac{\bar{xy} - \bar{x}\bar{y}}{\bar{x^2} - \bar{x}^2}
 \end{equation}
 
-An example of this type of fit can be seen in Figure: \ref{fig:basicLSE}.
-
 \subsubsection{Levy's Technique - Complex Curve Fitting}
-While the basic \GLS{lse} technique is sufficient for many circumstances, it is not directly applicable in situations where one needs to fit a model to a complex line, such as a transfer function. Levy \cite{levy} shows an extension of the simple \GLS{lse} example that is valid for a generic polynomial transfer function. This method is important because it not only allows for a complex-valued transfer function, but it also prevents the necessity of needing to rederive the system of equations for each new model. 
+While the basic \gls{lse} technique is sufficient for many circumstances, it is not directly applicable in situations where one needs to fit a model to a complex line, such as a transfer function. Levy \cite{levy} shows an extension of the simple \gls{lse} example that is valid for a generic polynomial transfer function. This method is important because it not only allows for a complex-valued transfer function, but it also prevents the necessity of rederiving the system of equations for each new model. 
 
 \begin{equation}
     \label{equ:levy_Gs}
@@ -166,13 +164,13 @@ T_3        & -S_4       & -T_5        &  S_6         & T_7         & \cdots &  U
 
 Levy's technique works well for applications where there is a small dynamic frequency range and a small number of coefficients, but there a several problems with it.
 The first problem is that for models with a wide bandwidth, the solution to Equation: \eqref{equ:Levy_Ans}, involves an ill-conditioned matrix. This means that the solution to the system of equations will experience precision errors.
-The second problem is that this technique favors the magnitude plot at the high frequency range. As can be seen in Figure: \ref{fig:levy}, a applying Levy's technique with $3^{rd}$ order model provides an unuseable fit to the emperical data.
+The second problem is that this technique is heavily biased by high frequency data. As can be seen in Figure: \ref{fig:levy}, a applying Levy's technique with $3^{rd}$ order model provides an unuseable fit to the emperical data.
 
 \input{figures/regression/levy}
 
 \subsubsection{Weighted LSE}
 \label{sec:weightedLSE}
-One improvement that can be made upon Levy's method is to iterate with a frequency dependent weighting function until the error term is minimized \cite{levy_iter}. By multiplying Levy's error function by the weighting term in Equation: \eqref{equ:iter_Weight}, we get Equation: \eqref{equ:iter_Err}, which can be minimized to obtain a new system of equations.
+One improvement that can be made upon Levy's method is to iterate with a frequency dependent weighting function until the error term is minimized \cite{levy_iter}. By multiplying Levy's error function by the weighting term in Equation: \eqref{equ:iter_Weight}, we get Equation: \eqref{equ:iter_Err}, which can be used to obtain a new system of equations.
 The $L$ subscript stands for the current iteration, while $L-1$ stands for the previous iteration.
 
 \begin{equation}
@@ -217,7 +215,7 @@ Dependent upon the initial conditons and the model order, this particular method
 
 \begin{equation}
 \label{equ:ErrMin}
-n = min(Emag/max(eMag) + Epha/max(ePha))
+n = min(\frac{E_{Mag}}{max(E_{Mag})} + \frac{E_{pha}}{max(E_{Pha})})
 \end{equation}
 
 \input{figures/regression/levyIter_Err1}
@@ -297,7 +295,6 @@ Using this model, the regression analysis method described in Section: \ref{sec:
 \input{figures/regression/fullModel_BadOutput}
 
 Substituting the polynomial coefficents seen in Equation: \eqref{equ:fullModel_BadOutputCoeff} into Equations: \eqref{equ:fullModel_CoeffEq_a0}-\eqref{equ:fullModel_CoeffEq_b2} returns the model parameter values as seen in Equation: \eqref{equ:fullModel_BadOutputParams}.
-Even though the polynomial coefficients gave an acceptable fit to the data, it resulted in unacceptable circuit parameters. Since $C$ and $R_D$ are negative, this model is not physically realizable.
 
 \begin{align}
      a_0 &= R_E + R_L                                         \label{equ:fullModel_CoeffEq_a0} \\
@@ -308,6 +305,8 @@ Even though the polynomial coefficients gave an acceptable fit to the data, it r
      b_1 &= C_DR_D + CR_L + C_DR_L                            \label{equ:fullModel_CoeffEq_b1} \\
      b_2 &= CC_DR_DR_L                                        \label{equ:fullModel_CoeffEq_b2}
 \end{align}
+
+Even though the polynomial coefficients gave an acceptable fit to the data, it resulted in unacceptable circuit parameters. Since $C$ and $R_D$ are negative, this model is not physically realizable.
 
 \begin{multicols}{2}
     \begin{equation}
