@@ -18,13 +18,10 @@ This section describes the current filtering circuitry shown in Schematic Page: 
     ~\cite{hh}[ch~6.3.2.D~equ~6.6~pg~410]
 \end{equation}
 
-A genaric, single-stage, low-pass, Sallen-Key filter is shown in Figure: \ref{fig:skey}. The filter is basically a 2-pole, passive, RC filter with the ground of $C_1$ tied to $V_{out}$ through the op-amp's active feedback path. This implementation is a simplified version of the Sallen-Key filter due to the gain (listed as K in most explanations) is equal to 1. The transition frequency and quality factor can be set according to Equations: \eqref{equ:sk_fc} and \eqref{equ:sk_q} respectively by choosing values for the passives.
-
-The filters for this circuit were designed with TI's WEBENCH designer \cite{webench}. Table: \ref{table:skey} shows the specifications for each filter. 
-
-
-The AC current measurement branch has a cutoff frequency of 100kHz, which gives 
-
+A genaric, single-stage, low-pass, Sallen-Key filter is shown in Figure: \ref{fig:skey}. The filter is basically a 2-pole, passive, RC filter with the ground of $C_1$ tied to $V_{out}$ through the op-amp's active feedback path. This implementation is a simplified version of the Sallen-Key filter with the gain (listed as K in most explanations) equal to 1. The transition frequency and quality factor can be set according to Equations: \eqref{equ:sk_fc} and \eqref{equ:sk_q} respectively by choosing values for the passives.
 
 \input{tables/skey}
+
+The filters for this circuit were designed with TI's WEBENCH designer \cite{webench}. Table: \ref{table:skey} shows the specifications for each filter. 
+The AC current measurement branch has a cutoff frequency of 100kHz. With the overall measurement frequency range capped at 10kHz, this provides sufficient anti-aliasing for the measurement. The discharge measurement filter has a cutoff of 25kHz. With a $1k\omega$ resistor and a 1uF \gls{dut} having a timeconstant of $10\mu s$, this provides a sufficient margin for 100 points per time constant requirement while still filtering out higher frequency components.
 
