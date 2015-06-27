@@ -1,16 +1,16 @@
 \subsection{Current Measurement}
 \label{sec:iMeas}
 
-This section describes the current measurement circuitry seen on Schematic Page: 5). In light of the high DC bias voltage present in the system (Section: \ref{sec:dcBias}) this circuitry utilizes a low-side current measurement technique. This allows the measurement electronics to operate at relative low (5VDC) voltages while measuring current from the DUT with a DC voltage in the 100s of volts.
+This section describes the current measurement circuitry seen on Schematic Page: 5. In light of the high DC bias voltage present in the system (Section: \ref{sec:dcBias}) this circuitry utilizes a low-side current measurement technique. This allows the measurement electronics to operate at relative low (5VDC) voltages while measuring current from the \gls{dut} with a DC voltage in the 100s of volts.
 
 \input{tables/imeas}
 
-The current measurement circuit utilizes a transimpedance amplifier designed from the reference circuit in \cite{steve_thesis}. It utilizes 3 switched, feedback stages to measure 9 decades of current (See Table: \ref{table:imeas_table}). The circuit operates by creating a virtual ground at the negative terminal of the DUT, and then directing the current through one of its feedback paths. The resultant voltage (Equation: \eqref{equ:trans}) is then filtered and sent to the next stage for further signal conditioning.
+The current measurement circuit utilizes a transimpedance amplifier designed from the reference circuit in \cite{steve_thesis}. It utilizes 3 switched, feedback stages to measure 9 decades of current (See Table: \ref{table:imeas_table}). The circuit operates by creating a virtual ground at the negative terminal of the \gls{dut}, and then directing the current through one of its feedback paths. The resultant voltage in Equation: \eqref{equ:trans} is then filtered and sent to the next stage for further signal conditioning.
 
 \begin{equation}
 \label{equ:trans}
 Vo = I*R_f
 \end{equation}
 
-The AD817 op-amp has the precision and bandwidth needed to operate in the transimpedance amplifier, but not the drive strength for th high current range. This limitation is overcome by inserting a BJT based current booster in the feedback path. This preserves the benefits of the op-amp, while providing the ability to drive a high-current signal.
+The AD817 op-amp has the precision and bandwidth needed to operate in a transimpedance amplifier configuration, but does not have the required drive strength for the  high current range. This limitation is overcome by inserting a BJT based current booster in the feedback path. This preserves the benefits of the op-amp, while providing the ability to drive a high-current signal.
 
