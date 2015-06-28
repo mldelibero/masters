@@ -14,18 +14,18 @@ The first step in applying an \gls{lse} is to choose the form of the equation th
 Then the squared error equation is generated, as in Equations: \eqref{equ:LSE_E2} \& \eqref{equ:LSE_E2b}.
 
 \begin{equation}
-    \label{equ:ExLinEqu}
-    y = a_0 + a_1 x
+\label{equ:ExLinEqu}
+y = a_0 + a_1 x
 \end{equation}
 
 \begin{equation}
-    \label{equ:LSE_E2}
-    E^2 = \sum_{i=1}^{n} (y_i - y)^2
+\label{equ:LSE_E2}
+E^2 = \sum_{i=1}^{n} (y_i - y)^2
 \end{equation}
 
 \begin{equation}
-    \label{equ:LSE_E2b}
-    E^2 = \sum_{i=1}^{n} (y_i - (a_0 + a_1 x_i))^2
+\label{equ:LSE_E2b}
+E^2 = \sum_{i=1}^{n} (y_i - (a_0 + a_1 x_i))^2
 \end{equation}
 
 In order to minimize the squared error over the data set, one needs to take the partial derivate of Equation: \eqref{equ:LSE_E2b} with respect to each of the unknown parameters, the coefficients, separately. While $a_0$ and $a_1$ will be constants in the final equation, they are treated as variables here until they are known. Conversely, all $x_i$ values are treated as constants. This results in Equations: \eqref{equ:LSE_PD1} \& \eqref{equ:LSE_PD2}.
@@ -164,7 +164,7 @@ T_3        & -S_4       & -T_5        &  S_6         & T_7         & \cdots &  U
 
 Levy's technique works well for applications where there is a small dynamic frequency range and a small number of coefficients, but there a several problems with it.
 The first problem is that for models with a wide bandwidth, the solution to Equation: \eqref{equ:Levy_Ans}, involves an ill-conditioned matrix. This means that the solution to the system of equations will experience precision errors.
-The second problem is that this technique is heavily biased by high frequency data. As can be seen in Figure: \ref{fig:levy}, a applying Levy's technique with $3^{rd}$ order model provides an unuseable fit to the emperical data.
+The second problem is that this technique is heavily biased by high frequency data. As can be seen in Figure: \ref{fig:levy}, a applying Levy's technique with $3^{rd}$ order model provides an unusable fit to the empirical data.
 
 \input{figures/regression/levy}
 
@@ -211,7 +211,7 @@ Equations \eqref{equ:Levy_Ans}, \eqref{equ:Levy_M}, \eqref{equ:Levy_N}, \& \eqre
     ~\cite{levy_iter}[Eq.~12]
 \end{equation}
 
-Dependent upon the initial conditons and the model order, this particular method is not gauranteed to converge. Figure: \ref{fig:levyIter_Err1} was generated with an initial condition of $Q(jw_k) == 1$ and a model order of 7. It shows that, for this data set, the squared error of the magnitude and phase do not converge after a particular number of iterations. Furthermore, they do not reach their minimums at the same iteration. In order to select the desired iteration, the magnitude and phase squared plots are normalized as in Equation: \eqref{equ:ErrMin}. The index of the minimum of Figure: \ref{fig:levyIter_Err1} is selected as the best fit.
+Dependent upon the initial conditions and the model order, this particular method is not guaranteed to converge. Figure: \ref{fig:levyIter_Err1} was generated with an initial condition of $Q(jw_k) == 1$ and a model order of 7. It shows that, for this data set, the squared error of the magnitude and phase do not converge after a particular number of iterations. Furthermore, they do not reach their minimums at the same iteration. In order to select the desired iteration, the magnitude and phase squared plots are normalized as in Equation: \eqref{equ:ErrMin}. The index of the minimum of Figure: \ref{fig:levyIter_Err1} is selected as the best fit.
 
 \begin{equation}
 \label{equ:ErrMin}
@@ -294,7 +294,7 @@ Using this model, the regression analysis method described in Section: \ref{sec:
 
 \input{figures/regression/fullModel_BadOutput}
 
-Substituting the polynomial coefficents seen in Equation: \eqref{equ:fullModel_BadOutputCoeff} into Equations: \eqref{equ:fullModel_CoeffEq_a0}-\eqref{equ:fullModel_CoeffEq_b2} returns the model parameter values as seen in Equation: \eqref{equ:fullModel_BadOutputParams}.
+Substituting the polynomial coefficients seen in Equation: \eqref{equ:fullModel_BadOutputCoeff} into Equations: \eqref{equ:fullModel_CoeffEq_a0}-\eqref{equ:fullModel_CoeffEq_b2} returns the model parameter values as seen in Equation: \eqref{equ:fullModel_BadOutputParams}.
 
 \begin{align}
      a_0 &= R_E + R_L                                         \label{equ:fullModel_CoeffEq_a0} \\

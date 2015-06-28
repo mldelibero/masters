@@ -2,7 +2,7 @@
 
 The phase \hyperlink{sch:imph}{circuitry} measures both the phase of the input sine wave and the phase of the resultant current waveform through the \gls{dut}. It uses two, redundant phase measurement techniques.
 
-The first technique utilizes the AD8302, a \gls{rf} phase detector, in a low frequency configuration as per AN-691 \cite{AD8302_AppNote}. The capacitors on the IC inputs tune the front end high pass filter cutoff to roughly 20Hz. The phase measurement is accomplished internally by a magnitude independent phase multiplier configuration. The output conisists of a 10mV per degree signal that is lowpassed at 2Hz to prevent aliasing. The filtered signal is then fed to the ADC for digitization.
+The first technique utilizes the AD8302, a \gls{rf} phase detector, in a low frequency configuration as per AN-691 \cite{AD8302_AppNote}. The capacitors on the IC inputs tune the front end high pass filter cutoff to roughly 20Hz. The phase measurement is accomplished internally by a magnitude independent phase multiplier configuration. The output consists of a 10mV per degree signal that is low passed at 2Hz to prevent aliasing. The filtered signal is then fed to the ADC for digitization.
 
 The second technique is added for a low frequency comparison against the \gls{rf} phase detector. The comparator acts as a sine to square wave converter. The default configuration relies on the comparator's internal hysteresis, but provisions for wider thresholds are available if needed. The outputs of the two converters are fed into timer inputs on the microcontroller. The phase is then calculated by the \gls{mcu} by measuring the period of the signals and the time difference between their rising edges.
 

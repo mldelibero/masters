@@ -8,8 +8,8 @@ The most basic reason for wanting to use capacitors is that they  have the abili
 \subsubsection{Bypassing}
 \input{figures/parameters/bypass}
 
-One of the most common uses of capacitors is in power supply bypassing. Capacitors are nearly always attached from a power rail to ground on a supply or IC. They provide a resevior of charge that limits inductive voltage spikes, such as when a digital circuit switches, and limits voltage dips, caused by things such as a current surge when a processor boots.
-Both LDOs (Figure: \ref{fig:bypass}) and switchers use bypass capacitors on their input and output voltage rails. Input capacitors are divided up into two main catagories, ripple reduction and bulk. Ripple reduction capacitors need to have a low \gls{esr} (Section: \ref{sec:ESR}) and are meant to decrease the magnitude of any AC signals that ride ontop of the input DC voltage. Bulk capacitors are meant to deliver surge currents. Ouput capacitors have much the same purpose as the input capacitors. The main difference is in the case of switching power supplies. In that application, the output capacitor is a major component in the feedback loop. It contributes to both the transient and stability properties of the switcher.
+One of the most common uses of capacitors is in power supply bypassing. Capacitors are nearly always attached from a power rail to ground on a supply or IC. They provide a reservoir of charge that limits inductive voltage spikes, such as when a digital circuit switches, and limits voltage dips, caused by things such as a current surge when a processor boots.
+Both LDOs (Figure: \ref{fig:bypass}) and switchers use bypass capacitors on their input and output voltage rails. Input capacitors are divided up into two main categories, ripple reduction and bulk. Ripple reduction capacitors need to have a low \gls{esr} (Section: \ref{sec:ESR}) and are meant to decrease the magnitude of any AC signals that ride on top of the input DC voltage. Bulk capacitors are meant to deliver surge currents. Ouput capacitors have much the same purpose as the input capacitors. The main difference is in the case of switching power supplies. In that application, the output capacitor is a major component in the feedback loop. It contributes to both the transient and stability properties of the switcher.
 
 \subsubsection{Analog Filtering}
 \input{figures/parameters/analogFiltering}
@@ -22,7 +22,7 @@ Designers often take advantage of capacitors' characteristic of passing AC curre
 \subsubsection{Oscillators}
 \input{figures/parameters/oscillator}
 
-Stable capacitors of a very specific value are required to make a parallel resonant oscillator function properly (Figure: \ref{fig:oscillator}). These oscillators provide the clock base for most modern digital circuits using microcontrollers.
+Stable capacitors of a very specific value are required to make a parallel resonant oscillator function properly (Figure: \ref{fig:oscillator}). These oscillators provide the clock base for most modern digital circuits using microcontroller.
 
 \subsection{Capacitance}
 
@@ -172,5 +172,5 @@ Every capacitor will have some DC leakage resistance associated with it. This re
 
 \gls{da} in a capacitor is a characteristic which describes the unit's ability to ``regenerate'' a voltage after being shorted to ground for a brief time.
 
-As seen in Figure: \ref{fig:dieAbsorption}, a capacitor can be modeled with multiple RC elements in parallel with the bulk capacitance. When the main capacitor is shorted to ground for a short time, and then released, the other capacitors are not gauranteed to have been fullly discharged. After several minutes, they can recharge the main capacitance to a significant portion of its original charge. This is why large valued electrolytic capacitors get shipped with a resistor across their terminals.
+As seen in Figure: \ref{fig:dieAbsorption}, a capacitor can be modeled with multiple RC elements in parallel with the bulk capacitance. When the main capacitor is shorted to ground for a short time, and then released, the other capacitors are not guaranteed to have been fully discharged. After several minutes, they can recharge the main capacitance to a significant portion of its original charge. This is why large valued electrolytic capacitors get shipped with a resistor across their terminals.
 
