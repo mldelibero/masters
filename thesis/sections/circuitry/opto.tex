@@ -1,7 +1,7 @@
 \subsection{Optocoupler}
 \label{sec:opto}
 
-This section describes the circuitry shown on Schematic Page: 4. It is based upon IXYS's application note AN-107 \cite{locAppNote}, and its purpose is to inject an AC signal ontop of a high DC bias. The optocoupler is configured in what is known as photovoltaic mode \cite{locAppNote}[Sec: 3.3], with both photoreceivers acting as coupled current sources.
+The optocoupler \hyperlink{sch:opto}{circuitry} is based upon IXYS's application note AN-107 \cite{locAppNote}, and its purpose is to inject an AC signal ontop of a high DC bias. The optocoupler is configured in what is known as photovoltaic mode \cite{locAppNote}[Sec: 3.3], with both photoreceivers acting as coupled current sources.
 
 In this mode, the front end op-amp's feedback path causes the first photoreceiver to draw current through the first resistor such that both of its terminals stay at ground potential. The phototransmitter's resistor sets a full scale current of 20mA, which is well within the absolute maximum ratings of the device. The second phototransmitter pulls current through the the backend op-amp's feedback resistor with a voltage gain of 2.5.
 

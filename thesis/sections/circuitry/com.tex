@@ -1,6 +1,6 @@
 \subsection{Communications}
 
-This section will describe the circuitry used to communicate to off-board processors.
+The communications \hyperlink{sch:com}{circuitry} is used to communicate to off-board processors.
 
 \subsubsection{USB}
 The \gls{usb} section is used to communicate with a PC for data logging and post processing. This circuitry centers around a FTDI FT232H serial to \gls{usb} chip. It allows seamless \gls{usb} communication to a PC's com port with the \gls{mcu} only needing to use a UART port. This significantly lowers the complexity of the communication bus, as the \gls{mcu} is not responsible for running the \gls{usb} stack.
