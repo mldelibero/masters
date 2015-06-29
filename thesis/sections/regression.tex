@@ -8,7 +8,7 @@ Many designers have a need to simulate the response of the individual components
 \subsection{Regression Analysis}
 \label{sec:RegressionAnalysis}
 \subsubsection{Basic LSE}
-At its core, regression analysis is an optimization problem whose purpose is to fit the equation of a line to a data set. A commonly use regression analysis technique is called the \gls{lse}. It attempts to find a model which minimizes the squared error between an empirical set of data and itself.
+At its core, regression analysis is an optimization problem whose purpose is to fit the equation of a line to a data set. A commonly used regression analysis technique is called the \gls{lse}. It attempts to find a model which minimizes the squared error between an empirical set of data and itself.
 
 The first step in applying an \gls{lse} is to choose the form of the equation that best represents the data. The equation of a line, Equation: \eqref{equ:ExLinEqu}, is chosen when only a simple linear fit is needed.
 Then the squared error equation is generated, as in Equations: \eqref{equ:LSE_E2} \& \eqref{equ:LSE_E2b}.
@@ -164,7 +164,7 @@ T_3        & -S_4       & -T_5        &  S_6         & T_7         & \cdots &  U
 
 Levy's technique works well for applications where there is a small dynamic frequency range and a small number of coefficients, but there a several problems with it.
 The first problem is that for models with a wide bandwidth, the solution to Equation: \eqref{equ:Levy_Ans}, involves an ill-conditioned matrix. This means that the solution to the system of equations will experience precision errors.
-The second problem is that this technique is heavily biased by high frequency data. As can be seen in Figure: \ref{fig:levy}, a applying Levy's technique with $3^{rd}$ order model provides an unusable fit to the empirical data.
+The second problem is that this technique is heavily biased by high frequency data. As can be seen in Figure: \ref{fig:levy}, applying Levy's technique with a $3^{rd}$ order model provides a unusable fit to the empirical data.
 
 \input{figures/regression/levy}
 
@@ -290,11 +290,11 @@ For this model, Equations: \eqref{equ:Levy_M}, \eqref{equ:Levy_N}, \& \eqref{equ
     \end{equation}
 \end{multicols}
 
-Using this model, the regression analysis method described in Section: \ref{sec:weightedLSE} generates the output seen in Figure: \ref{fig:fullModel_BadOutput}. The fit tracks the original data well, except for at low frequencies and near resonance.
+Using this model, the regression analysis method described in Section: \ref{sec:weightedLSE} generates the output seen in Figure: \ref{fig:fullModel_BadOutput}. The fit tracks the original data well, except at low frequencies and near resonance.
 
 \input{figures/regression/fullModel_BadOutput}
 
-Substituting the polynomial coefficients seen in Equation: \eqref{equ:fullModel_BadOutputCoeff} into Equations: \eqref{equ:fullModel_CoeffEq_a0}-\eqref{equ:fullModel_CoeffEq_b2} returns the model parameter values as seen in Equation: \eqref{equ:fullModel_BadOutputParams}.
+Substituting the polynomial coefficients seen in Equation: \eqref{equ:fullModel_BadOutputCoeff} into Equations: \eqref{equ:fullModel_CoeffEq_a0}-\eqref{equ:fullModel_CoeffEq_b2}, returns the model parameter values as seen in Equation: \eqref{equ:fullModel_BadOutputParams}.
 
 \begin{align}
      a_0 &= R_E + R_L                                         \label{equ:fullModel_CoeffEq_a0} \\
@@ -407,5 +407,5 @@ Starting instead with the rational set of circuit parameters seen in Equation: \
 
 \input{figures/regression/fullModel_GoodOutput}
 
-Figure: \ref{fig:fullModel_GoodOutput} shows a good fit across the frequency spectrum for both magnitude and phase. The model does deviate at resonance, but that is unsurprising, as the number of parameters in the model is fairly low when compared with the model used to generate the data.
+Figure: \ref{fig:fullModel_GoodOutput} shows a good fit across the frequency spectrum for both magnitude and phase. The model does deviate at resonance, but that is not surprising, as the number of parameters in the model is fairly low when compared with the model used to generate the data.
 

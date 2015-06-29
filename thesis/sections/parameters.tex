@@ -9,7 +9,7 @@ The most basic reason for wanting to use capacitors is that they  have the abili
 \input{figures/parameters/bypass}
 
 One of the most common uses of capacitors is in power supply bypassing. Capacitors are nearly always attached from a power rail to ground on a supply or IC. They provide a reservoir of charge that limits inductive voltage spikes, such as when a digital circuit switches, and limits voltage dips, caused by things such as a current surge when a processor boots.
-Both LDOs (Figure: \ref{fig:bypass}) and switchers use bypass capacitors on their input and output voltage rails. Input capacitors are divided up into two main categories, ripple reduction and bulk. Ripple reduction capacitors need to have a low \gls{esr} (Section: \ref{sec:ESR}) and are meant to decrease the magnitude of any AC signals that ride on top of the input DC voltage. Bulk capacitors are meant to deliver surge currents. Ouput capacitors have much the same purpose as the input capacitors. The main difference is in the case of switching power supplies. In that application, the output capacitor is a major component in the feedback loop. It contributes to both the transient and stability properties of the switcher.
+Both LDOs (Figure: \ref{fig:bypass}) and switchers use bypass capacitors on their input and output voltage rails. Input capacitors are divided into two main categories, ripple reduction and bulk. Ripple reduction capacitors need to have a low \gls{esr} (Section: \ref{sec:ESR}) and are meant to decrease the magnitude of any AC signals that ride on top of the input DC voltage. Bulk capacitors are meant to deliver surge currents. Ouput capacitors have a similar purpose as the input capacitors. The main difference is in the case of switching power supplies. In that application, the output capacitor is a major component in the feedback loop. It contributes to both the transient and stability properties of the switcher.
 
 \subsubsection{Analog Filtering}
 \input{figures/parameters/analogFiltering}
@@ -40,20 +40,20 @@ Capacitance is the ability to store electrical charge. Equation: \eqref{equ:cqv}
 C = \frac{\epsilon _0 A}{d}
 \end{equation}
 
-When using a capacitor in a single-pole low-pass filter, the cutoff frequency can be determined by Equation: \eqref{equ:lpfilter_eqn}. The circuit designer will choose a value for C and R in order to meet the cutoff frequency restraint.
+When using a capacitor in a single-pole low-pass filter, the cutoff frequency can be determined by Equation: \eqref{equ:lpfilter_eqn}. The circuit designer chooses a value for C and R in order to meet the cutoff frequency restraint.
 
 \begin{equation}
 \label{equ:lpfilter_eqn}
 f = \frac{1}{2\pi RC}
 \end{equation}
 
-Varying the capacitance used in the filter will move the cutoff frequency and consequently get a different response in the filter. The effect of this can be seen in Figure: \ref{fig:lpFiltVarC}.
+Varying the capacitance used in the filter moves the cutoff frequency and consequently produces a different response in the filter. The effect of this can be seen in Figure: \ref{fig:lpFiltVarC}.
 
 \input{Figures/parameters/lpFiltVarC}
 
 \subsection{Impedance}
 
-The impedance of a capacitor is the ``AC resistance'' of the device. It determines the AC current that will flow when an ac voltage is applied to the capacitor via Ohm's law (Equation: \eqref{equ:capOhmsEqn}). An ideal capacitor has only a single capacitive element and its impedance can be described via Equation: \eqref{equ:capImpEqu}. The two main things to notice are that the impedance is frequency dependent and it is purely imaginary (reactive).
+The impedance of a capacitor is the ``AC resistance'' of the device. It determines the AC current that will flow when an AC voltage is applied to the capacitor via Ohm's law (Equation: \eqref{equ:capOhmsEqn}). Real capacitors have a complicated impedance equation, but ideal capacitors have a much simplier represention, as seen in Equation: \eqref{equ:capImpEqu}.
 
 \begin{equation}
 \label{equ:capOhmsEqn}
@@ -70,9 +70,7 @@ The impedance of a capacitor is the ``AC resistance'' of the device. It determin
 Z = |\vec{Z}| = \frac{1}{\omega C}
 \end{equation}
 
-In most AC applications we look at the magnitude of the impedance. Real capacitors have a more complicated impedance, but with an ideal capacitor we can simplify the magnitude equation down to Equation \eqref{equ:capMagEqn}
-
-When capacitors are used in bypassing power supplies, the idea is to have a low impedance for common or expected noise frequencies. One may be tempted to choose a large valued capacitor to use for bypassing a wide range of frequencies. This turns out to backfire in practical situations, due to other parasitics in a real capacitor. For any capacitor, the impedance equation is more complicated, and the impedance value will begin to increase with frequency after some point. This will cause the designer to choose several different valued capacitors in parallel when bypassing a power supply or sensitive component. We will see later that the frequency plot of a capacitor will end up being more complicated than the simplified version seen in Figure: \ref{fig:cap}.
+In most AC applications we look at the magnitude of the impedance. Real capacitors have a more complicated impedance, but with an ideal capacitor we can simplify the magnitude equation down to Equation \eqref{equ:capMagEqn}. When capacitors are used in bypassing power supplies, the goal is to have a low impedance for common or expected noise frequencies. Using a large valued capacitor to bypass a wide range of frequencies does not work in practical situations due to parasitics in a real capacitor. The parasitic elements, described in the following sections, cause various undesirable effects, such as the impedance of a capacitor increasing after a certain frequency. This results in a more complicated impedance plot than the ideal version shown in Figure: \ref{fig:cap}.
 
 \input{Figures/parameters/cap}
 
@@ -92,7 +90,7 @@ For an ideal capacitor, having no resistance and only capacitance, the phase ang
 \phi = -i = -90^0
 \end{equation}
 
-The practical implication of this can be seen in the phase response of a low pass filter (Figure: \ref{fig:lpFiltVarC}). The capacitor introduces a phase lag relative to the input signal's frequency. If you would compare the input and output signals in time, the output's peak would lag behind the input's by the phase amount predicted in the phase response.
+The practical implication of this is seen in the phase response of a low pass filter (Figure: \ref{fig:lpFiltVarC}). The capacitor introduces a phase lag relative to the input signal's frequency. If you would compare the input and output signals in time, the output's peak would lag behind the input's by the phase amount predicted in the phase response.
 
 
 \subsection{ESL}
@@ -101,7 +99,7 @@ The \gls{esl} of a capacitor is a lumped estimate of all of the inductive compon
 
 \input{figures/parameters/eslModel}
 
-Adding \gls{esl} to the capacitive model creates a new impedance equation (Equation: \eqref{equ:impESL}). Note that for L\textless \textless C, this equation simplifies to Equation: \eqref{equ:capImpEqu} for low frequencies. In other words, the ideal impedance equation can be reasonably used for low frequencies.
+Adding \gls{esl} to the capacitive model creates a new impedance equation (Equation: \eqref{equ:impESL}). Note that for L\textless \textless C, this equation simplifies to Equation: \eqref{equ:capImpEqu} for low frequencies. In other words, the ideal impedance equation can reasonably be used for low frequencies.
 
 \begin{equation}
 \label{equ:impESL}
@@ -110,7 +108,7 @@ Adding \gls{esl} to the capacitive model creates a new impedance equation (Equat
 
 \input{figures/parameters/eslImp}
 
-Figure: \ref{fig:eslPlot} shows a graphical representation of a capacitor's magnitude and phase once \gls{esl} is considered. This plot shows that after a resonance point, the impedance of the inductor (which increases with frequency) will begin to dominate. This makes the capacitor ineffective as a bypass element at frequencies higher than its resonance point. Typically, this frequency point and the capacitor's value have an inverse relationship. This is why you will see power supplies and other chips being bypassed by a range of different valued capacitors. 
+Figure: \ref{fig:eslPlot} shows a graphical representation of a capacitor's magnitude and phase, once \gls{esl} is considered. This plot shows that after the resonance point, the impedance of the inductor (which increases with frequency) begins to dominate. This makes the capacitor ineffective as a bypass element at frequencies higher than its resonance point. Typically, this frequency point and the capacitor's value have an inverse relationship. This is why power supplies and other chips are bypassed by a range of different valued capacitors. 
 
 \subsection{ESR}
 \label{sec:ESR}
@@ -172,5 +170,5 @@ Every capacitor will have some DC leakage resistance associated with it. This re
 
 \gls{da} in a capacitor is a characteristic which describes the unit's ability to ``regenerate'' a voltage after being shorted to ground for a brief time.
 
-As seen in Figure: \ref{fig:dieAbsorption}, a capacitor can be modeled with multiple RC elements in parallel with the bulk capacitance. When the main capacitor is shorted to ground for a short time, and then released, the other capacitors are not guaranteed to have been fully discharged. After several minutes, they can recharge the main capacitance to a significant portion of its original charge. This is why large valued electrolytic capacitors get shipped with a resistor across their terminals.
+As seen in Figure: \ref{fig:dieAbsorption}, a capacitor can be modeled with multiple RC elements in parallel with the bulk capacitance. When the main capacitor is shorted to ground for a short time and then released, the other capacitors are not guaranteed to have been fully discharged. After several minutes, they can recharge the main capacitance to a significant portion of its original charge. This is why large valued electrolytic capacitors get shipped with a resistor across their terminals.
 

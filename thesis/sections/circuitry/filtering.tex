@@ -2,7 +2,7 @@
 \label{sec:filtering}
 \nocite{kirk_skey}
 
-The filtering \hyperlink{sch:filtering}{circuitry} implements 2 filtering paths which each consist of a 6-pole, low-pass, Sallen-Key filter to condition the signal.
+The filtering \hyperlink{sch:filtering}{circuitry} implements two filtering paths which each consist of a 6-pole, low-pass, Sallen-Key filter to condition the signal.
 
 \input{figures/circEx/skey}
 
@@ -23,5 +23,5 @@ A generic, single-stage, low-pass, Sallen-Key filter is shown in Figure: \ref{fi
 \input{tables/skey}
 
 The filters for this circuit were designed with TI's WEBENCH designer \cite{webench}. Table: \ref{table:skey} shows the specifications for each filter. 
-The AC current measurement branch has a cutoff frequency of 100kHz. With the overall measurement frequency range capped at 10kHz, this provides sufficient anti-aliasing for the measurement. The discharge measurement filter has a cutoff of 25kHz. With a $1k\omega$ resistor and a 1uF \gls{dut} having a time constant of $10\mu s$, this provides a sufficient margin for 100 points per time constant requirement while still filtering out higher frequency components.
+The AC current measurement branch has a cutoff frequency of 100kHz. With the overall measurement frequency range capped at 10kHz, this provides sufficient anti-aliasing for the measurement. The discharge measurement filter has a cutoff of 25kHz. With a $1k\Omega$ resistor and a 1uF \gls{dut} having a time constant of $10\mu s$, this provides a sufficient margin for 100 points per time constant requirement while still filtering out higher frequency components.
 
