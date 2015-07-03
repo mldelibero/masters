@@ -4,6 +4,11 @@ This section describes the schematic design, see Appendix: \ref{app:schematic}, 
 
 The purpose of this circuit is to measure the response of a capacitor to various test inputs in order to generate a model (Section: \ref{sec:regression}). This method will allow an analysis of the effect of the DC bias on the output model.
 
+This circuity provides for two main testing modes. In the first mode, a large (up to 500VDC) bias voltage is coupled onto an AC signal via an optoculpler. This voltage is then applied to the \gls{dut} and the resulting current flow is measured through a transimpedance amplifier. The signal is then filtered and its magnitude and phase are measured and digitized. The user has control of the DC bias, AC amplitude, and frequency. These control parameters can be swept to obtain a characterization of the \gls{dut}.
+
+The second test mode provides a means to measure the discharge characteristics of the device. A DC bias is used to charge up the \gls{dut} and then disconnected. The circuity can either connect a discharge capacitor to the \gls{dut} or leave it open in order to measure the discharge current.
+
+
 \nocite{my_ieeePaper}
 
 \input{sections/circuitry/power}
