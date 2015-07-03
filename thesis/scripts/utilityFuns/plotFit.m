@@ -92,7 +92,7 @@ elseif pType == plotType.cVectorsDiff
     h_title(1) = title('Magnitude','FontSize',titleSize);
     h_leg = legend('Orig','FitData','Location','north');
     set(h_leg,'FontSize',legendSize);
-    xlabel('\omega'  ,'FontSize',axisTitleSize);
+    xlabel('\omega (rad)'  ,'FontSize',axisTitleSize);
     ylabel('Mag (dB)','FontSize',axisTitleSize);
     min_y1 = min(get(ax(1),'ytick'));
     max_y1 = max(get(ax(1),'ytick'));
@@ -104,7 +104,7 @@ elseif pType == plotType.cVectorsDiff
     h_title(2) = title('Phase','FontSize',titleSize);
     h_leg = legend('Orig','FitData','Location','north');
     set(h_leg,'FontSize',legendSize);
-    xlabel('\omega','FontSize',axisTitleSize);
+    xlabel('\omega (rad)','FontSize',axisTitleSize);
     ylabel('\phi (deg)','FontSize',axisTitleSize);
     min_y2 = min(get(ax(2),'ytick'));
     max_y2 = max(get(ax(2),'ytick'));
@@ -113,13 +113,13 @@ elseif pType == plotType.cVectorsDiff
     ax(3) = subplot(rows,cols,3);
     p(5)  = semilogx(x,abs(Data2)-abs(Data1));
     h_title(3) = title('Magnitude Error','FontSize',titleSize);
-    xlabel('\omega','FontSize',axisTitleSize);
+    xlabel('\omega (rad)','FontSize',axisTitleSize);
     ylabel('\Delta Mag (\Omega)','FontSize',axisTitleSize);
 
     ax(4) = subplot(rows,cols,4);
     p(6)  = semilogx(x,rad2deg(phase(Data2))-rad2deg(phase(Data1)));
     h_title(4) = title('Phase Error','FontSize',titleSize);
-    xlabel('\omega','FontSize',axisTitleSize);
+    xlabel('\omega (rad)','FontSize',axisTitleSize);
     ylabel('\Delta \phi (deg)','FontSize',axisTitleSize);
 
 elseif pType == plotType.oneError
