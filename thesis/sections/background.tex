@@ -4,15 +4,12 @@ The following is a list of the questions that I will be answering in my backgrou
 
 \subsection{List}
 \begin {enumerate}
-    \item Where are capacitors used with a high DC bias?
-    \begin {enumerate}
-        \item What characteristics are the most important there?
-        \item What are the main failure modes?
-        \item What are the current specifications of the parts in use now?
-        \item What research is being done to develop better capacitors for this use case?
-        \item How do they currently evaluate the capacitors?
-        \item How would they benefit from my research?
-    \end {enumerate}
+    \item What characteristics are the most important there?
+    \item What are the main failure modes?
+    \item What are the current specifications of the parts in use now?
+    \item What research is being done to develop better capacitors for this use case?
+    \item How do they currently evaluate the capacitors?
+    \item How would they benefit from my research?
     \item What is the state of the art in capacitance measurement?
     \begin {enumerate}
         \item Impedance analyzers
@@ -26,7 +23,6 @@ The following is a list of the questions that I will be answering in my backgrou
     \item What are the important characteristics of capacitors?
     \item Is there any evidence that a capacitor's properties will change over DC bias?
 \end {enumerate}
-
 
 \subsection {History of Capacitors}
 \label{sec:history}
@@ -61,12 +57,21 @@ Scientists in Germany created the first steatite ceramic capacitors in 1920 \cit
 A ceramic composition with barium titanate ($BaTiO_3$) was first discovered in 1941. Barium titanate was quickly found to be able to exhibit a dielectric constant over 1000; an order of magnitude greater than the best capacitor at that time (rutile - $Ti0_2$). It was not until 1947, that barium titanate appeared in its first commercial devices, phonograph pickups \cite{piezCer}\cite{hist_cerFilt}\cite[Ch 3 Sec III]{cerMaterials}. Barium titanate is still used today in certain types of \glspl{mlcc}.
 
 Thanks to the semiconductor industry, \glspl{mlcc} grew to dominate the capacitor market and by 1979, AVX alone reached $\$95$ million in \gls{mlcc} sales \cite{avx_hist}.
-\glspl{mlcc} are divided up into three classes. Class 1 type \glspl{mlcc} are known for their extremely good temperature characteristics. COG/NPO types can have 0-30ppm/$^o$C. These capacitors are typically made by combining $TiO_2$ with additives in order to adjust its temperature characteristics \cite{intro_cerCaps}. Additionally, class 1 \glspl{mlcc} have comparatively poor volumetric efficiency, and will tend to come in larger packages than class 2 \glspl{mlcc} of the same capacitance value. Class 2 types typically have worse temperature coefficients than class 1 types, but they have a much higher volumetric efficiency. They are constructed with a ferroelectric base material, typically Barium Titanate \cite{intro_cerCaps}. Class 2 \glspl{mlcc} are the most common type of ceramics used. Class 3 types have very high capacitance, but a working voltage of several volts \cite{hist_cerFilt}\cite[Ch 3 Sec VI]{cerMaterials}\cite{atCer_tempco}. They were originally developed as a potential replacement for liquid electrolytics, but they have largely been replaceed by Class 2 \glspl{mlcc} \cite{wiki_cer}. The advances in Class 2 \glspl{mlcc} in maximum capacitance shrunk the gap between these two classes until the difference was no longer viable \cite{wiki_cer}.
+\glspl{mlcc} are divided up into three classes. Class 1 type \glspl{mlcc} are known for their extremely good temperature characteristics. COG/NPO types can have 0-30ppm/$^o$C. These capacitors are typically made by combining $TiO_2$ with additives in order to adjust its temperature characteristics \cite{intro_cerCaps}. Additionally, class 1 \glspl{mlcc} have comparatively poor volumetric efficiency, and will tend to come in larger packages than class 2 \glspl{mlcc} of the same capacitance value. Class 2 types typically have worse temperature coefficients than class 1 types, but they have a much higher volumetric efficiency. They are constructed with a ferroelectric base material, typically barium titanate \cite{intro_cerCaps}. Class 2 \glspl{mlcc} are the most common type of ceramics used. Class 3 types have very high capacitance, but a working voltage of several volts \cite{hist_cerFilt}\cite[Ch 3 Sec VI]{cerMaterials}\cite{atCer_tempco}. They were originally developed as a potential replacement for liquid electrolytics, but they have largely been replaceed by Class 2 \glspl{mlcc} \cite{wiki_cer}. The advances in Class 2 \glspl{mlcc} in maximum capacitance shrunk the gap between these two classes until the difference was no longer viable \cite{wiki_cer}.
 
 Bell labs invented the first solid tantalum capacitor in 1956. They created it in conjuncture with, and for, transistors \cite[f.~56-64]{dumInv}. Tantalum capacitors typically have better characteristics than aluminum electrolytics, but have a lower maximum capacitance and working voltage \cite{learn_caps}.
 Sprague patented the first commercially viable solid tantalum capacitor in 1960. It offered an increased capacitance per unit volume and greater reliability \cite{charTant}. In the 1970s, Sprague released the first surface mount tantalum capacitor \cite{spragueHist}.
 One of the historical problems with tantalum capacitors has been a limited and volatile supply of tantalum in the world market.
 As a result of a price spike around 1980, the industry reacted by creating finer grain tantalum powders. This allowed a unit to be made with less overall tantalum, reducing price and package size \cite[ch~3.1]{tantMis}. Over time, this volatility resulted in better tantalum capacitors, but decreased their popularity and led to a desire for a suitable replacement.
 
-One of the possible alternatives to tantalum capacitors is a titanium based capacitor. Some of the instrumental work in titanium alloys was done in 1939 by Fast \cite{fast1939transition} and more recently in 1995 by Kobayashi \cite{kobayashi1995mechanical}\cite{corwin2013synthesis}. Early work on titanium based capacitors resulted prohibitively high leakage currents \cite{ki2005titanium}, but research done by Welsch \cite{welsch22nd} with titanate ($TiO_2$) promises a capacitor with a much higher energy and power density when compared with tantalum \cite{steve_thesis}.
+One of the possible alternatives to tantalum capacitors is a titanium based capacitor. Some of the instrumental work in titanium alloys was done in 1939 by Fast \cite{fast1939transition} and more recently in 1995 by Kobayashi \cite{kobayashi1995mechanical}\cite{corwin2013synthesis}. Early work on titanium based capacitors resulted prohibitively high leakage currents \cite{ki2005titanium}, but research done by Welsch \cite{welsch22nd}\cite{welsch2001directionally} with titanate ($TiO_2$) shows a promising a solution to this issue. This work also indicates that a Ti capacitor can be made with a much higher energy and power density when compared with tantalum \cite{steve_thesis}.
+
+
+\subsection{Ti Capacitors}
+
+Even though the work in this thesis can characterize wide range of components, its primary focus is on titanium capacitors. As stated in the previous section, titanium capacitors have many advantages over their primary competitor, tantalum capacitors. They have fewer sourcing issues, as titanium is both cheaper and can be mined in conflict free zones. Also, the higher power and energy density, along with a high working voltage, make titanium capacitors an attractive option. These characteristics allow for a more efficient product, that is both cheaper and lighter than tantalum capacitors.  The main reason for why titanium capacitors do not have the market share of tantalum capacitors is that they have been plagued with high leakage currents. The initial work on the ARPA-E DE--AR000016 contract \cite{steve_thesis} focused on measuring this quantity. The circuitry designed in this thesis (Section: \ref{sec:measCirc}) expands upon that design to also measure additional characteristics.
+
+One of the main applications for titanium capacitors is the DC-link capacitor for electric vehicles \cite{dclink}. Its purpose is to provide an energy source and storage mechanism that has a higher power density that the high energy density batteries in the vehicle \cite{thounthong2006control}. They allow for a high surge of power when the vehicle is accelerating, and also allow the vehicle to recapture some of the expended energy through regenerative breaking.
+
+Another potential use of titanium capacitors is in modern defibrillators. These devices require capacitors that can deliver a quick burst of energy while operating at no less than several hundred volts \cite{shephard1961design}\cite{idiot_defibrillator}. One of the main requirements of the capacitor in defibrillators is extremely high reliability. The titanium capacitors proposed by Welsch \cite{welsch22nd} provide an attractive option here because of their self-healing characteristic. Small defects in the dielectric are automatically healed, allowing the capacitor to continue to function while minimize failure events. 
 
