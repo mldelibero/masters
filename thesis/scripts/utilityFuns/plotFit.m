@@ -141,9 +141,27 @@ elseif pType == plotType.twoErrors
     h_title(1) = title('Magnitude Err^2','FontSize',titleSize);
     xlabel('n','FontSize',axisTitleSize);
     ylabel('Error^2 ((\Delta \Omega)^2)','FontSize',axisTitleSize);
+    h_leg = legend();
 
     ax(2) = subplot(rows,cols,2);
     p (2) = semilogy(Data2);
+    h_title(2) = title('Phase Error^2','FontSize',titleSize);
+    xlabel('n','FontSize',axisTitleSize);
+    ylabel('Error^2 ((\Delta \Phi)^2)','FontSize',axisTitleSize);
+
+elseif pType == plotType.MULTPLOT
+    rows = 1;
+    cols = 2;
+
+    ax(1) = subplot(rows,cols,1);
+    p (1) = loglog(x,Data1);
+    h_title(1) = title('Magnitude Err^2','FontSize',titleSize);
+    xlabel('n','FontSize',axisTitleSize);
+    ylabel('Error^2 ((\Delta \Omega)^2)','FontSize',axisTitleSize);
+    h_leg = legend();
+
+    ax(2) = subplot(rows,cols,2);
+    p (2) = loglog(x,Data2);
     h_title(2) = title('Phase Error^2','FontSize',titleSize);
     xlabel('n','FontSize',axisTitleSize);
     ylabel('Error^2 ((\Delta \Phi)^2)','FontSize',axisTitleSize);

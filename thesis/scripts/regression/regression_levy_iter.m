@@ -27,6 +27,7 @@ function [G, numCoeffs, denCoeffs, E, minIndex] = regression_levy_iter(cData, w,
     EphaNorm = Epha ./ max(Epha);
     E2 = EmagNorm + EphaNorm;
     minIndex = find(E2==min(E2),1);
+    fprintf('Error Minimized at Iteration: %i\n',minIndex);
 end % function [G,numCoeffs,denCoeffs] = regression_levy_iter(cData, w, iterations, numbNumCoeffs, numbDenCoeffs)
 
 function [numCoeffs, denCoeffs] = calcCoeffs(cData, w, W, numbNumCoeffs, numbDenCoeffs)
