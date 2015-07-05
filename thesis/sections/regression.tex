@@ -1,7 +1,10 @@
 \section {Regression Analysis and Modeling}
 \label{sec:regression}
 
-Many designers have a need to simulate the response of the individual components in their systems for impulse and steady state inputs. When dealing with passive electronic components, the \gls{dut} is typically modeled as a combination of various resistors, capacitors, and inductors. The model chosen is often due to either the required accuracy or a specific characteristic of the \gls{dut} that needs to be modeled. When characterizing a new component, the complex frequency response is recorded and then fit to a model. In this section, a progression of regression techniques will be evaluated for their ability to fit the measured frequency response of a capacitor to a polynomial equation. Then the accuracy of various capacitor models will be explored in regards to the fit. All models will attempt to fit the capacitor impedance data shown Figure: \ref{fig:exCapData}. See Appendix: \ref{app:genModelingImages} for the code used to generate the images shown in this section.
+Many designers have a need to simulate the response of individual components in their systems for impulse and steady state inputs. When dealing with passive electronic components, the \gls{dut} is typically modeled as a combination of various resistors, capacitors, and inductors. The model chosen is often due to either the required accuracy or a specific characteristic of the \gls{dut} that needs to be modeled. When characterizing a new component, the complex frequency response is recorded and then fit to a model. 
+
+This section provides a means to characterize the impedance data that can be obtained by the circuitry described in Section: \ref{sec:measCirc}. Several regression techniques will be evaluated for their ability to fit a model to the example capacitor impedance data shown Figure: \ref{fig:exCapData}. The accuracy of these fits will be evaluated to determine the model's effectiveness.
+See Appendix: \ref{app:genModelingImages} for the code used to generate the images shown in this section.
 
 \input{figures/regression/exCapData}
 
@@ -228,10 +231,10 @@ Figure: \ref{fig:levyIter} shows that this method can result in a much improved 
 \subsection{Modeling}
 \input{figures/regression/murataModel}
 
-This section will investigate several of the most common capacitor models. It will show how to fit them to a data set with Levy's method described in Section: \ref{sec:RegressionAnalysis}, and will describe their effectiveness and limitations in doing so.
+This section will investigate a model which includes the most common parameters of merit. It will show how to fit the model to a data set with Levy's method described in Section: \ref{sec:RegressionAnalysis}, and will describe its effectiveness and limitations in doing so.
 The data in Figure: \ref{fig:exCapData} used to fit against was generated from the model shown in Figure: \ref{fig:murataModel}. Since the model described in this section is of a smaller order than the model used to generate the data, there will be a loss of precision. This section will explore the error seen with the abbreviated model.
 
-\subsubsection{6 Term Model}
+\subsubsection{Six Term Model}
 \input{figures/regression/fullModel}
 
 The model shown in Figure: \ref{fig:fullModel} shows several of the most important parameters for a capacitor. It's impedance, shown in Equation: \eqref{equ:fullModelImpedance}, and generalized in Equation: \eqref{equ:fullModelPoly} can be used as the basis for a regression analysis.
@@ -417,6 +420,8 @@ Starting instead with the rational set of circuit parameters seen in Equation: \
 \input{figures/regression/fullModel_GoodOutput}
 
 Figure: \ref{fig:fullModel_GoodOutput} shows a good fit across the frequency spectrum for both magnitude and phase. The model does deviate at resonance, but that is not surprising, as the number of parameters in the model is fairly low when compared with the model used to generate the data. As can be seen in Figure: \ref{fig:fullModel_Rel}, the relative error is the worst around resonance. It is at that point where there is simultaneously the lowest impedance and the sharpest feature in the plot.
+
+The 6 term model described in this section provides a reasonable starting point for the capacitor characterization. As mentioned in the \nameref{sec:conclusion} and \nameref{sec:futureWork} sections, this model has enough accuracy to characterize new capacitors. Empirical testing is needed in order to determine if the model needs to be adjusted to better characterize a specific \gls{dut} of interest.
 
 \input{figures/regression/fullModel_Rel}
 
