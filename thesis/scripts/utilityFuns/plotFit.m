@@ -165,6 +165,20 @@ elseif pType == plotType.MULTPLOT
     h_title(2) = title('Phase Error^2','FontSize',titleSize);
     xlabel('n','FontSize',axisTitleSize);
     ylabel('Error^2 ((\Delta \Phi)^2)','FontSize',axisTitleSize);
+
+elseif pType == plotType.OPAREA
+    [ax,p(1),p(2)] = plotyy(x,Data1,x(3:5),Data2,'semilogx','loglog');
+
+    h_title = title('Safe Operating Area','FontSize',titleSize);
+    h_leg = legend('Voltage','Minimum Capacitance','Location','northeast');
+    set(h_leg,'FontSize',legendSize);
+    xlabel(ax(1), 'R (\Omega)', 'FontSize', axisTitleSize);
+    ylabel(ax(1), 'Vmax (V)'  , 'FontSize', axisTitleSize);
+    ylabel(ax(2), 'Cmin (uF)' , 'FontSize', axisTitleSize);
+
+    set(ax(1),'ytick',0:100:500);
+%    set(ax(2),'YLim',[10^-9 10^-3]);
+    ax(2).YTickMode='Auto';
 end % if pType == plotType.cVectorsDiff
 
 %% Common plotting options
