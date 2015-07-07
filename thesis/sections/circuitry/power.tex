@@ -1,4 +1,4 @@
-\subsection {Power}
+\subsection {Power Supplies}
 
 The power supply \hyperlink{sch:Power}{circuitry} shows the complete power generation scheme used for the circuit board. 24VDC is fused and then fed through an EMC compliance filter \cite{5VswitchDatasheet}. The initial fuse value is set to roughly twice the current rating of the switching power supplies. Once a practical current draw value is obtained, this value can be decreased. In order to ensure that the three switching regulators meet their rated regulation specifications, output shunt resistors are used to set a minimum load of $10\%$. All of the power supplies were chosen such that their power ratings were at least twice the maximum expected load. The power supply generating $\pm 15V_{ISO}$ is slightly different than the rest, as its output ground is attached to the DC bias voltage instead of signal ground. This purpose of this seen in the optocoupler circuitry described in Section: \ref{sec:opto}.  
 
