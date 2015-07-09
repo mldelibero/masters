@@ -9,11 +9,39 @@
     \item Update tab on first paragraph in sections.
     \item Combine TOF and TOT onto same page.
     \item Fix no comma in bibliography when multiple authors are present (ie: \cite{absCircuit}).
+    \item Increase the space between the end of an equation and the next paragraph.
 \end{itemize}
+
+\subsection{Background}
+\begin {enumerate}
+    \item Focus on the changing leakage current over DC bias.
+    \item What are the main failure modes?
+    \item What are the current specifications of the parts in use now?
+    \item What research is being done to develop better capacitors for this use case?
+    \item How do they currently evaluate the capacitors?
+    \item How would they benefit from my research?
+    \item What is the state of the art in capacitance measurement?
+    \begin {enumerate}
+        \item Impedance analyzers
+        \item Capacitance bridges
+        \item Hi pot testers
+        \item What are the good and bad points of each of these technologies?
+        \item Why do they not solve the problem that I stated? 
+        \item Why does this technology not currently exist?
+    \end {enumerate}
+    \item What work has been done similar to this in the past?
+    \item What are the important characteristics of capacitors?
+    \item Is there any evidence that a capacitor's properties will change over DC bias?
+\end {enumerate}
 
 \subsection{Parameters}
 \begin{itemize}
     \item Add angle marker to loss tangent image.
+    \item Introduce Miller's model and the Murata model at the end of this section.
+    \item Compare Miller's model and the Murata model.
+    \item Introduce the 6-term model here. It allows you to understand things like leakage, resistance, and dielectric absorption. We care about the resistive losses over frequency.
+    \item Talk about the difference between a functional model (Maruata's) and a model that allows you to understand what is going on inside of a capacitor (6-term).
+    \item How does the Murata model compare against the expected model of a Titanium capacitor?
 \end{itemize}
 
 \subsection{Regression}
@@ -24,11 +52,19 @@
 
 \subsection{Schematic Explanation}
 \begin{itemize}
+    \item Rewrite the introduction to the measurement circuitry.
+    \item You need to state the goals somewhere early in the thesis (not just in the abstract). Cite from this location and not from the abstract.
     \item Update discussion on leakage measurements.
     \item Create a flow chart for the schematic.
     \item Talk about why this phase measurement technique was chosen over others and their comparable accuracy.
     \item Expand explanation on the current booster.
 \end{itemize}
 
+\subsection{Bibliography}
+\begin{itemize}
+    \item With 3 authors, the engine does not put a comma between the first two.
+\end{itemize}
+
 \bibliography{../metadata/thesis,../figures/figures}
 \end{document}
+
