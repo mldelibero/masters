@@ -9,7 +9,7 @@ The most basic reason for wanting to use capacitors is that they  have the abili
 \input{figures/parameters/bypass}
 
 One of the most common uses of capacitors is in power supply bypassing. Capacitors are nearly always attached from a power rail to ground on a supply or IC. They provide a reservoir of charge that limits inductive voltage spikes, such as when a digital circuit switches, and limits voltage dips, caused by things such as a current surge when a processor boots.
-Both LDOs (Figure: \ref{fig:bypass}) and switchers use bypass capacitors on their input and output voltage rails. Input capacitors are divided into two main categories, ripple reduction and bulk. Ripple reduction capacitors need to have a low \gls{esr} (Section: \ref{sec:ESR}) and are meant to decrease the magnitude of any AC signals that ride on top of the input DC voltage. Bulk capacitors are meant to deliver surge currents. Ouput capacitors have a similar purpose as the input capacitors. The main difference is in the case of switching power supplies. In that application, the output capacitor is a major component in the feedback loop. It contributes to both the transient and stability properties of the switcher.
+Both LDOs (Figure: \ref{fig:bypass}) and switchers use bypass capacitors on their input and output voltage rails. Input capacitors are divided into two main categories, ripple reduction and bulk. Ripple reduction capacitors need a low \gls{esr} (Section: \ref{sec:ESR}) and are meant to decrease the magnitude of any AC signals that ride on top of the input DC voltage. Bulk capacitors are meant to deliver surge currents. Output capacitors have a similar purpose as input capacitors. The main difference is in the case of switching power supplies. In that application, the output capacitor is a major component in the feedback loop. It contributes to both the transient and stability properties of the switcher.
 
 \subsubsection{Analog Filtering}
 \input{figures/parameters/analogFiltering}
@@ -17,7 +17,7 @@ Another use for capacitors is in analog filtering. The low-pass filter in Figure
 
 \subsubsection{DC Blocking}
 \input{figures/parameters/dcBlocking}
-Designers often take advantage of capacitors' characteristic of passing AC current while blocking DC current. As in Figure: \ref{fig:dcBlock}, a capacitor can be used to block a DC offset before an amplifier.
+Designers often take advantage of a capacitor's characteristic of passing AC current while blocking DC current. As in Figure: \ref{fig:dcBlock}, a capacitor can be used to block a DC offset before an amplifier.
 
 \subsubsection{Oscillators}
 \input{figures/parameters/oscillator}
@@ -53,7 +53,7 @@ Varying the capacitance used in the filter moves the cutoff frequency and conseq
 
 \subsection{Impedance}
 
-The impedance of a capacitor is the ``AC resistance'' of the device. It determines the AC current that will flow when an AC voltage is applied to the capacitor via Ohm's law (Equation: \eqref{equ:capOhmsEqn}). Real capacitors have a complicated impedance equation, but ideal capacitors have a much simplier represention, as seen in Equation: \eqref{equ:capImpEqu}.
+The impedance of a capacitor is the ``AC resistance'' of the device. It determines the AC current that will flow when an AC voltage is applied to the capacitor via Ohm's law (Equation: \eqref{equ:capOhmsEqn}). Real capacitors have a complicated impedance equation, but ideal capacitors have a much simpler representation, as seen in Equation: \eqref{equ:capImpEqu}.
 
 \begin{equation}
 \label{equ:capOhmsEqn}
@@ -70,7 +70,7 @@ The impedance of a capacitor is the ``AC resistance'' of the device. It determin
 Z = |\vec{Z}| = \frac{1}{\omega C}
 \end{equation}
 
-In most AC applications we look at the magnitude of the impedance. Real capacitors have a more complicated impedance, but with an ideal capacitor we can simplify the magnitude equation down to Equation \eqref{equ:capMagEqn}. When capacitors are used in bypassing power supplies, the goal is to have a low impedance for common or expected noise frequencies. Using a large valued capacitor to bypass a wide range of frequencies does not work in practical situations due to parasitics in a real capacitor. The parasitic elements, described in the following sections, cause various undesirable effects, such as the impedance of a capacitor increasing after a certain frequency. This results in a more complicated impedance plot than the ideal version shown in Figure: \ref{fig:cap}.
+In most AC applications designers are interested in the magnitude of the impedance. Real capacitors have a more complicated impedance, but an ideal capacitor's magnitude equation can be simplified down to Equation \eqref{equ:capMagEqn}. When capacitors are used in bypassing power supplies, the goal is to have a low impedance for common or expected noise frequencies. Using a large valued capacitor to bypass a wide range of frequencies does not work in practical situations due to parasitics in a real capacitor. The parasitic elements, described in the following sections, cause various undesirable effects, such as the impedance of a capacitor increasing after a certain frequency. This results in a more complicated impedance plot than the ideal version shown in Figure: \ref{fig:cap}.
 
 \input{Figures/parameters/cap}
 

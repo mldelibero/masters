@@ -38,7 +38,7 @@ In order to minimize the squared error over the data set, one needs to take the 
     \frac{\partial E^2}{\partial a_1} &= 0 = \sum_{i=1}^{n} (-2y_i x_i +2a_0 x_i + 2a_1 x_i^2) \label{equ:LSE_PD2}
 \end{align}
 
-Up to this point most \gls{lse} methods analyze follow the same basic path. The rest of the steps will depend upon the complexity of the model and solution techniques. The following steps in the basic \gls{lse} use transformations and substitutions to solve for the unknown variables. In this case case, Equation: \eqref{equ:avgb} is used to remove the summation terms from the equation.
+Up to this point most \gls{lse} methods analyze follow the same basic path. The rest of the steps will depend upon the complexity of the model and solution techniques. The following steps in the basic \gls{lse} use transformations and substitutions to solve for the unknown variables. In this case, Equation: \eqref{equ:avgb} is used to remove the summation terms from the equation.
 
 \begin{equation}
     \label{equ:avgb} 
@@ -299,8 +299,8 @@ For this model, Equations: \eqref{equ:Levy_M}, \eqref{equ:Levy_N}, \& \eqref{equ
 
 \input{figures/regression/fullModel_test}
 \input{figures/regression/fullModel_testRel}
-Figure: \ref{fig:fullModel_test} shows the results from simplifying the model in Figure: \ref{fig:murataModel} to the six term model. and then applying this regression analysis to that model.
-Figure: \ref{fig:fullModel_testRel} shows that the relative error in fitting this model to itself is neglibile.
+Figure: \ref{fig:fullModel_test} shows the results from simplifying the model in Figure: \ref{fig:murataModel} to the six term model and then applying this regression analysis to that model.
+Figure: \ref{fig:fullModel_testRel} shows that the relative error in fitting this model to itself is negligible.
 
 Using this model, the regression analysis method described in Section: \ref{sec:weightedLSE} generates the output seen in Figure: \ref{fig:fullModel_BadOutput}. The fit tracks the original data well, except at low frequencies and near resonance.
 
