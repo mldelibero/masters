@@ -174,3 +174,8 @@ Every capacitor will have some DC leakage resistance associated with it (Figure:
 
 As seen in Figure: \ref{fig:dieAbsorption}, a capacitor can be modeled with multiple RC elements in parallel with the bulk capacitance. When the main capacitor is shorted to ground for a short time and then released, the other capacitors are not guaranteed to have been fully discharged. After several minutes, they can recharge the main capacitance to a significant portion of its original charge. This is why large valued electrolytic capacitors get shipped with a resistor across their terminals.
 
+\subsubsection{Six Term Model}
+\input{figures/regression/fullModel}
+
+The model shown in Figure: \ref{fig:fullModel} combines bulk capacitance \gls{esr}, \gls{esl}, leakage, and \gls{da}. It describes a capacitor in simple manner that allows for an understanding of its physical characteristics. This model is used in the regression analysis in Section: \ref{sec:regression} to determine the characteristics of unknown capacitors.
+
