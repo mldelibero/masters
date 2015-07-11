@@ -1,8 +1,6 @@
 \section {Measurement Circuitry}
 \label{sec:measCirc}
-This section describes the schematic design, see Appendix: \ref{app:schematic}, used to meet the goals set out in the \nameref{sec:abstract}. At the time of this writing, this circuit has not been constructed, so what follows will be a theoretical explanation of the circuit's operation. The design builds on the capacitor anodization work done under the ARPA-E contract DE--AR000016 \cite{steve_thesis}.
-
-The purpose of this circuit is to measure the response of a capacitor to various test inputs in order to generate a model (Section: \ref{sec:regression}). This method will allow an analysis of the effect of the DC bias on the output model.
+The proposed circuit in this section will perform the measurements described in the \nameref{sec:intro} and is based in part on the measurement of anodized titanium capacitors done by Ehret \cite{steve_thesis}. The circuit will measure the respones of capacitors to various test inputs in order to generate data which can then be fit to an appropriate capacitor model (Section: \ref{sec:regression}). This method will allow for an analysis of the effect of the DC bias on the output model.
 
 This circuity provides for two main testing modes. In the first mode, a large (up to 500VDC) bias voltage is coupled onto an AC signal via an optocoupler. This voltage is then applied to the \gls{dut} and the resulting current flow is measured through a transimpedance amplifier. The signal is then filtered and its magnitude and phase are measured and digitized. The user has control of the DC bias, AC amplitude, and frequency. These control parameters can be swept to obtain a characterization of the \gls{dut}.
 
@@ -22,4 +20,5 @@ The second test mode provides a means to measure the discharge characteristics o
 \input{sections/circuitry/phase}
 \input{sections/circuitry/adc}
 \input{sections/circuitry/com}
+\input{sections/circuitry/conclusion}
 
