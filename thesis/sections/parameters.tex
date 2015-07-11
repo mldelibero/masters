@@ -174,13 +174,18 @@ Every capacitor will have some DC leakage resistance associated with it (Figure:
 
 As seen in Figure: \ref{fig:dieAbsorption}, a capacitor can be modeled with multiple RC elements in parallel with the bulk capacitance. When the main capacitor is shorted to ground for a short time and then released, the other capacitors are not guaranteed to have been fully discharged. After several minutes, they can recharge the main capacitance to a significant portion of its original charge. This is why large valued electrolytic capacitors get shipped with a resistor across their terminals.
 
-\subsubsection{Six Term Model}
+\subsection{Six Term Model}
 \input{figures/regression/fullModel}
 
 The model shown in Figure: \ref{fig:fullModel} combines bulk capacitance \gls{esr}, \gls{esl}, leakage, and \gls{da}. It describes a capacitor in simple manner that allows for an understanding of its physical characteristics. It is used in the regression analysis in Section: \ref{sec:regression} to determine the characteristics of unknown capacitors.
 
-\subsubsection{Murata Model}
+\subsection{Murata Model}
 \input{figures/regression/murataModel}
 
 The model shown in Figure: \ref{fig:murataModel} is a functional representation of a ceramic capacitor. It accurately describes how that particular capacitor changes over frequency, but does not lend itself to an intuitive understanding of the physical characteristics of the capacitor. It is used to provide an ideal capacitor frequency response to evaluate the regression analysis in Section: \ref{sec:regression}.
+
+\subsection{Electrochemical Capacitor Model}
+\input{figures/parameters/superCap}
+
+The model in Figure: \ref{fig:superCap}, shown by Miller \cite{electrochem_intro}, describes the functionality of an electrochemical capacitor. It has a very high capacitance and several time constants on the order of 10s to 100s of milliseconds. Dependent upon future work, it may be an accurate representation for Titanium based capacitors which have energy and power densities on the same order of magnitude as electrochemical capacitors.
 
