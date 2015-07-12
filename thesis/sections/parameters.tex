@@ -184,7 +184,7 @@ The model shown in Figure: \ref{fig:fullModel} combines bulk capacitance \gls{es
 \subsection{Murata Model}
 \input{figures/regression/murataModel}
 
-The model shown in Figure: \ref{fig:murataModel} is a functional representation of a ceramic capacitor. It accurately describes how that particular capacitor changes over frequency, but does not lend itself to an intuitive understanding of the physical characteristics of the capacitor. It is used to provide an ideal capacitor frequency response to evaluate the regression analysis in Section: \ref{sec:regression}.
+The model shown in Figure: \ref{fig:murataModel} is a functional representation of a ceramic capacitor. It contains a single element for the bulk capacitance (C1), leakage (R2), and \gls{esl} (L1). R2, along with the rest of the components, represents an accurate model of the \gls{esr}. While this precisely describes how a particular capacitor changes over frequency, the large number of parameters does not lend to an intuitive understanding of the physical characteristics of the capacitor. This model will instead be used to provide an ideal capacitor frequency response to evaluate the regression analysis in Section: \ref{sec:regression}.
 
 \subsection{Electrochemical Capacitor Model}
 \input{figures/parameters/superCap}
