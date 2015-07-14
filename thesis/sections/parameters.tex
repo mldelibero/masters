@@ -1,6 +1,10 @@
 \section {Capacitor Parameters}
 \label{sec:params}
 
+\renewcommand{\loadeq}[1]{%
+   \ExecuteMetaData[./equations/parameters.tex]{eq#1}%
+}
+
 This section will begin by describing some of the practical uses of capacitors and then transition into the various parameters that are used to describe capacitors. Section: \ref{sec:regression} will show a method which allows these parameters to be extrapolated from empirical data.
 
 \subsection{Practical Capacitor Uses}
@@ -30,24 +34,15 @@ Stable capacitors of a very specific value are required to make a parallel reson
 
 There is a distinct difference between a capacitor and capacitance. While a capacitor's dominant characteristic is capacitance, it cannot be modeled entirely as such in most practical applications. There are also various inductive and resistive components to a capacitor that are important in various circumstances.
 
-\begin{equation}
-\label{equ:cqv}
-C=\frac{Q}{V}
-\end{equation}
+\loadeq{cqv}
 
 Capacitance is the ability to store electrical charge. Equation: \eqref{equ:cqv} shows that capacitance is stored charge that is spread throughout a volume. A device that can store a lot of charge in a small space has a large capacitance. The basic equation for a commercial capacitor is seen in Equation: \eqref{equ:parPlateCap}.
 
-\begin{equation}
-\label{equ:parPlateCap}
-C = \frac{\epsilon _0 A}{d}
-\end{equation}
+\loadeq{parPlateCap}
 
 When using a capacitor in a single-pole low-pass filter, the cutoff frequency can be determined by Equation: \eqref{equ:lpfilter_eqn}. The circuit designer chooses a value for C and R in order to meet the cutoff frequency restraint.
 
-\begin{equation}
-\label{equ:lpfilter_eqn}
-f = \frac{1}{2\pi RC}
-\end{equation}
+\loadeq{lpfilter}
 
 Varying the capacitance used in the filter moves the cutoff frequency and consequently produces a different response in the filter. The effect of this can be seen in Figure: \ref{fig:lpFiltVarC}.
 
@@ -57,20 +52,9 @@ Varying the capacitance used in the filter moves the cutoff frequency and conseq
 
 The impedance of a capacitor is the ``AC resistance'' of the device. It determines the AC current that will flow when an AC voltage is applied to the capacitor via Ohm's law (Equation: \eqref{equ:capOhmsEqn}). Real capacitors have a complicated impedance equation, but ideal capacitors have a much simpler representation, as seen in Equation: \eqref{equ:capImpEqu}.
 
-\begin{equation}
-\label{equ:capOhmsEqn}
-\vec{V} = \vec{I} \vec{Z}
-\end{equation}
-
-\begin{equation}
-\label{equ:capImpEqu}
-\vec{Z} = \frac{1}{j\omega C}
-\end{equation}
-
-\begin{equation}
-\label{equ:capMagEqn}
-Z = |\vec{Z}| = \frac{1}{\omega C}
-\end{equation}
+\loadeq{capOhmsEqn}
+\loadeq{capImpEqu}
+\loadeq{capMagEqn}
 
 In most AC applications designers are interested in the magnitude of the impedance. Real capacitors have a more complicated impedance, but an ideal capacitor's magnitude equation can be simplified down to Equation \eqref{equ:capMagEqn}. When capacitors are used in bypassing power supplies, the goal is to have a low impedance for common or expected noise frequencies. Using a large valued capacitor to bypass a wide range of frequencies does not work in practical situations due to parasitics in a real capacitor. The parasitic elements, described in the following sections, cause various undesirable effects, such as the impedance of a capacitor increasing after a certain frequency. This results in a more complicated impedance plot than the ideal version shown in Figure: \ref{fig:cap}.
 
@@ -80,20 +64,13 @@ In most AC applications designers are interested in the magnitude of the impedan
 
 The phase of a combination of resistive and reactive components can be written as in Equation: \eqref{equ:capPhEqn}.
 
-\begin{equation}
-\label{equ:capPhEqn}
-\phi = tan^{-1}[\frac{X_c}{R_c}]
-\end{equation}
+\loadeq{capPhEqn}
 
 For an ideal capacitor, having no resistance and only capacitance, the phase angle can be simplified to:
 
-\begin{equation}
-\label{equ:capImpEqu2}
-\phi = -i = -90^0
-\end{equation}
+\loadeq{capImpEqu2}
 
 The practical implication of this is seen in the phase response of a low pass filter (Figure: \ref{fig:lpFiltVarC}). The capacitor introduces a phase lag relative to the input signal's frequency. If you would compare the input and output signals in time, the output's peak would lag behind the input's by the phase amount predicted in the phase response.
-
 
 \subsection{ESL}
 
@@ -103,10 +80,7 @@ The \gls{esl} of a capacitor is a lumped estimate of all of the inductive compon
 
 Adding \gls{esl} to the capacitive model creates a new impedance equation (Equation: \eqref{equ:impESL}). Note that for L\textless \textless C, this equation simplifies to Equation: \eqref{equ:capImpEqu} for low frequencies. In other words, the ideal impedance equation can reasonably be used for low frequencies.
 
-\begin{equation}
-\label{equ:impESL}
-\vec{Z_c} = j\frac{\omega ^2LC - 1}{\omega C}
-\end{equation}
+\loadeq{impESL}
 
 \input{figures/parameters/eslImp}
 
@@ -119,47 +93,31 @@ The \gls{esr} is the practical result of the fact that the materials used to cre
 
 \gls{esr} becomes important when thinking about DCDC switch mode power supplies. The output ripple voltage of the converter will cause a ripple current to pass through the \gls{esr} and dissipate heat as per Equation: \eqref{equ:dcdcESReqn}. It is important to choose a low \gls{esr} capacitor in order to reduce failures.
 
-\begin{equation}
-\label{equ:dcdcESReqn}
-P_E = I_{C,RMS}^2 * R_E
-~\cite{maxSwEff}
-\end{equation}
+\loadeq{dcdcESReqn}
 
 Another important thing to note about \gls{esr} is that even though it is shown as a resistance in simple models, it is not constant across all frequencies. It is a simplification of the resistive and capacitive elements in a capacitor that are dominated by resistance. That said, it is still sufficient for a basic understanding of a capacitor's impedance (Equation \eqref{equ:ImpCEslEsr}).
 
-\begin{equation}
-\label{equ:ImpCEslEsr}
-\vec{Z_c} = \frac{1 + j\omega R_EC + (j\omega)^2L_EC}{j\omega C}
-\end{equation}
+\loadeq{ImpCEslEsr}
 
 \subsection{Resonance Frequency}
 \input{figures/parameters/RLCModel}
 
 Once C, \gls{esl}, and \gls{esr} are included into the capacitor model (Figure: \ref{fig:RLCModel}), a parameter known as the self-resonant frequency becomes evident. Equation: \eqref{equ:ImpCEslEsr} shows that when $Z_{ESL} == Z_C$, the capacitor is at its resonance point. At this frequency, the capacitor's impedance is determined solely by the \gls{esr}. This frequency can be calculated by Equation: \eqref{equ:fres}.
 
-\begin{equation}
-\label{equ:fres}
-f_r = \frac{1}{2\pi \sqrt{LC}}
-\end{equation}
+\loadeq{fres}
 
 \subsection{Dissipation Factor}
 \input{figures/parameters/lossTan}
 
 The \gls{df}, otherwise known as the loss-tangent, is a measure of the energy stored to the energy dissipated per cycle. It is a measurement of the efficiency of the capacitor. The \gls{df} can be quantified through Equation: \eqref{equ:dispFac}. 
 
-\begin{equation}
-\label{equ:dispFac}
-D = \frac{R_E}{X_C}
-\end{equation}
+\loadeq{dispFac}
 
 The loss tangent can be seen in Figure: \ref{fig:lossTan}. The greater the angle, the more efficient the capacitor will be.
 
 \subsection{Quality Factor}
 
-\begin{equation}
-\label{equ:qual}
-Q = \frac{1}{D}
-\end{equation}
+\loadeq{qual}
 
 The \gls{q} of a capacitor is found by taking the reciprocal of the \acrlong{df}, Equation: \eqref{equ:qual}. It is defined as the ratio of the energy stored to the energy dissipated per cycle.
 

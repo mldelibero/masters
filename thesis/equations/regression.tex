@@ -1,0 +1,190 @@
+\documentclass[11pt]{article}
+\usepackage{amssymb,amsmath}
+
+\begin{document}
+
+%<*eqExLinEqu>
+\begin{equation}
+    \label{equ:ExLinEqu}
+    y = a_0 + a_1 x
+\end{equation}
+%</eqExLinEqu>
+
+%<*eqLSEE2>
+\begin{equation}
+    \label{equ:LSE_E2}
+    E^2 = \sum_{i=1}^{n} (y_i - y)^2
+\end{equation}
+%</eqLSEE2>
+
+%<*eqLSEE2b>
+\begin{equation}
+    \label{equ:LSE_E2b}
+    E^2 = \sum_{i=1}^{n} (y_i - (a_0 + a_1 x_i))^2
+\end{equation}
+%</eqLSEE2b>
+
+%<*eqLSEPD>
+\begin{align} 
+    \frac{\partial E^2}{\partial a_0} &= 0 = \sum_{i=1}^{n} (-2y_i +2a_0 + 2a_1 x_i)           \label{equ:LSE_PD1} \\
+    \frac{\partial E^2}{\partial a_1} &= 0 = \sum_{i=1}^{n} (-2y_i x_i +2a_0 x_i + 2a_1 x_i^2) \label{equ:LSE_PD2}
+\end{align}
+%</eqLSEPD>
+
+%<*eqavgb>
+\begin{equation}
+    \label{equ:avgb} 
+    \sum_{i=1}^{n} y_i  = \bar{y}n
+\end{equation}
+%</eqavgb>
+
+%<*eqLSEsol>
+\begin{equation}
+    \label{equ:LSE_sol}
+    0 = \bar{y} - (a_0 + 2a_1 \bar{x})
+\end{equation}
+%</eqLSEsol>
+
+%<*eqLSEsolb>
+\begin{equation}
+    \label{equ:LSE_solb}
+    0 = \bar{xy} - (a_0 \bar{x} + 2a_1 \bar{x^2})
+\end{equation}
+%</eqLSEsolb>
+
+%<*eqLSEsolc>
+\begin{equation}
+    \label{equ:LSE_solc}
+    a_0 = \bar{y} - a_1 \bar{x}
+\end{equation}
+%</eqLSEsolc>
+
+%<*eqLSEsold>
+\begin{equation}
+    \label{equ:LSE_sold}
+    a_1 = \frac{\bar{xy} - \bar{x}\bar{y}}{\bar{x^2} - \bar{x}^2}
+\end{equation}
+%</eqLSEsold>
+
+%<*eqlevyGs>
+\begin{equation}
+    \label{equ:levy_Gs}
+    G(s) = \frac{A_0 + A_1 s + A_2 s^2 + ... + A_n s^n}{B_0 + B_1 s + B_2 s^2 + ... + B_m s^m}
+    ~\cite{levy}[Eq.~3]
+\end{equation}
+%</eqlevyGs>
+
+%<*eqLevyL>
+\begin{equation}
+    \label{equ:Levy_L}
+    \lambda _h = \sum_{k=0}^{m} \omega _k ^h
+    ~\cite{levy}[Eq.~15]
+\end{equation}
+%</eqLevyL>
+
+%<*eqLevyS>
+\begin{equation}
+    \label{equ:Levy_S}
+    S_h = \sum_{k=0}^{m} \omega _k ^h R_k
+    ~\cite{levy}[Eq.~16]
+\end{equation}
+%</eqLevyS>
+
+%<*eqLevyT>
+\begin{equation}
+    \label{equ:Levy_T}
+    T_h = \sum_{k=0}^{m} \omega _k ^h I_k
+    ~\cite{levy}[Eq.~17]
+\end{equation}
+%</eqLevyT>
+
+%<*eqLevyU>
+\begin{equation}
+    \label{equ:Levy_U}
+    U_h = \sum_{k=0}^{m} \omega _k ^h (R_k ^2 + I_k ^2)
+    ~\cite{levy}[Eq.~18]
+\end{equation}
+%</eqLevyU>
+
+%<*eqLevyAns>
+\begin{equation}
+    \label{equ:Levy_Ans}
+    MN = C
+    ~\cite{levy}[Eq.~20]
+\end{equation}
+%</eqLevyAns>
+
+%<*eqiterWeight>
+\begin{equation}
+    \label{equ:iter_Weight}
+    W_{kL} = \frac{1}{|Q(jw_k)_{L-1}|^2}
+    ~\cite{levy_iter}
+\end{equation}
+%</eqiterWeight>
+
+%<*eqiterErr>
+\begin{equation}
+    \label{equ:iter_Err}
+    E = \sum_{k=1}^{n} |\epsilon _k ^{'}|^2W_{kL}
+    ~\cite{levy_iter}[Eq.~7]
+\end{equation}
+%</eqiterErr>
+
+%<*eqIterL>
+\begin{equation}
+    \label{equ:Iter_L}
+    \lambda _h = \sum_{k=0}^{m} \omega _k ^hW_{kL}
+    ~\cite{levy_iter}[Eq.~9]
+\end{equation}
+%</eqIterL>
+
+%<*eqIterS>
+\begin{equation}
+    \label{equ:Iter_S}
+    S_h = \sum_{k=0}^{m} \omega _k ^h R_kW_{kL}
+    ~\cite{levy_iter}[Eq.~10]
+\end{equation}
+%</eqIterS>
+
+%<*eqIterT>
+\begin{equation}
+    \label{equ:Iter_T}
+    T_h = \sum_{k=0}^{m} \omega _k ^h I_kW_{kL}
+    ~\cite{levy_iter}[Eq.~11]
+\end{equation}
+%</eqIterT>
+
+%<*eqIterU>
+\begin{equation}
+    \label{equ:Iter_U}
+    U_h = \sum_{k=0}^{m} \omega _k ^h (R_k ^2 + I_k ^2)W_{kL}
+    ~\cite{levy_iter}[Eq.~12]
+\end{equation}
+%</eqIterU>
+
+%<*eqErrMin>
+\begin{equation}
+\label{equ:ErrMin}
+n = min(\frac{E_{Mag}}{max(E_{Mag})} + \frac{E_{pha}}{max(E_{Pha})})
+\end{equation}
+%</eqErrMin>
+
+%<*eqfullModelPoly>
+\begin{equation}
+    \label{equ:fullModelPoly}
+    \bar{Z}(s) = \frac{a_0 + a_1s + a_2s^2 + a_3s^3}{b_0 + b_1s + b_2s^2}
+\end{equation}
+%</eqfullModelPoly>
+
+%<*eqfullModelImpedance>
+\begin{equation}
+    \begin{split}
+        \label{equ:fullModelImpedance}
+        \bar{Z}(s) = \frac{(R_E + R_L) + (L_E + C_DR_DR_E + C_DR_DR_L + CR_ER_L + C_DR_ER_L)s}{1 + (C_DR_D + CR_L + C_DR_L)s + CC_DR_DR_Ls^2} \\ 
+        + \frac{(C_DL_ER_D + CL_ER_L + C_DL_ER_L + CC_DR_DR_ER_L)s^2 + CC_DL_ER_DR_Ls^3}{1 + (C_DR_D + CR_L + C_DR_L)s + CC_DR_DR_Ls^2}
+    \end{split}
+\end{equation}
+%</eqfullModelImpedance>
+
+\end{document}
+

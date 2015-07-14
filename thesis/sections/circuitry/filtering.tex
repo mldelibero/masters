@@ -6,17 +6,8 @@ The filtering \hyperlink{sch:filtering}{circuitry} implements two filtering path
 
 \input{figures/circEx/skey}
 
-\begin{equation}
-    \label{equ:sk_fc}
-    f_c = \frac{1}{2\pi R_2C_2\sqrt{\frac{R_1C_1}{R_2C_2}}}
-    ~\cite{hh}[ch~6.3.2.D~equ~6.5~pg~410]
-\end{equation}
-
-\begin{equation}
-    \label{equ:sk_q}
-    Q = \frac{\sqrt{\frac{R_1C_1}{R_2C_2}}}{1 + \frac{R_1}{C_1}}
-    ~\cite{hh}[ch~6.3.2.D~equ~6.6~pg~410]
-\end{equation}
+\loadeq{skfc}
+\loadeq{skq}
 
 A generic, single-stage, low-pass, Sallen-Key filter is shown in Figure: \ref{fig:skey}. The filter is basically a 2-pole, passive, RC filter with the ground of $C_1$ tied to $V_{out}$ through the op-amp's active feedback path. This implementation is a simplified version of the Sallen-Key filter with the gain (listed as K in most explanations) equal to 1. The transition frequency and quality factor can be set according to Equations: \eqref{equ:sk_fc} and \eqref{equ:sk_q} respectively by choosing values for the passives.
 
