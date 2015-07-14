@@ -22,8 +22,17 @@
 \usepackage{nameref}
 \usepackage[colorlinks,allcolors=black]{hyperref}
 \usepackage[acronym,toc]{glossaries}
+\usepackage{catchfilebetweentags}
 \loadglsentries{metadata/glossaryEntries}
 \bibliographystyle{plain}
+
+\newif\ifisPPT
+\isPPTfalse
+
+\newcommand{\loadeq}[1]{%
+   \ExecuteMetaData[./equations/equations.tex]{eq#1}%
+}
+
 
 \begin{document}
 
