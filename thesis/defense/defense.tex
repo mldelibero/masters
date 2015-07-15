@@ -1,4 +1,6 @@
 \documentclass{beamer}
+\usepackage{catchfilebetweentags}
+\usepackage{multicol}
 \mode<presentation>
 \title{Design Considerations for the Characterization of Capacitors}
 \author{Michael L. DeLibero}
@@ -8,6 +10,10 @@
 
 \newif\ifisPPT
 \isPPTtrue
+
+\newcommand{\loadeq}[1]{%
+   \ExecuteMetaData[../equations/equations.tex]{eq#1}%
+}
 
 \begin{document}
 
@@ -50,6 +56,6 @@
     \frametitle{Future Work}
 \end{frame}
 
-\bibliography{..//metadata/thesis,../figures/thesis_figs}
+\bibliography{../metadata/thesis,../figures/thesis_figs}
 
 \end{document}
