@@ -1,29 +1,33 @@
-\begin{frame}
-\frametitle{Basic Regression}
-
-\begin{equation}
-\label{equ:ExLinEqu}
-y = a_0 + a_1 x
-\end{equation}
-
-\begin{equation}
-\label{equ:LSE_E2}
-E^2 = \sum_{i=1}^{n} (y_i - y)^2
-\end{equation}
-
-\begin{equation}
-\label{equ:LSE_E2b}
-E^2 = \sum_{i=1}^{n} (y_i - (a_0 + a_1 x_i))^2
-\end{equation}
-
-\begin{align} 
-    \frac{\partial E^2}{\partial a_0} &= 0 = \sum_{i=1}^{n} (-2y_i +2a_0 + 2a_1 x_i)           \label{equ:LSE_PD1} \\
-    \frac{\partial E^2}{\partial a_1} &= 0 = \sum_{i=1}^{n} (-2y_i x_i +2a_0 x_i + 2a_1 x_i^2) \label{equ:LSE_PD2}
-\end{align}
-
-\end{frame}
+\renewcommand{\loadeq}[1]{%
+   \ExecuteMetaData[../equations/regression.tex]{eq#1}%
+}
 
 \begin{frame}
 \input{../figures/regression/basicLSE}
+\end{frame}
+
+\begin{frame}
+\frametitle{Basic Regression}
+\loadeq{ExLinEqu}
+\loadeq{LSEE2}
+\loadeq{LSEE2b}
+\loadeq{LSEPD}
+\end{frame}
+
+\begin{frame}
+\input{../figures/regression/exCapData}
+\end{frame}
+
+\begin{frame}
+\loadeq{levyGs}
+\loadeq{LevyL}
+\loadeq{LevyS}
+\loadeq{LevyT}
+\loadeq{LevyU}
+\end{frame}
+
+\begin{frame}
+\loadeq{LevyAns}
+\loadeq{fullModelM}
 \end{frame}
 
