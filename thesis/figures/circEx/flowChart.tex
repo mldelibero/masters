@@ -1,0 +1,48 @@
+\def\LPFilt
+{
+    \tikz[remember picture,overlay]{
+        \node{LP};
+        \draw[line width=1pt] 
+        (-7mm, -6mm) to (-7mm, 5.3mm)
+        (-7mm, -6mm) to ( 10mm,-6mm)
+        (-7mm,  4mm) to ( 3mm, 4mm) arc (90:26:0.2cm) --
+       +(4mm, -9mm);
+    }
+}
+
+\begin{figure}[ht!]
+\centering
+
+\begin{tikzpicture}[auto, scale=0.8, node distance=1cm,>=latex', every node/.style={transform shape},
+    block/.style      = {rectangle, draw=blue, thick, fill=blue!20,text width=5em, text centered, rounded corners,minimum height=4em},
+    circ/.style       = {draw,circle,node distance=3cm,fill=yellow!20},
+    line/.style       = {draw, -latex'}]
+\node [circ                          ] (DC)    {DC Supply};
+\node [circ ,above=1cm       of DC   ] (AC)    {AC Supply};
+\node [block,right=          of AC   ] (DUT)   {\gls{dut}};
+\node [block,below=          of DUT  ] (TRANS) {$I \rightarrow V$}    ;
+\node [block,below=          of TRANS] (LP)    {}       ;
+\node[] at (LP) {\LPFilt};
+\node [block,below left =    of LP   ] (MAG)   {Mag}      ;
+\node [block,below right=    of LP   ] (PHA)   {Pha}      ;
+\node [block,below right=    of MAG  ] (ADC)   {ADC}      ;
+\node [block,below=          of ADC  ] (MCU)   {MCU}      ;
+\node [block,below=          of MCU  ] (PC)    {PC}       ;
+
+\path [line] (DC)    -- (AC);
+\path [line] (AC)    -- (DUT);
+\path [line] (DUT)   -- (TRANS);
+\path [line] (TRANS) -- (LP);
+\path [line] (LP)    -- (MAG);
+\path [line] (LP)    -- (PHA);
+\path [line] (MAG)   -- (ADC);
+\path [line] (PHA)   -- (ADC);
+\path [line] (ADC)   -- (MCU);
+\path [line] (MCU)   -- (PC);
+
+\end{tikzpicture}
+
+\caption{Circuit Flow Chart}
+\label{fig:flowChart}
+\end{figure}
+
