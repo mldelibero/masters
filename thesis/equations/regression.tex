@@ -201,5 +201,172 @@ n = min(\frac{E_{Mag}}{max(E_{Mag})} + \frac{E_{pha}}{max(E_{Pha})})
 \end{equation}
 %</eqfullModelM>
 
+%<*eqLevyN>
+\begin{multicols}{2}
+    \begin{equation}
+        \label{equ:Levy_N}
+        N = 
+        \begin{bmatrix}
+            A_0 \\
+            A_1 \\
+            A_2 \\
+            A_3 \\
+            \vdots \\
+            B_1 \\
+            B_2 \\
+            B_3 \\
+            \vdots
+        \end{bmatrix}
+        ~\cite{levy}[Eq.~21b]
+    \end{equation}
+\par
+    \begin{equation}
+        \label{equ:Levy_C}
+        C = 
+        \begin{bmatrix}
+            S_0 \\
+            T_1 \\
+            S_2 \\
+            T_3 \\
+            \vdots \\
+            0   \\
+            U_2 \\
+            0   \\
+            \vdots
+        \end{bmatrix}
+        ~\cite{levy}[Eq.~21c]
+    \end{equation}
+\end{multicols}
+%</eqLevyN>
+
+%<*eqFullModelN>
+\begin{multicols}{2}
+    \begin{equation}
+        \label{equ:fullModel_N}
+        N = 
+        \begin{bmatrix}
+            A_0 \\
+            A_1 \\
+            A_2 \\
+            A_3 \\
+            B_1 \\
+            B_2
+        \end{bmatrix}
+    \end{equation}
+\par
+    \begin{equation}
+        \label{equ:fullModel_C}
+        C = 
+        \begin{bmatrix}
+            S_0 \\
+            T_1 \\
+            S_2 \\
+            T_3 \\
+            0   \\
+            U_2
+        \end{bmatrix}
+    \end{equation}
+\end{multicols}
+%</eqFullModelN>
+
+%<*eqFullModelBadOut>
+\begin{multicols}{2}
+    \begin{equation}
+        \label{equ:fullModel_BadOutputCoeff}
+        \begin{split}
+             a_0 &= 5.9991E^{+03} \\
+             a_1 &= 1.7934E^{-04} \\
+             a_2 &= 3.3158E^{-12} \\
+             a_3 &= 6.8295E^{-22} \\
+             b_0 &= 1.0000        \\
+             b_1 &= 5.9057E^{-03} \\
+             b_2 &= 1.4067E^{-12}
+        \end{split}
+    \end{equation}
+\par
+    \begin{equation}
+        \label{equ:fullModel_BadOutputParams}
+        \begin{split}
+            C &= -8.2563E^{-10} \\
+            R_E &=  3.1886E^{-01} \\
+            L_E &=  4.8551E^{-10} \\
+            R_L &=  4.8551E^{-10} \\
+            C_D &=  9.8536E^{-07} \\
+            R_D &= -2.8824E^{-01}
+        \end{split}
+    \end{equation}
+\end{multicols}
+%</eqFullModelBadOut>
+
+%<*eqFullModelBadIn>
+\begin{multicols}{2}
+    \mbox{}\vfill
+    \begin{equation}
+        \label{equ:fullModel_BadInputCoeff}
+        \begin{split}
+            &a_0 = 1 \\
+            &a_1 = 1 \\
+            &a_2 = 1 \\
+            &a_3 = 1 \\
+            &b_0 = 1 \\
+            &b_1 = 0 \\
+            &b_2 = 0
+        \end{split}
+    \end{equation}
+\par
+    \mbox{}\vfill
+    \columnbreak
+\par
+    \mbox{}\vfill
+    \begin{equation}
+        \label{equ:fullModel_BadInputParams}
+        \begin{split}
+             C   &= INF \\
+             R_E &= INF \\
+             L_E &= INF \\
+             R_L &= IND \\
+             C_D &= IND \\
+             R_D &= IND \\
+        \end{split}
+    \end{equation}
+    \mbox{}\vfill
+\end{multicols}
+%</eqFullModelBadIn>
+
+%<*eqFullModelGoodIn>
+\begin{multicols}{2}
+    \mbox{}\vfill
+    \begin{equation}
+        \label{equ:fullModel_GoodInputCoeff}
+        \begin{split}
+             a_0 &= 2 \\
+             a_1 &= 5 \\
+             a_2 &= 4 \\
+             a_3 &= 1 \\
+             b_0 &= 1 \\
+             b_1 &= 3 \\
+             b_2 &= 1
+        \end{split}
+    \end{equation}
+\par
+    \mbox{}\vfill
+    \columnbreak
+\par
+    \mbox{}\vfill
+    \begin{equation}
+        \label{equ:fullModel_GoodInputParams}
+        \begin{split}
+             C   &= 1 \\
+             R_E &= 1 \\
+             L_E &= 1 \\
+             R_L &= 1 \\
+             C_D &= 1 \\
+             R_D &= 1 \\
+        \end{split}
+    \end{equation}
+    \mbox{}\vfill
+\end{multicols}
+%</eqFullModelGoodIn>
+
 \end{document}
 

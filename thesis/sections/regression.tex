@@ -70,44 +70,9 @@ T_3        & -S_4       & -T_5        &  S_6         & T_7         & \cdots &  U
 \end{bmatrix}
 ~\cite{levy}[Eq.~21a]
 \end{equation}
+\loadeq{LevyN}
 
-\begin{multicols}{2}
-    \begin{equation}
-        \label{equ:Levy_N}
-        N = 
-        \begin{bmatrix}
-            A_0 \\
-            A_1 \\
-            A_2 \\
-            A_3 \\
-            \vdots \\
-            B_1 \\
-            B_2 \\
-            B_3 \\
-            \vdots
-        \end{bmatrix}
-        ~\cite{levy}[Eq.~21b]
-    \end{equation}
-
-    \begin{equation}
-        \label{equ:Levy_C}
-        C = 
-        \begin{bmatrix}
-            S_0 \\
-            T_1 \\
-            S_2 \\
-            T_3 \\
-            \vdots \\
-            0   \\
-            U_2 \\
-            0   \\
-            \vdots
-        \end{bmatrix}
-        ~\cite{levy}[Eq.~21c]
-    \end{equation}
-\end{multicols}
-
-Levy's technique works well for applications where there is a small dynamic frequency range and a small number of coefficients, but there a several problems with it.
+Levy's technique works well for applications where there is a small dynamic frequency range and a small number of coefficients, but there are several problems with it.
 The first problem is that for models with a wide bandwidth, the solution to Equation: \eqref{equ:Levy_Ans}, involves an ill-conditioned matrix. This means that the solution to the system of equations will experience precision errors.
 The second problem is that this technique is heavily biased by high frequency data. As can be seen in Figure: \ref{fig:levy}, applying Levy's technique with a $3^{rd}$ order model provides a unusable fit to the empirical data.
 
@@ -153,34 +118,7 @@ The model shown in Figure: \ref{fig:fullModel} shows several of the most importa
 For this model, Equations: \eqref{equ:Levy_M}, \eqref{equ:Levy_N}, \& \eqref{equ:Levy_C} simplify down to Equations: \eqref{equ:fullModel_M}, \eqref{equ:fullModel_N}, \& \eqref{equ:fullModel_C}.
 
 \loadeq{fullModelM}
-\begin{multicols}{2}
-    \begin{equation}
-        \label{equ:fullModel_N}
-        N = 
-        \begin{bmatrix}
-            A_0 \\
-            A_1 \\
-            A_2 \\
-            A_3 \\
-            B_1 \\
-            B_2
-        \end{bmatrix}
-    \end{equation}
-
-    \begin{equation}
-        \label{equ:fullModel_C}
-        C = 
-        \begin{bmatrix}
-            S_0 \\
-            T_1 \\
-            S_2 \\
-            T_3 \\
-            0   \\
-            U_2
-        \end{bmatrix}
-    \end{equation}
-\end{multicols}
-
+\loadeq{FullModelN}
 
 \input{figures/regression/fullModel_test}
 \input{figures/regression/fullModel_testRel}
@@ -205,102 +143,15 @@ Substituting the polynomial coefficients seen in Equation: \eqref{equ:fullModel_
 
 Even though the polynomial coefficients gave an acceptable fit to the data, it resulted in unacceptable circuit parameters. Since $C$ and $R_D$ are negative, this model is not physically realizable.
 
-\begin{multicols}{2}
-    \begin{equation}
-        \label{equ:fullModel_BadOutputCoeff}
-        \begin{split}
-             a_0 &= 5.9991E^{+03} \\
-             a_1 &= 1.7934E^{-04} \\
-             a_2 &= 3.3158E^{-12} \\
-             a_3 &= 6.8295E^{-22} \\
-             b_0 &= 1.0000        \\
-             b_1 &= 5.9057E^{-03} \\
-             b_2 &= 1.4067E^{-12}
-        \end{split}
-    \end{equation}
-
-    \begin{equation}
-        \label{equ:fullModel_BadOutputParams}
-        \begin{split}
-            C &= -8.2563E^{-10} \\
-            R_E &=  3.1886E^{-01} \\
-            L_E &=  4.8551E^{-10} \\
-            R_L &=  4.8551E^{-10} \\
-            C_D &=  9.8536E^{-07} \\
-            R_D &= -2.8824E^{-01}
-        \end{split}
-    \end{equation}
-\end{multicols}
+\loadeq{FullModelBadOut}
 
 This problem stems from the author's \cite{levy_iter} suggestion that the initial guess for $Q(jw_k) == 1$. While an initial guess is required to calculate the weighting function during the first iteration, this particular choice causes the problem seen in Equations: \eqref{equ:fullModel_BadInputCoeff} \& \eqref{equ:fullModel_BadInputParams} for this application. They show that this initial condition does not start with rational solution for the circuit parameters.
 
-\begin{multicols}{2}
-    \mbox{}\vfill
-    \begin{equation}
-        \label{equ:fullModel_BadInputCoeff}
-        \begin{split}
-            &a_0 = 1 \\
-            &a_1 = 1 \\
-            &a_2 = 1 \\
-            &a_3 = 1 \\
-            &b_0 = 1 \\
-            &b_1 = 0 \\
-            &b_2 = 0
-        \end{split}
-    \end{equation}
-
-    \mbox{}\vfill
-    \columnbreak
-
-    \mbox{}\vfill
-    \begin{equation}
-        \label{equ:fullModel_BadInputParams}
-        \begin{split}
-             C   &= INF \\
-             R_E &= INF \\
-             L_E &= INF \\
-             R_L &= IND \\
-             C_D &= IND \\
-             R_D &= IND \\
-        \end{split}
-    \end{equation}
-    \mbox{}\vfill
-\end{multicols}
+\loadeq{FullModelBadIn}
 
 Starting instead with the rational set of circuit parameters seen in Equation: \eqref{equ:fullModel_GoodInputParams}, the starting coefficients are as seen in Equation: \eqref{equ:fullModel_GoodInputCoeff}.
 
-\begin{multicols}{2}
-    \mbox{}\vfill
-    \begin{equation}
-        \label{equ:fullModel_GoodInputCoeff}
-        \begin{split}
-             a_0 &= 2 \\
-             a_1 &= 5 \\
-             a_2 &= 4 \\
-             a_3 &= 1 \\
-             b_0 &= 1 \\
-             b_1 &= 3 \\
-             b_2 &= 1
-        \end{split}
-    \end{equation}
-
-    \mbox{}\vfill
-    \columnbreak
-
-    \mbox{}\vfill
-    \begin{equation}
-        \label{equ:fullModel_GoodInputParams}
-        \begin{split}
-             C   &= 1 \\
-             R_E &= 1 \\
-             L_E &= 1 \\
-             R_L &= 1 \\
-             C_D &= 1 \\
-             R_D &= 1 \\
-        \end{split}
-    \end{equation}
-    \mbox{}\vfill
-\end{multicols}
+\loadeq{FullModelGoodIn}
 
 \input{figures/regression/fullModel_GoodOutput}
 
