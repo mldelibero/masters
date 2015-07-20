@@ -1,6 +1,9 @@
 \documentclass{beamer}
 \usepackage{catchfilebetweentags}
 \usepackage{multicol}
+\usepackage{tikz}
+\usepackage{pdfpages}
+\usetikzlibrary{matrix,shapes,arrows,positioning,chains,calc,decorations.markings,fit}
 
 \mode<presentation>
 \title{Design Considerations for the Characterization of Capacitors}
@@ -9,12 +12,12 @@
 \institute[CWRU]{Case Western Reserve University}
 \bibliographystyle{plain}
 
-\newif\ifisPPT
-\isPPTtrue
-
 \newcommand{\loadeq}[1]{%
    \ExecuteMetaData[../equations/equations.tex]{eq#1}%
 }
+
+\input{../metadata/ifs}
+\isPPTtrue
 
 \begin{document}
 
@@ -43,9 +46,7 @@
     \frametitle{Background}
 \end{frame}
 
-\begin{frame}
-    \frametitle{Instrumentation}
-\end{frame}
+\input{sections/circuitry}
 
 \input{sections/regression}
 
@@ -58,6 +59,7 @@
 \end{frame}
 
 \bibliography{../metadata/thesis,../figures/thesis_figs}
+
 
 \end{document}
 
