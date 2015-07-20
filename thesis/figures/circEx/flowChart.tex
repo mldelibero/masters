@@ -17,32 +17,63 @@
     block/.style      = {rectangle, draw=blue, thick, fill=blue!20,text width=5em, text centered, rounded corners,minimum height=4em},
     circ/.style       = {draw,circle,node distance=3cm,fill=yellow!20},
     line/.style       = {draw, -latex'}]
-\node [circ                          ] (DC)    {DC Supply};
-\node [circ ,above=1cm       of DC   ] (AC)    {AC Supply};
-\node [block,right=          of AC   ] (DUT)   {\gls{dut}};
-\node [block,below=          of DUT  ] (TRANS) {$I \rightarrow V$}    ;
-\node [block,below=          of TRANS] (LP)    {}       ;
-\node[] at (LP) {\LPFilt};
-\node [block,below left =    of LP   ] (MAG)   {Mag}      ;
-\node [block,below right=    of LP   ] (PHA)   {Pha}      ;
-\node [block,below right=    of MAG  ] (ADC)   {ADC}      ;
-\node [block,below=          of ADC  ] (MCU)   {MCU}      ;
-\node [block,below=          of MCU  ] (PC)    {PC}       ;
 
-\path [line] (DC)    -- (AC);
-\path [line] (AC)    -- (DUT);
-\path [line] (DUT)   -- (TRANS);
-\path [line] (TRANS) -- (LP);
-\path [line] (LP)    -- (MAG);
-\path [line] (LP)    -- (PHA);
-\path [line] (MAG)   -- (ADC);
-\path [line] (PHA)   -- (ADC);
-\path [line] (ADC)   -- (MCU);
-\path [line] (MCU)   -- (PC);
+\ifOnlySecond
+\else
+    \node [circ                          ] (DC)    {DC Supply};
+    \node [circ ,above=1cm       of DC   ] (AC)    {AC Supply};
+    \ifOnlyFirst
+        \node [block,right=          of AC   ] (DUT)   {DUT};
+    \else
+        \node [block,right=          of AC   ] (DUT)   {\GLS{dut}};
+    \fi
+    \node [block,below=          of DUT  ] (TRANS) {$I \rightarrow V$}    ;
+\fi
+
+\ifOnlyFirst
+\else
+    \node [block,below=          of TRANS] (LP)    {}       ;
+    \node[] at (LP) {\LPFilt};
+    \node [block,below left =    of LP   ] (MAG)   {Mag}      ;
+    \node [block,below right=    of LP   ] (PHA)   {Pha}      ;
+    \node [block,below right=    of MAG  ] (ADC)   {ADC}      ;
+    \node [block,below=          of ADC  ] (MCU)   {MCU}      ;
+    \node [block,below=          of MCU  ] (PC)    {PC}       ;
+\fi
+
+\ifOnlySecond
+\else
+    \path [line] (DC)    -- (AC);
+    \path [line] (AC)    -- (DUT);
+    \path [line] (DUT)   -- (TRANS);
+    \ifOnlyFirst
+    \else
+        \path [line] (TRANS) -- (LP);
+    \fi
+\fi
+
+\ifOnlyFirst
+\else
+    \path [line] (LP)    -- (MAG);
+    \path [line] (LP)    -- (PHA);
+    \path [line] (MAG)   -- (ADC);
+    \path [line] (PHA)   -- (ADC);
+    \path [line] (ADC)   -- (MCU);
+    \path [line] (MCU)   -- (PC);
+\fi
 
 \end{tikzpicture}
 
 \caption{Circuit Flow Chart}
-\label{fig:flowChart}
+\ifOnlyFirst
+    \label{fig:flowChart1}
+\else
+    \ifOnlySecond
+        \label{fig:flowChart2}
+    \else
+        \label{fig:flowChart}
+    \fi
+\fi
+
 \end{figure}
 
