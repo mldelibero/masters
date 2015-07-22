@@ -4,6 +4,7 @@
 \usepackage{tikz}
 \usepackage{pdfpages}
 \usetikzlibrary{matrix,shapes,arrows,positioning,chains,calc,decorations.markings,fit}
+\usetheme{Singapore}
 
 \mode<presentation>
 \title{Design Considerations for the Characterization of Capacitors}
@@ -12,25 +13,18 @@
 \institute[CWRU]{Case Western Reserve University}
 \bibliographystyle{plain}
 
-\newcommand{\loadeq}[1]{%
-   \ExecuteMetaData[../equations/equations.tex]{eq#1}%
-}
+\newcommand{\loadeq}[1]{\ExecuteMetaData[../equations/equations.tex]{eq#1}}
 
 \input{../metadata/ifs}
 \isPPTtrue
 
 \begin{document}
 
-\section{Aim of Work}
-\section{Background}
-\section{Instrumentation}
-\section{Regression}
-\section{Modeling}
-\section{Future Work}
-
 \begin{frame}
     \titlepage
 \end{frame}
+
+\section{Aim of Work}
 
 \begin{frame}
   \frametitle{Outline}
@@ -38,6 +32,7 @@
 %  \tableofcontents[pausesections]
 \end{frame}
 
+\section{Background}
 \begin{frame}
     \frametitle{Aim of Work}
 \end{frame}
@@ -47,13 +42,14 @@
 \end{frame}
 
 \input{sections/circuitry}
-
 \input{sections/regression}
 
+\section{Modeling}
 \begin{frame}
     \frametitle{Modeling}
 \end{frame}
 
+\section{Future Work}
 \begin{frame}
     \frametitle{Future Work}
 \end{frame}
