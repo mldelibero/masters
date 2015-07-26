@@ -26,7 +26,27 @@
 \end{frame}
 
 \begin{frame}
-\loadeq{fullModelM}
+\small
+%\loadeq{fullModelM}
+\setcounter{MaxMatrixCols}{12} % Allows each row of M to fit on one line
+\begin{equation}
+\label{equ:Levy_M}
+M = 
+\begin{bmatrix}
+\lambda _0 & 0          & -\lambda _2 &  0           & \cdots &  T_1    & S_2    & -T_3   & -S_4   &  \cdots \\
+0          & \lambda _2 & 0           & -\lambda _4  & \cdots & -S_2    & T_3    &  S_4   & -T_5   &  \cdots \\
+\lambda _2 & 0          & -\lambda _4 &  0           & \cdots &  T_3    & S_4    & -T_5   & -S_6   &  \cdots \\
+0          & \lambda _4 & 0           & -\lambda _6  & \cdots & -S_4    & T_5    &  S_6   & -T_7   &  \cdots \\
+
+\vdots     & \vdots     &  \vdots     & \vdots       &        &  \vdots & \vdots & \vdots & \vdots &  \\
+T_1        & -S_2       & -T_3        &  S_4         & \cdots &  U_2    & 0      & -U_4   &  0     &  \cdots \\
+S_2        &  T_3       & -S_4        & -T_5         & \cdots &  0      & U_4    &  0     & -U_6   &  \cdots \\
+T_3        & -S_4       & -T_5        &  S_6         & \cdots &  U_4    & 0      & -U_6   &  0     &  \cdots \\
+\vdots     & \vdots     &  \vdots     & \vdots       & \vdots & \vdots  & \vdots & \vdots & \vdots &  \vdots \\ 
+\end{bmatrix}
+~\cite{levy}[Eq.~21a]
+\end{equation}
+\normalsize
 \end{frame}
 
 \begin{frame}
